@@ -1,0 +1,13 @@
+-En la tabla Proveedores razonSocial puede ser otra tabla.
+-Insumos cantidadStock VARCHAR.
+-Agregar y mapear MedioPago
+
+Tablas que tienen DECIMAL => BigDecimal
+*MovimientosCaja - Ready
+*Ventas - Ready
+*DetallesVenta - Ready
+*Tamanios - Ready
+*Promociones - Ready
+*Facturas - Ready
+*DetallesFacturas - Ready
+
