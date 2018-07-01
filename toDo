@@ -1,6 +1,7 @@
 -En la tabla Proveedores razonSocial puede ser otra tabla.
 -Insumos cantidadStock VARCHAR.
 -Agregar y mapear MedioPago
+-Agregar stock minimo para los insumos para cumplir con requisito de envio de mail cuando se tiene menos stock que el minimo.
 
 Tablas que tienen DECIMAL => BigDecimal
 *MovimientosCaja - Ready
