@@ -3,6 +3,21 @@
 -Agregar y mapear MedioPago
 -Agregar stock minimo para los insumos para cumplir con requisito de envio de mail cuando se tiene menos stock que el minimo.
 
+Prioridad en el armado de paquetes/Orden en el cual se codifican:
+-Manejo de Stock
+-Clase proveedor (Que por ahora no esta en ningun paquete pero es importante)
+-Gestion de Franquicia
+-Gestion de Usuario
+-Gestion de productos
+-Gestion de ventas
+-Gestion de caja
+-Gestion de facturacion
+-Gestion de estadisticas
+
+Ese me parece que seria el mejor orden para hacer las cosas, 
+me gustaria tener el tema de los usuarios resuelto relativamente rapido asi podemos tenerlo en cuenta a la hora de hacer todos los paquetes.
+
+
 Tablas que tienen DECIMAL => BigDecimal
 *MovimientosCaja - Ready
 *Ventas - Ready
