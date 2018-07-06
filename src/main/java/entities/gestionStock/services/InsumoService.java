@@ -1,20 +1,47 @@
 package entities.gestionStock.services;
 
-import javax.ws.rs.*;
+import entities.gestionStock.Insumo;
+import entities.gestionStock.controllers.InsumoController;
 
-@Path("/stock")
+import javax.inject.Inject;
+import javax.ws.rs.*;
+import java.util.List;
+
+@Path("/insumo")
 public class InsumoService {
+    @Inject
+    InsumoController iController;
+
+    @GET
+    @Path("/{id}")
+    @Produces("application/json")
+    public Insumo get(@PathParam("id") int id) {
+        return iController.find(id);
+    }
+
     @GET
     @Produces("application/json")
-    public void get() {
-
+    public List<Insumo> getAll() {
+        return iController.findAll();
     }
 
     @POST
     @Consumes("application/json")
-    public void create() {
-
+    public void create(Insumo i) {
+        iController.create(i);
     }
 
+    @PUT
+    @Path("/{id}")
+    @Consumes("application/json")
+    public void update(@PathParam("id") int id, Insumo i) {
+        iController.update(id, i);
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public void remove(@PathParam("id") int id) {
+        iController.remove(id);
+    }
 
 }
