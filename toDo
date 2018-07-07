@@ -1,20 +1,36 @@
 -En la tabla Proveedores razonSocial puede ser otra tabla.
--Insumos cantidadStock VARCHAR.
 -Agregar y mapear MedioPago
--Agregar stock minimo para los insumos para cumplir con requisito de envio de mail cuando se tiene menos stock que el minimo.
--Agregar atributo para baja de un cliente y la franquicia
--Agregar fechas de cancelacion/anulacion a las transacciones que lo requieran (Asi no necesitamos una clase estado que este al vicio)
+DONE -Agregar stock minimo para los insumos para cumplir con requisito de envio de mail cuando se tiene menos stock que el minimo.
+DONE -Agregar atributo para baja de un cliente y la franquicia
+DONE -Agregar fechas de cancelacion/anulacion a las transacciones que lo requieran (Asi no necesitamos una clase estado que este al vicio)
+DONE -Insumos cantidadStock VARCHAR.
 
 Prioridad en el armado de paquetes/Orden en el cual se codifican:
--Manejo de Stock
--Clase proveedor (Que por ahora no esta en ningun paquete pero es importante)
--Gestion de Franquicia
--Gestion de Usuario
--Gestion de productos
--Gestion de ventas
--Gestion de caja
--Gestion de facturacion
--Gestion de estadisticas
+
+- Manejo de Stock: Insumo, MovimientoStock, DetalleMovimientoStock
+
+
+- Gestion de Franquicia: Franquicia, Empleado, Proveedor
+
+
+- Gestion de Usuarios: Usuario, Sesion, Perfil, Turno,Permiso
+
+  <<Se vera durante todo el proceso de sw, Lo iremos modifcando mientras vayamos aprendiendo como se hace>>
+- Gestion de Productos: Producto, Promocion, Sabor, Tamaño
+
+
+- Gestion de Ventas: Venta, DetalleVenta, MedioPago
+
+
+- Gestión de Caja: Movimiento de Caja,
+ DetalleMovimientoCaja
+
+
+- Gestion de Facturation: Factura, DetalleFactura
+
+
+- Gestion de Estadisticas
+
 
 Ese me parece que seria el mejor orden para hacer las cosas, 
 me gustaria tener el tema de los usuarios resuelto relativamente rapido asi podemos tenerlo en cuenta a la hora de hacer todos los paquetes.
