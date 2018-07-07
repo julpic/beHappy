@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Insumo {
     private int idInsumo;
     private String nombre;
-    private String cantidadStock;
+    private int cantidadStock;
 
     @Id
     @Column(name = "idInsumo")
@@ -31,11 +31,11 @@ public class Insumo {
 
     @Basic
     @Column(name = "cantidadStock")
-    public String getCantidadStock() {
+    public int getCantidadStock() {
         return cantidadStock;
     }
 
-    public void setCantidadStock(String cantidadStock) {
+    public void setCantidadStock(int cantidadStock) {
         this.cantidadStock = cantidadStock;
     }
 
@@ -48,7 +48,7 @@ public class Insumo {
 
         if (idInsumo != insumo.idInsumo) return false;
         if (nombre != null ? !nombre.equals(insumo.nombre) : insumo.nombre != null) return false;
-        if (cantidadStock != null ? !cantidadStock.equals(insumo.cantidadStock) : insumo.cantidadStock != null)
+        if (cantidadStock !=  insumo.cantidadStock)
             return false;
 
         return true;
@@ -58,11 +58,25 @@ public class Insumo {
     public int hashCode() {
         int result = idInsumo;
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + (cantidadStock != null ? cantidadStock.hashCode() : 0);
+        result = 31 * result + (cantidadStock);
         return result;
     }
 
-    public void cancelarMovimiento(int cantidad, boolean esEntrada){
 
+    /**
+     * Deshace lo realizado por el movimiento una vez que el movimiento es cancelado.
+     * Si el movimiento era de entrada de stock entonces se resta la cantidad agregada.
+     * Si el movimiento era de slaida entonces se suma la canridad restada anteriormente.
+     * argument is a specifier that is relative to the url argument.
+     *
+     * @param  cantidad Cantidad agregada o sustraida en el movimiento
+     * @param  esEntrada si es true entonces el movimiento cancelado era de entrada, si es false el movimiento cancelado era de salida
+     */
+    public void cancelarMovimiento(int cantidad, boolean esEntrada){
+        if (esEntrada == true){
+            this.cantidadStock -= cantidad;
+        }else{
+            this.cantidadStock -= cantidad;
+        }
     }
 }

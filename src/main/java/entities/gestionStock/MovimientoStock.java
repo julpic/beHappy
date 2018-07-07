@@ -10,6 +10,8 @@ public class MovimientoStock {
     private int idMovimientoStock;
     private Integer idVenta;
     private Timestamp fechaHora;
+    private Timestamp fechaHoraAnulacion;
+    private boolean entrada;
     private List<DetalleMovimientoStock> detallesMovimiento;
 
     @Id
@@ -33,6 +35,14 @@ public class MovimientoStock {
     }
 
     @Basic
+    @Column(name = "fechaHoraAnulacion")
+    public Timestamp getFechaHoraAnulacion() { return fechaHoraAnulacion; }
+
+    public void setFechaHoraAnulacion(Timestamp fechaHoraAnulacion) {
+        this.fechaHoraAnulacion = fechaHoraAnulacion;
+    }
+
+    @Basic
     @Column(name = "fechaHora")
     public Timestamp getFechaHora() {
         return fechaHora;
@@ -42,6 +52,15 @@ public class MovimientoStock {
         this.fechaHora = fechaHora;
     }
 
+    @Basic
+    @Column(name = "entrada")
+    public boolean getEntrada() {
+        return entrada;
+    }
+
+    public void setEntrada(boolean entrada) {
+        this.entrada = entrada;
+    }
 
     public void addDetalle(DetalleMovimientoStock detalle){
         this.detallesMovimiento.add(detalle);
