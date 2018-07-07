@@ -2,6 +2,7 @@ package entities.gestionStock;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "MovimientosStock", schema = "BeFruit", catalog = "")
@@ -9,6 +10,7 @@ public class MovimientoStock {
     private int idMovimientoStock;
     private Integer idVenta;
     private Timestamp fechaHora;
+    private List<DetalleMovimientoStock> detallesMovimiento;
 
     @Id
     @Column(name = "idMovimientoStock")
@@ -38,6 +40,16 @@ public class MovimientoStock {
 
     public void setFechaHora(Timestamp fechaHora) {
         this.fechaHora = fechaHora;
+    }
+
+
+    public void addDetalle(DetalleMovimientoStock detalle){
+        this.detallesMovimiento.add(detalle);
+    }
+
+    @SuppressWarnings("JpaAttributeTypeInspection")
+    public List<DetalleMovimientoStock> getDetalles(){
+        return this.detallesMovimiento;
     }
 
     @Override

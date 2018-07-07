@@ -61,4 +61,8 @@ public class Insumo {
         result = 31 * result + (cantidadStock != null ? cantidadStock.hashCode() : 0);
         return result;
     }
+
+    public void cancelarMovimiento(int cantidad, boolean esEntrada){
+
+    }
 }
