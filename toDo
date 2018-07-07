@@ -2,6 +2,8 @@
 -Insumos cantidadStock VARCHAR.
 -Agregar y mapear MedioPago
 -Agregar stock minimo para los insumos para cumplir con requisito de envio de mail cuando se tiene menos stock que el minimo.
+-Agregar atributo para baja de un cliente y la franquicia
+-Agregar fechas de cancelacion/anulacion a las transacciones que lo requieran (Asi no necesitamos una clase estado que este al vicio)
 
 Prioridad en el armado de paquetes/Orden en el cual se codifican:
 -Manejo de Stock
