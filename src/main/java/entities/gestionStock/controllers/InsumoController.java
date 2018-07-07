@@ -2,13 +2,13 @@ package entities.gestionStock.controllers;
 
 import entities.gestionStock.Insumo;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
-@ApplicationScoped
+@Stateless
 public class InsumoController {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
