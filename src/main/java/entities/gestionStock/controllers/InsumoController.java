@@ -29,10 +29,11 @@ public class InsumoController {
 
     public void update(int id, Insumo i) {
         Insumo x = entityManager.find(Insumo.class, id);
-        if (x != null)
-            //Definir que es lo que se actualiza del insumo
-            //Setear a x lo que se quiere actualizar de i
+        if (x != null) {
+            x.setNombre(i.getNombre());
+            x.setCantidadStock(i.getCantidadStock());
             entityManager.merge(x);
+        }
     }
 
     public void remove(int id) {
