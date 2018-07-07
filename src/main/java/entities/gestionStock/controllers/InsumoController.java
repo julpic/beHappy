@@ -13,6 +13,7 @@ public class InsumoController {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
+    //Hay que mostrar el insumo con su unidad de medida
     public Insumo find(int id) {
         return entityManager.find(Insumo.class, id);
     }

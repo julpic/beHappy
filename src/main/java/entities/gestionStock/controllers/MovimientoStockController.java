@@ -31,9 +31,8 @@ public class MovimientoStockController {
     }
 
     private List<DetalleMovimientoStock> buscarDetalles(int idMovimiento){
-        Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStock i WHERE i.idMovimiento = :idMov")
-                .setParameter("idMov", idMovimiento);
-        return  q.getResultList();
+        DetalleMovimientoStockController detalleController = new DetalleMovimientoStockController();
+        return  detalleController.find(idMovimiento);
     }
 
     //Se deben devolver los movimientos junto con sus correspondientes detalles
@@ -50,10 +49,20 @@ public class MovimientoStockController {
     }
 
     //Cuando se creen los movimientos tambien se deben crear sus detalles
-    //No se como hacer este...
-    public void create(MovimientoStock i) {
-        if (entityManager.find(MovimientoStock.class, i.getIdMovimientoStock()) == null)
-            entityManager.persist(i);
+    //Retorna el numero de movimiento para luego poder hacer los detalles
+    public int create(MovimientoStock ms) {
+        int idMovimiento = buscarUltimoID() + 1;
+        ms.setIdMovimientoStock(idMovimiento);
+        if (entityManager.find(MovimientoStock.class, ms.getIdMovimientoStock()) == null){
+            entityManager.persist(ms);
+        }
+        return idMovimiento;
+    }
+
+    private int buscarUltimoID(){
+        Query q = entityManager.createQuery("SELECT MAX(i.idMovimiento) FROM DetalleMovimientoStock i");
+        return (int) q.getSingleResult();
+
     }
 
     //Cambiar para que el remove haga un set con la fecha actual a la columna FechaAnulacion y que recorran todos los detalles
@@ -62,14 +71,9 @@ public class MovimientoStockController {
     public void remove(int id) {
         MovimientoStock actual = find(id);
         boolean entrada = actual.getEntrada();
-
         List<DetalleMovimientoStock> detalles = buscarDetalles(actual.getIdMovimientoStock());
 
-        for (DetalleMovimientoStock d: detalles) {
-            Insumo insumoACambiar = buscarInsumoDeDetalle(d);
-            insumoACambiar.cancelarMovimiento(d.getCantidad(), entrada);
-            entityManager.merge(insumoACambiar);
-        }
+        revertirDetalles(detalles, entrada);
 
         Date date = new Date();
         Timestamp fechaAnulacion = new Timestamp(date.getTime());
@@ -77,8 +81,12 @@ public class MovimientoStockController {
         entityManager.merge(actual);
     }
 
-    private Insumo buscarInsumoDeDetalle(DetalleMovimientoStock detalle){
-        int idInsumo = detalle.getInsumo().getIdInsumo();
-        return entityManager.find(Insumo.class, idInsumo);
+    private void revertirDetalles(List<DetalleMovimientoStock> detalles, boolean entrada){
+        DetalleMovimientoStockController detalleController = new DetalleMovimientoStockController();
+
+        for (DetalleMovimientoStock d: detalles) {
+            detalleController.remove(d, entrada);
+        }
     }
+
 }
