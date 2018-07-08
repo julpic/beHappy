@@ -1,6 +1,7 @@
 package daos.gestionStockDAO.repositorios;
 
 import entities.gestionStock.Insumo;
+import entities.gestionStock.MovimientoStock;
 import entities.gestionStock.UnidadMedida;
 
 import javax.persistence.EntityManager;
@@ -54,5 +55,23 @@ public class RepositorioStock {
         RepositorioUnidadMedida rum = new RepositorioUnidadMedida();
         rum.modificarUnidadMedida(id, um);
     }
+
+    //Accesos a la base de datos pertinentes al Movimiento de Stock
+    public MovimientoStock buscarMovimientoStock(int id){
+        RepositorioMovimientoStock rms = new RepositorioMovimientoStock();
+        return rms.buscarMovimientoStock(id);
+    }
+
+    public List<MovimientoStock> buscarMovimientosStock() {
+        RepositorioMovimientoStock rms = new RepositorioMovimientoStock();
+        return rms.buscarMovimientosStock();
+    }
+
+    public int crearMovimientoStock(MovimientoStock ms) {
+        RepositorioMovimientoStock rms = new RepositorioMovimientoStock();
+        return rms.crearMovimientoStock(ms);
+    }
+
+
 
 }

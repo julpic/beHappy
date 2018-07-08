@@ -67,4 +67,12 @@ public class Insumo {
 
         return Objects.hash(idInsumo, nombre, cantidadStock);
     }
+
+    public void cancelarMovimiento(int cantidad, boolean entrada){
+        if (entrada){
+            this.cantidadStock =- cantidad;
+        }else{
+            this.cantidadStock =+ cantidad;
+        }
+    }
 }

@@ -51,33 +51,35 @@ public class RepositorioMovimientoStock {
 
     }
 
-/*
-    public void crearMovimientoStock(Insumo i) {
-        if (entityManager.find(InsumoDAO.class, i.getIdInsumo()) == null) {
-            InsumoDAO iDao = new InsumoDAO(i);
-            entityManager.persist(iDao);
+
+    public int crearMovimientoStock(MovimientoStock ms) {
+        int idMovimiento = buscarUltimoID() + 1;
+        ms.setIdMovimientoStock(idMovimiento);
+        if (entityManager.find(MovimientoStockDAO.class, ms.getIdMovimientoStock()) == null) {
+            MovimientoStockDAO msDAO = new MovimientoStockDAO(ms, idMovimiento);
+            entityManager.persist(msDAO);
         }
+        return idMovimiento;
     }
 
-    public void modificarModificarMovimiento(int id, Insumo i) {
-        InsumoDAO x = entityManager.find(InsumoDAO.class, id);
-        if (x != null) {
-            x.setNombre(i.getNombre());
-            x.setCantidadStock(i.getCantidadStock());
-            x.setStockMinimo(i.getStockMinimo());
-            RepositorioUnidadMedida rs = new RepositorioUnidadMedida();
-            int idUm = rs.buscarIDUnidadMedida(i.getUnidadMedida().getNombre());
-            x.setIdUnidadMedida(idUm);
-            entityManager.merge(x);
-        }
+    /*public void remove(int id) {
+        MovimientoStock actual = buscarMovimientoStock(id);
+        boolean entrada = actual.isEntrada();
+
+        List<DetalleMovimientoStock> detalles = buscarDetalles(actual.getIdMovimientoStock());
+
+        revertirDetalles(detalles, entrada);
+
+        Date date = new Date();
+        Timestamp fechaAnulacion = new Timestamp(date.getTime());
+        actual.setFechaHoraAnulacion(fechaAnulacion);
+        entityManager.merge(actual);
     }
 
-    public void AnularMovimiento(int id) {
-        InsumoDAO x = entityManager.find(InsumoDAO.class, id);
-        if (x != null){
-            x.darDeBaja();
-            entityManager.merge(x);
-        }
-    }
-    */
+    private void revertirDetalles(List<DetalleMovimientoStockDAO> detalles, boolean entrada) {
+        DetalleMovimientoStockController detalleController = new DetalleMovimientoStockController();
+
+        for (DetalleMovimientoStockDAO d : detalles) {
+            detalleController.remove(d, entrada);
+        }*/
 }

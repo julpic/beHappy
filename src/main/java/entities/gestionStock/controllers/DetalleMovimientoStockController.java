@@ -1,13 +1,13 @@
 package entities.gestionStock.controllers;
 
+import entities.gestionStock.DetalleMovimientoStock;
+import entities.gestionStock.Insumo;
+
 import javax.ejb.Stateless;
 
 @Stateless
 public class DetalleMovimientoStockController {
 /*
-    @PersistenceContext(name = "beFruitPersistenceUnit")
-    EntityManager entityManager;
-
     public List<DetalleMovimientoStockDAO> find(int idMovimiento) {
         Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStockDAO i WHERE i.idMovimiento = :idMov")
                 .setParameter("idMov", idMovimiento);
@@ -22,19 +22,21 @@ public class DetalleMovimientoStockController {
                 entityManager.persist(d);
         }
     }
-
-    public void remove(DetalleMovimientoStockDAO d, boolean entrada) {
+*/
+    public void remove(DetalleMovimientoStock d, boolean entrada) {
             Insumo insumoACambiar = buscarInsumo(d);
             insumoACambiar.cancelarMovimiento(d.getCantidad(), entrada);
-            entityManager.merge(insumoACambiar);
+            InsumoController ic = new InsumoController();
+            ic.update(insumoACambiar.getIdInsumo(), insumoACambiar);
     }
 
-    private Insumo buscarInsumo(DetalleMovimientoStockDAO detalle){
+    private Insumo buscarInsumo(DetalleMovimientoStock detalle){
         int idInsumo = detalle.getInsumo().getIdInsumo();
-        return entityManager.find(Insumo.class, idInsumo);
+        InsumoController ic = new InsumoController();
+        return ic.find(idInsumo);
     }
 
 
-*/
+
 
 }

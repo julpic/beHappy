@@ -15,6 +15,13 @@ public class DetalleMovimientoStockDAO {
     private int idInsumo;
     private int cantidad;
 
+    public DetalleMovimientoStockDAO(DetalleMovimientoStock d, int id, int idMovimiento) {
+        this.idDetalleMovimientoStock = id;
+        this.idMovimiento = idMovimiento;
+        this.idInsumo = d.getInsumo().getIdInsumo();
+        this.cantidad = d.getCantidad();
+    }
+
     @Id
     @Column(name = "idDetalleMovimientoStock")
     public int getIdDetalleMovimientoStock() {

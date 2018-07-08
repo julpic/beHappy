@@ -44,17 +44,5 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-cdi -->
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-cdi</artifactId>
-            <version>3.5.1.Final</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
-            <version>3.5.1.Final</version>
-        </dependency>
     </dependencies>
 </project>

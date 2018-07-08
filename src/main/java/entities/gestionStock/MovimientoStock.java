@@ -8,7 +8,7 @@ import java.util.Objects;
 public class MovimientoStock {
     private int idMovimientoStock;
     private Date fechaHora;
-    private Date fehcaHoraAnulacion;
+    private Date fechaHoraAnulacion;
     private boolean entrada;
     private List<DetalleMovimientoStock> detalles;
 
@@ -30,29 +30,27 @@ public class MovimientoStock {
         return idMovimientoStock;
     }
 
+    public void setIdMovimientoStock(int idMovimientoStock) { this.idMovimientoStock = idMovimientoStock; }
+
+
     public Date getFechaHora() { return fechaHora; }
 
-    public Date getFehcaHoraAnulacion() { return fehcaHoraAnulacion; }
+    public void setFechaHora(Date fechaHora) { this.fechaHora = fechaHora; }
+
+
+    public Date getFehcaHoraAnulacion() { return fechaHoraAnulacion; }
+
+    public void setFehcaHoraAnulacion(Date fechaHoraAnulacion) { this.fechaHoraAnulacion = fechaHoraAnulacion; }
+
 
     public boolean isEntrada() { return entrada; }
 
-    public void setIdMovimientoStock(int idMovimientoStock) {
-        this.idMovimientoStock = idMovimientoStock;
-    }
-
-    public void setFechaHora(Date fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-
-    public void setFehcaHoraAnulacion(Date fehcaHoraAnulacion) {
-        this.fehcaHoraAnulacion = fehcaHoraAnulacion;
-    }
-
-    public void setDetalles(List<DetalleMovimientoStock> detalles) {
-        this.detalles = detalles;
-    }
-
     public void setEntrada(boolean entrada) { this.entrada = entrada; }
+
+
+    public void setDetalles(List<DetalleMovimientoStock> detalles) { this.detalles = detalles; }
+
+    public List<DetalleMovimientoStock> getDetalles() { return detalles; }
 
     @Override
     public boolean equals(Object o) {
@@ -60,7 +58,7 @@ public class MovimientoStock {
         if (o == null || getClass() != o.getClass()) return false;
         MovimientoStock that = (MovimientoStock) o;
         return idMovimientoStock == that.idMovimientoStock &&
-                Objects.equals(fehcaHoraAnulacion, that.fehcaHoraAnulacion) &&
+                Objects.equals(fechaHoraAnulacion, that.fechaHoraAnulacion) &&
                 Objects.equals(fechaHora, that.fechaHora) &&
                 Objects.equals(entrada,this.entrada);
     }
@@ -72,6 +70,7 @@ public class MovimientoStock {
 
     public void anular(){
         Date date = new Date();
-        this.fehcaHoraAnulacion = date;
+        this.fechaHoraAnulacion = date;
     }
+
 }

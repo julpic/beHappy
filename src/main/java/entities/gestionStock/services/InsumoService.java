@@ -1,6 +1,6 @@
 package entities.gestionStock.services;
 
-import daos.gestionStockDAO.services.Insumo;
+import entities.gestionStock.Insumo;
 import entities.gestionStock.controllers.InsumoController;
 
 import javax.inject.Inject;

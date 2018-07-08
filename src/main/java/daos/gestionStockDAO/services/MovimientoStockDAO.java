@@ -18,6 +18,13 @@ public class MovimientoStockDAO {
     private Timestamp fechaHoraAnulacion;
     private boolean entrada;
 
+    public MovimientoStockDAO(MovimientoStock ms, int id) {
+        this.idMovimientoStock = id;
+        this.fechaHora = java.sql.Timestamp.valueOf(ms.getFechaHora().toString());
+        this.fechaHoraAnulacion = java.sql.Timestamp.valueOf(ms.getFehcaHoraAnulacion().toString());
+        this.entrada = ms.isEntrada();
+    }
+
     @Id
     @Column(name = "idMovimientoStock")
     public int getIdMovimientoStock() {
