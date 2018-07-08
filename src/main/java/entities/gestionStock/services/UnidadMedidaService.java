@@ -1,6 +1,6 @@
 package entities.gestionStock.services;
 
-import entities.gestionStock.Insumo;
+import daos.gestionStockDAO.services.Insumo;
 
 import javax.ws.rs.*;
 

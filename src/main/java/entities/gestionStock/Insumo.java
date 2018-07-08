@@ -1,17 +1,16 @@
 package entities.gestionStock;
 
-import javax.persistence.*;
+
 import java.util.Objects;
 
-@Entity
-@Table(name = "Insumos", schema = "BeFruit", catalog = "")
 public class Insumo {
     private int idInsumo;
     private String nombre;
-    private String cantidadStock;
+    private int cantidadStock;
+    private int stockMinimo;
+    private UnidadMedida UnidadMedida;
 
-    @Id
-    @Column(name = "idInsumo")
+
     public int getIdInsumo() {
         return idInsumo;
     }
@@ -20,8 +19,6 @@ public class Insumo {
         this.idInsumo = idInsumo;
     }
 
-    @Basic
-    @Column(name = "nombre")
     public String getNombre() {
         return nombre;
     }
@@ -30,14 +27,29 @@ public class Insumo {
         this.nombre = nombre;
     }
 
-    @Basic
-    @Column(name = "cantidadStock")
-    public String getCantidadStock() {
+
+    public int getCantidadStock() {
         return cantidadStock;
     }
 
-    public void setCantidadStock(String cantidadStock) {
+    public void setCantidadStock(int cantidadStock) {
         this.cantidadStock = cantidadStock;
+    }
+
+    public int getStockMinimo() {
+        return stockMinimo;
+    }
+
+    public entities.gestionStock.UnidadMedida getUnidadMedida() {
+        return UnidadMedida;
+    }
+
+    public void setStockMinimo(int stockMinimo) {
+        this.stockMinimo = stockMinimo;
+    }
+
+    public void setUnidadMedida(entities.gestionStock.UnidadMedida unidadMedida) {
+        UnidadMedida = unidadMedida;
     }
 
     @Override

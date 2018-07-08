@@ -1,15 +1,18 @@
-package entities.gestionStock;
+package daos.gestionStockDAO.services;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+@Entity
+@Table(name = "MovimientosStock", schema = "BeFruit", catalog = "")
 public class MovimientoStock {
     private int idMovimientoStock;
     private Integer idVenta;
     private Timestamp fechaHora;
 
-
+    @Id
+    @Column(name = "idMovimientoStock")
     public int getIdMovimientoStock() {
         return idMovimientoStock;
     }
@@ -18,7 +21,8 @@ public class MovimientoStock {
         this.idMovimientoStock = idMovimientoStock;
     }
 
-
+    @Basic
+    @Column(name = "idVenta")
     public Integer getIdVenta() {
         return idVenta;
     }
@@ -27,7 +31,8 @@ public class MovimientoStock {
         this.idVenta = idVenta;
     }
 
-
+    @Basic
+    @Column(name = "fechaHora")
     public Timestamp getFechaHora() {
         return fechaHora;
     }

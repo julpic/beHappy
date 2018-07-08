@@ -1,17 +1,16 @@
-package entities.gestionStock;
+package daos.gestionStockDAO.services;
 
-import daos.gestionStockDAO.services.DetalleMovimientoStockPK;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-
-public class DetalleMovimientoStock {
+public class DetalleMovimientoStockPK implements Serializable {
     private int idDetalleMovimientoStock;
     private int idMovimiento;
-    private int cantidad;
 
-
+    @Column(name = "idDetalleMovimientoStock")
+    @Id
     public int getIdDetalleMovimientoStock() {
         return idDetalleMovimientoStock;
     }
@@ -20,7 +19,8 @@ public class DetalleMovimientoStock {
         this.idDetalleMovimientoStock = idDetalleMovimientoStock;
     }
 
-
+    @Column(name = "idMovimiento")
+    @Id
     public int getIdMovimiento() {
         return idMovimiento;
     }
@@ -29,27 +29,18 @@ public class DetalleMovimientoStock {
         this.idMovimiento = idMovimiento;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DetalleMovimientoStock that = (DetalleMovimientoStock) o;
+        DetalleMovimientoStockPK that = (DetalleMovimientoStockPK) o;
         return idDetalleMovimientoStock == that.idDetalleMovimientoStock &&
-                idMovimiento == that.idMovimiento &&
-                cantidad == that.cantidad;
+                idMovimiento == that.idMovimiento;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idDetalleMovimientoStock, idMovimiento, cantidad);
+        return Objects.hash(idDetalleMovimientoStock, idMovimiento);
     }
 }

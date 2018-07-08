@@ -1,16 +1,18 @@
-package entities.gestionStock;
+package daos.gestionStockDAO.services;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Objects;
 
-public class DetalleMovimientoStockPK implements Serializable {
+@Entity
+@Table(name = "DetallesMovimientosStock", schema = "BeFruit", catalog = "")
+@IdClass(DetalleMovimientoStockPK.class)
+public class DetalleMovimientoStock {
     private int idDetalleMovimientoStock;
     private int idMovimiento;
+    private int cantidad;
 
-    @Column(name = "idDetalleMovimientoStock")
     @Id
+    @Column(name = "idDetalleMovimientoStock")
     public int getIdDetalleMovimientoStock() {
         return idDetalleMovimientoStock;
     }
@@ -19,8 +21,8 @@ public class DetalleMovimientoStockPK implements Serializable {
         this.idDetalleMovimientoStock = idDetalleMovimientoStock;
     }
 
-    @Column(name = "idMovimiento")
     @Id
+    @Column(name = "idMovimiento")
     public int getIdMovimiento() {
         return idMovimiento;
     }
@@ -29,18 +31,29 @@ public class DetalleMovimientoStockPK implements Serializable {
         this.idMovimiento = idMovimiento;
     }
 
+    @Basic
+    @Column(name = "cantidad")
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DetalleMovimientoStockPK that = (DetalleMovimientoStockPK) o;
+        DetalleMovimientoStock that = (DetalleMovimientoStock) o;
         return idDetalleMovimientoStock == that.idDetalleMovimientoStock &&
-                idMovimiento == that.idMovimiento;
+                idMovimiento == that.idMovimiento &&
+                cantidad == that.cantidad;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idDetalleMovimientoStock, idMovimiento);
+        return Objects.hash(idDetalleMovimientoStock, idMovimiento, cantidad);
     }
 }
