@@ -75,4 +75,12 @@ public class Insumo {
             this.cantidadStock =+ cantidad;
         }
     }
+
+    public void registrarMovimiento(int cantidad, boolean entrada){
+        if (entrada){
+            this.cantidadStock =+ cantidad;
+        }else{
+            this.cantidadStock =- cantidad;
+        }
+    }
 }

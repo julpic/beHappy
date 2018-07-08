@@ -28,6 +28,16 @@ public class RepositorioInsumo {
         return insumos;
     }
 
+    public List<Insumo> buscarInsumosConStockInsuficiente(){
+        List<InsumoDAO> insumosDAO = entityManager.createQuery("SELECT i FROM Insumos i WHERE i.cantidadStock <= i.stockMinimo").getResultList();
+        ArrayList<Insumo> insumos = new ArrayList<Insumo>();
+        RepositorioUnidadMedida rs = new RepositorioUnidadMedida();
+        for(InsumoDAO iDAO: insumosDAO){
+            insumos.add(iDAO.getInsumo(rs.buscarUnidadMedida(iDAO.getIdUnidadMedida())));
+        }
+        return insumos;
+    }
+
     public void crearInsumo(Insumo i) {
         if (entityManager.find(InsumoDAO.class, i.getIdInsumo()) == null) {
             InsumoDAO iDao = new InsumoDAO(i);

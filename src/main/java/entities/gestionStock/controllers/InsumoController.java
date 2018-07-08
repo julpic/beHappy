@@ -27,6 +27,10 @@ public class InsumoController {
         rs.crearInsumo(i);
     }
 
+    public List<Insumo> buscarInsumosConStockInsuficiente(){
+        return rs.buscarInsumosConStockInsuficiente();
+    }
+
     public void update(int id, Insumo i) {
         rs.modificarInsumo(id, i);
     }

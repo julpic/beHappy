@@ -1,5 +1,6 @@
 package daos.gestionStockDAO.repositorios;
 
+import entities.gestionStock.DetalleMovimientoStock;
 import entities.gestionStock.Insumo;
 import entities.gestionStock.MovimientoStock;
 import entities.gestionStock.UnidadMedida;
@@ -22,6 +23,11 @@ public class RepositorioStock {
     public List<Insumo> buscarInsumos(){
         RepositorioInsumo ri = new RepositorioInsumo();
         return ri.buscarInsumos();
+    }
+
+    public List<Insumo> buscarInsumosConStockInsuficiente(){
+        RepositorioInsumo ri = new RepositorioInsumo();
+        return ri.buscarInsumosConStockInsuficiente();
     }
 
 
@@ -70,6 +76,12 @@ public class RepositorioStock {
     public int crearMovimientoStock(MovimientoStock ms) {
         RepositorioMovimientoStock rms = new RepositorioMovimientoStock();
         return rms.crearMovimientoStock(ms);
+    }
+
+    //Accesos a la base de datos pertinentes a los detalles
+    public void crearDetallesMovimientoStock(List<DetalleMovimientoStock> detalles, int idMovimiento){
+        RepositorioDetalleMovimientoStock rDet = new RepositorioDetalleMovimientoStock();
+        rDet.crearDetallesDeUnMovimiento(idMovimiento, detalles);
     }
 
 

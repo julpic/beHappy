@@ -25,7 +25,6 @@ public class RepositorioDetalleMovimientoStock {
             entityManager.persist(detDAO);
             idDetalle ++;
         }
-
     }
 }
 
