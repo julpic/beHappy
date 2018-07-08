@@ -8,6 +8,7 @@ public class Insumo {
     private int idInsumo;
     private String nombre;
     private int cantidadStock;
+    private UnidadMedida unidadDeMedida;
 
     @Id
     @Column(name = "idInsumo")
@@ -38,6 +39,10 @@ public class Insumo {
     public void setCantidadStock(int cantidadStock) {
         this.cantidadStock = cantidadStock;
     }
+
+    public UnidadMedida getUnidadDeMedida(){return this.unidadDeMedida;}
+
+    public void setUnidadDeMedida(UnidadMedida unidadMedida){ this.unidadDeMedida = unidadMedida;}
 
     @Override
     public boolean equals(Object o) {
