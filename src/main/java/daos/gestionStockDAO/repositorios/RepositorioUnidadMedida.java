@@ -18,17 +18,17 @@ public class RepositorioUnidadMedida {
         return umDao.getUnidadMedida();
     }
 
-    //Este metodo no esta listo
-    public UnidadMedida buscarUnidadMedida(String nombre){
-        Query q = entityManager.createQuery("SELECT um FROM UnidadesMedida um WHERE um.nombre = nombre");
-        return (Integer) q.getSingleResult();
+    public int buscarIDUnidadMedida(String nombreU){
+        Query q = entityManager.createQuery("SELECT um.idUnidad FROM UnidadesMedida um WHERE um.nombre = :nombreU")
+                .setParameter("nombreU", nombreU);
+        return (int) q.getSingleResult();
     }
 
     public void crearUnidadMedida(UnidadMedida um) {
         if (entityManager.find(UnidadMedidaDAO.class, um.getNombre()) == null) {
             int idUnidad = buscarUltimoID() + 1;
             UnidadMedidaDAO umDao = new UnidadMedidaDAO(um, idUnidad);
-            entityManager.persist(um);
+            entityManager.persist(umDao);
         }
     }
 
@@ -37,10 +37,10 @@ public class RepositorioUnidadMedida {
         return (Integer) q.getSingleResult();
     }
 
-    public void modificarUnidadMedida(int id, Insumo i) {
+    public void modificarUnidadMedida(int id, UnidadMedida um) {
         UnidadMedidaDAO x = entityManager.find(UnidadMedidaDAO.class, id);
         if (x != null) {
-            x.setNombre(i.getNombre());
+            x.setNombre(um.getNombre());
             entityManager.merge(x);
         }
     }

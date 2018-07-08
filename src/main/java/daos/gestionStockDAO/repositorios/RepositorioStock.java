@@ -50,4 +50,9 @@ public class RepositorioStock {
         rum.crearUnidadMedida(um);
     }
 
+    public void modificarUnidadMedida(int id,  UnidadMedida um) {
+        RepositorioUnidadMedida rum = new RepositorioUnidadMedida();
+        rum.modificarUnidadMedida(id, um);
+    }
+
 }

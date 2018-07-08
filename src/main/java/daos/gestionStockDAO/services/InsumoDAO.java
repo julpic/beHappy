@@ -1,6 +1,8 @@
 package daos.gestionStockDAO.services;
 
+import daos.gestionStockDAO.repositorios.RepositorioUnidadMedida;
 import entities.gestionStock.Insumo;
+import entities.gestionStock.UnidadMedida;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -20,7 +22,8 @@ public class InsumoDAO {
         this.nombre = i.getNombre();
         this.cantidadStock = i.getCantidadStock();
         this.stockMinimo = i.getStockMinimo();
-        this.idUnidadMedida = i.getUnidadMedida().getIdUnidad();
+        RepositorioUnidadMedida rs = new RepositorioUnidadMedida();
+        this.idUnidadMedida = rs.buscarIDUnidadMedida(i.getUnidadMedida().getNombre());
         this.alta = true;
     }
 
@@ -74,14 +77,13 @@ public class InsumoDAO {
 
     public boolean isAlta() { return alta; }
 
-    public Insumo getInsumo(){
+    public Insumo getInsumo(UnidadMedida um){
         Insumo i = new Insumo();
         i.setNombre(this.nombre);
         i.setCantidadStock(this.cantidadStock);
         i.setIdInsumo(this.idInsumo);
         i.setStockMinimo(this.stockMinimo);
-        //i.setUnidadMedida(); Falta ver como buscar la unidad de medida, habria que pasarla por parametro
-
+        i.setUnidadMedida(um);
         return i;
     }
 }
