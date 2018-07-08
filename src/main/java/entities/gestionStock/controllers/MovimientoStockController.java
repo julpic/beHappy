@@ -13,8 +13,6 @@ public class MovimientoStockController {
     RepositorioMovimientoStock rms = new RepositorioMovimientoStock();
 
 
-    //Se debe devolver el movimiento solicitado junto con sus correspondientes detalles
-    //Ver que el metodo siguiente lo cumpla
     public MovimientoStock find(int id) {
        return rms.buscarMovimientoStock(id);
     }
@@ -27,10 +25,6 @@ public class MovimientoStockController {
         return rms.crearMovimientoStock(ms);
     }
 
-
-    //Cambiar para que el remove haga un set con la fecha actual a la columna FechaAnulacion y que recorran todos los detalles
-    //Cuando se recorren los detalles se debe deshacer el movimiento, para eso se ve si el movimiento es una entrada o salida
-    //Revisar este metodo
     public void remove(int id) {
         MovimientoStock actual = find(id);
         boolean entrada = actual.isEntrada();

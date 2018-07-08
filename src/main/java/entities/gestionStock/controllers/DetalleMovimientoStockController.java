@@ -7,22 +7,7 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class DetalleMovimientoStockController {
-/*
-    public List<DetalleMovimientoStockDAO> find(int idMovimiento) {
-        Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStockDAO i WHERE i.idMovimiento = :idMov")
-                .setParameter("idMov", idMovimiento);
-        return  q.getResultList();
-    }
 
-    public void create(List<DetalleMovimientoStockDAO> detalles) {
-        int idDetalle = 0;
-        for (DetalleMovimientoStockDAO d : detalles){
-            d.setIdDetalleMovimientoStock(idDetalle);
-            idDetalle ++;
-                entityManager.persist(d);
-        }
-    }
-*/
     public void remove(DetalleMovimientoStock d, boolean entrada) {
             Insumo insumoACambiar = buscarInsumo(d);
             insumoACambiar.cancelarMovimiento(d.getCantidad(), entrada);
