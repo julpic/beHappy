@@ -3,6 +3,7 @@ package entities.gestionStock;
 
 import java.util.Objects;
 
+
 public class Insumo {
     private int idInsumo;
     private String nombre;
@@ -26,7 +27,6 @@ public class Insumo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     public int getCantidadStock() {
         return cantidadStock;

@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "DetallesMovimientosStock", schema = "BeFruit", catalog = "")
 @IdClass(DetalleMovimientoStockPK.class)
-public class DetalleMovimientoStock {
+public class DetalleMovimientoStockDAO {
     private int idDetalleMovimientoStock;
     private int idMovimiento;
     private int cantidad;
@@ -45,7 +45,7 @@ public class DetalleMovimientoStock {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DetalleMovimientoStock that = (DetalleMovimientoStock) o;
+        DetalleMovimientoStockDAO that = (DetalleMovimientoStockDAO) o;
         return idDetalleMovimientoStock == that.idDetalleMovimientoStock &&
                 idMovimiento == that.idMovimiento &&
                 cantidad == that.cantidad;
