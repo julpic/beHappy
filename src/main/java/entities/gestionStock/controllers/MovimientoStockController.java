@@ -4,18 +4,17 @@ import entities.gestionStock.DetalleMovimientoStock;
 import entities.gestionStock.Insumo;
 import entities.gestionStock.MovimientoStock;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class MovimientoStockController {
-    @PersistenceContext(name = "beFruitPersistenceUnit")
+    /*@PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
     //Se debe devolver el movimiento solicitado junto con sus correspondientes detalles
@@ -24,25 +23,25 @@ public class MovimientoStockController {
         MovimientoStock actual = entityManager.find(MovimientoStock.class, id);
         List<DetalleMovimientoStock> detalles = buscarDetalles(actual.getIdMovimientoStock());
 
-        for (DetalleMovimientoStock d: detalles) {
+        for (DetalleMovimientoStock d : detalles) {
             actual.addDetalle(d);
         }
         return actual;
     }
 
-    private List<DetalleMovimientoStock> buscarDetalles(int idMovimiento){
+    private List<DetalleMovimientoStock> buscarDetalles(int idMovimiento) {
         Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStock i WHERE i.idMovimiento = :idMov")
                 .setParameter("idMov", idMovimiento);
-        return  q.getResultList();
+        return q.getResultList();
     }
 
     //Se deben devolver los movimientos junto con sus correspondientes detalles
     //Ver que el metodo siguiente lo cumpla
     public List<MovimientoStock> findAll() {
         List<MovimientoStock> movimientos = entityManager.createQuery("SELECT i FROM MovimientoStock i").getResultList();
-        for (MovimientoStock m: movimientos) {
+        for (MovimientoStock m : movimientos) {
             List<DetalleMovimientoStock> detalles = buscarDetalles(m.getIdMovimientoStock());
-            for (DetalleMovimientoStock d: detalles) {
+            for (DetalleMovimientoStock d : detalles) {
                 m.addDetalle(d);
             }
         }
@@ -65,7 +64,7 @@ public class MovimientoStockController {
 
         List<DetalleMovimientoStock> detalles = buscarDetalles(actual.getIdMovimientoStock());
 
-        for (DetalleMovimientoStock d: detalles) {
+        for (DetalleMovimientoStock d : detalles) {
             Insumo insumoACambiar = buscarInsumoDeDetalle(d);
             insumoACambiar.cancelarMovimiento(d.getCantidad(), entrada);
             entityManager.merge(insumoACambiar);
@@ -77,8 +76,8 @@ public class MovimientoStockController {
         entityManager.merge(actual);
     }
 
-    private Insumo buscarInsumoDeDetalle(DetalleMovimientoStock detalle){
+    private Insumo buscarInsumoDeDetalle(DetalleMovimientoStock detalle) {
         int idInsumo = detalle.getInsumo().getIdInsumo();
         return entityManager.find(Insumo.class, idInsumo);
-    }
+    }*/
 }

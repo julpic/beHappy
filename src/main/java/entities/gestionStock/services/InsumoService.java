@@ -13,6 +13,12 @@ public class InsumoService {
     InsumoController iController;
 
     @GET
+    @Path("/test")
+    public void test(){
+        System.out.println("Nice!");
+    }
+
+    @GET
     @Path("/{id}")
     @Produces("application/json")
     public Insumo get(@PathParam("id") int id) {

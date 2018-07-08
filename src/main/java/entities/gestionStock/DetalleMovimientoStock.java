@@ -9,7 +9,7 @@ public class DetalleMovimientoStock {
     private int idDetalleMovimientoStock;
     private int idMovimiento;
     private int cantidad;
-    private Insumo insumo;
+/*    private Insumo insumo;*/
 
     @Id
     @Column(name = "idDetalleMovimientoStock")
@@ -41,9 +41,9 @@ public class DetalleMovimientoStock {
         this.cantidad = cantidad;
     }
 
-    public Insumo getInsumo() {return insumo; }
+/*    public Insumo getInsumo() {return insumo; }
 
-    public void setInsumo(Insumo insumo) { this.insumo = insumo; }
+    public void setInsumo(Insumo insumo) { this.insumo = insumo; }*/
 
     @Override
     public boolean equals(Object o) {
