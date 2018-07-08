@@ -1,6 +1,7 @@
 package entities.gestionMovimientosCaja;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "TiposMovmientos", schema = "BeFruit", catalog = "")
@@ -43,21 +44,15 @@ public class TipoMovmiento {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         TipoMovmiento that = (TipoMovmiento) o;
-
-        if (idTipoMovmiento != that.idTipoMovmiento) return false;
-        if (descripcion != null ? !descripcion.equals(that.descripcion) : that.descripcion != null) return false;
-        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
-
-        return true;
+        return idTipoMovmiento == that.idTipoMovmiento &&
+                Objects.equals(descripcion, that.descripcion) &&
+                Objects.equals(nombre, that.nombre);
     }
 
     @Override
     public int hashCode() {
-        int result = idTipoMovmiento;
-        result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idTipoMovmiento, descripcion, nombre);
     }
 }

@@ -3,6 +3,7 @@ package entities.gestionFranquicia;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class EmpleadoPK implements Serializable {
     private int idEmpleado;
@@ -32,19 +33,14 @@ public class EmpleadoPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         EmpleadoPK that = (EmpleadoPK) o;
-
-        if (idEmpleado != that.idEmpleado) return false;
-        if (idFranquicia != that.idFranquicia) return false;
-
-        return true;
+        return idEmpleado == that.idEmpleado &&
+                idFranquicia == that.idFranquicia;
     }
 
     @Override
     public int hashCode() {
-        int result = idEmpleado;
-        result = 31 * result + idFranquicia;
-        return result;
+
+        return Objects.hash(idEmpleado, idFranquicia);
     }
 }

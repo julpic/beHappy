@@ -1,14 +1,15 @@
 package entities.gestionVenta;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Ventas", schema = "BeFruit", catalog = "")
 public class Venta {
     private int idVenta;
-    private BigDecimal montoTotal;
+    private BigInteger montoTotal;
     private Timestamp fechaHoraVenta;
 
     @Id
@@ -23,11 +24,11 @@ public class Venta {
 
     @Basic
     @Column(name = "montoTotal")
-    public BigDecimal getMontoTotal() {
+    public BigInteger getMontoTotal() {
         return montoTotal;
     }
 
-    public void setMontoTotal(BigDecimal montoTotal) {
+    public void setMontoTotal(BigInteger montoTotal) {
         this.montoTotal = montoTotal;
     }
 
@@ -45,22 +46,15 @@ public class Venta {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Venta venta = (Venta) o;
-
-        if (idVenta != venta.idVenta) return false;
-        if (montoTotal != null ? !montoTotal.equals(venta.montoTotal) : venta.montoTotal != null) return false;
-        if (fechaHoraVenta != null ? !fechaHoraVenta.equals(venta.fechaHoraVenta) : venta.fechaHoraVenta != null)
-            return false;
-
-        return true;
+        return idVenta == venta.idVenta &&
+                Objects.equals(montoTotal, venta.montoTotal) &&
+                Objects.equals(fechaHoraVenta, venta.fechaHoraVenta);
     }
 
     @Override
     public int hashCode() {
-        int result = idVenta;
-        result = 31 * result + (montoTotal != null ? montoTotal.hashCode() : 0);
-        result = 31 * result + (fechaHoraVenta != null ? fechaHoraVenta.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idVenta, montoTotal, fechaHoraVenta);
     }
 }

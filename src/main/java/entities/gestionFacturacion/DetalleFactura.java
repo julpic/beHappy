@@ -1,7 +1,8 @@
 package entities.gestionFacturacion;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Objects;
 
 @Entity
 @Table(name = "DetallesFactura", schema = "BeFruit", catalog = "")
@@ -12,7 +13,7 @@ public class DetalleFactura {
     private int idNumericoSucursal;
     private int idNumericoFactura;
     private int cantidad;
-    private BigDecimal subtotal;
+    private BigInteger subtotal;
 
     @Id
     @Column(name = "idDetalleFactura")
@@ -66,11 +67,11 @@ public class DetalleFactura {
 
     @Basic
     @Column(name = "subtotal")
-    public BigDecimal getSubtotal() {
+    public BigInteger getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(BigDecimal subtotal) {
+    public void setSubtotal(BigInteger subtotal) {
         this.subtotal = subtotal;
     }
 
@@ -78,27 +79,18 @@ public class DetalleFactura {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         DetalleFactura that = (DetalleFactura) o;
-
-        if (idDetalleFactura != that.idDetalleFactura) return false;
-        if (idTipoFactura != that.idTipoFactura) return false;
-        if (idNumericoSucursal != that.idNumericoSucursal) return false;
-        if (idNumericoFactura != that.idNumericoFactura) return false;
-        if (cantidad != that.cantidad) return false;
-        if (subtotal != null ? !subtotal.equals(that.subtotal) : that.subtotal != null) return false;
-
-        return true;
+        return idDetalleFactura == that.idDetalleFactura &&
+                idTipoFactura == that.idTipoFactura &&
+                idNumericoSucursal == that.idNumericoSucursal &&
+                idNumericoFactura == that.idNumericoFactura &&
+                cantidad == that.cantidad &&
+                Objects.equals(subtotal, that.subtotal);
     }
 
     @Override
     public int hashCode() {
-        int result = idDetalleFactura;
-        result = 31 * result + idTipoFactura;
-        result = 31 * result + idNumericoSucursal;
-        result = 31 * result + idNumericoFactura;
-        result = 31 * result + cantidad;
-        result = 31 * result + (subtotal != null ? subtotal.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idDetalleFactura, idTipoFactura, idNumericoSucursal, idNumericoFactura, cantidad, subtotal);
     }
 }

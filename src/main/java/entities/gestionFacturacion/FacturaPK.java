@@ -3,6 +3,7 @@ package entities.gestionFacturacion;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class FacturaPK implements Serializable {
     private int idTipoFactura;
@@ -43,21 +44,15 @@ public class FacturaPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         FacturaPK facturaPK = (FacturaPK) o;
-
-        if (idTipoFactura != facturaPK.idTipoFactura) return false;
-        if (idNumericoSucursal != facturaPK.idNumericoSucursal) return false;
-        if (idNumericoFactura != facturaPK.idNumericoFactura) return false;
-
-        return true;
+        return idTipoFactura == facturaPK.idTipoFactura &&
+                idNumericoSucursal == facturaPK.idNumericoSucursal &&
+                idNumericoFactura == facturaPK.idNumericoFactura;
     }
 
     @Override
     public int hashCode() {
-        int result = idTipoFactura;
-        result = 31 * result + idNumericoSucursal;
-        result = 31 * result + idNumericoFactura;
-        return result;
+
+        return Objects.hash(idTipoFactura, idNumericoSucursal, idNumericoFactura);
     }
 }

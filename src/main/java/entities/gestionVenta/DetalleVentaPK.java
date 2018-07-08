@@ -3,6 +3,7 @@ package entities.gestionVenta;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class DetalleVentaPK implements Serializable {
     private int idDetalle;
@@ -32,19 +33,14 @@ public class DetalleVentaPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         DetalleVentaPK that = (DetalleVentaPK) o;
-
-        if (idDetalle != that.idDetalle) return false;
-        if (idVenta != that.idVenta) return false;
-
-        return true;
+        return idDetalle == that.idDetalle &&
+                idVenta == that.idVenta;
     }
 
     @Override
     public int hashCode() {
-        int result = idDetalle;
-        result = 31 * result + idVenta;
-        return result;
+
+        return Objects.hash(idDetalle, idVenta);
     }
 }

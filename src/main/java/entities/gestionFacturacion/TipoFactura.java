@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class TipoFactura {
@@ -45,21 +46,15 @@ public class TipoFactura {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         TipoFactura that = (TipoFactura) o;
-
-        if (idTipo != that.idTipo) return false;
-        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
-        if (letra != null ? !letra.equals(that.letra) : that.letra != null) return false;
-
-        return true;
+        return idTipo == that.idTipo &&
+                Objects.equals(nombre, that.nombre) &&
+                Objects.equals(letra, that.letra);
     }
 
     @Override
     public int hashCode() {
-        int result = idTipo;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + (letra != null ? letra.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idTipo, nombre, letra);
     }
 }

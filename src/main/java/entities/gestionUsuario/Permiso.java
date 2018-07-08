@@ -1,6 +1,7 @@
 package entities.gestionUsuario;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Permisos", schema = "BeFruit", catalog = "")
@@ -43,21 +44,15 @@ public class Permiso {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Permiso permiso = (Permiso) o;
-
-        if (idPermiso != permiso.idPermiso) return false;
-        if (nombre != null ? !nombre.equals(permiso.nombre) : permiso.nombre != null) return false;
-        if (descripcion != null ? !descripcion.equals(permiso.descripcion) : permiso.descripcion != null) return false;
-
-        return true;
+        return idPermiso == permiso.idPermiso &&
+                Objects.equals(nombre, permiso.nombre) &&
+                Objects.equals(descripcion, permiso.descripcion);
     }
 
     @Override
     public int hashCode() {
-        int result = idPermiso;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idPermiso, nombre, descripcion);
     }
 }

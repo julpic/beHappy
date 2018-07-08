@@ -3,6 +3,7 @@ package entities.gestionStock;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class DetalleMovimientoStockPK implements Serializable {
     private int idDetalleMovimientoStock;
@@ -32,19 +33,14 @@ public class DetalleMovimientoStockPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         DetalleMovimientoStockPK that = (DetalleMovimientoStockPK) o;
-
-        if (idDetalleMovimientoStock != that.idDetalleMovimientoStock) return false;
-        if (idMovimiento != that.idMovimiento) return false;
-
-        return true;
+        return idDetalleMovimientoStock == that.idDetalleMovimientoStock &&
+                idMovimiento == that.idMovimiento;
     }
 
     @Override
     public int hashCode() {
-        int result = idDetalleMovimientoStock;
-        result = 31 * result + idMovimiento;
-        return result;
+
+        return Objects.hash(idDetalleMovimientoStock, idMovimiento);
     }
 }

@@ -1,8 +1,9 @@
 package entities.gestionFacturacion;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Facturas", schema = "BeFruit", catalog = "")
@@ -12,7 +13,7 @@ public class Factura {
     private int idNumericoSucursal;
     private int idNumericoFactura;
     private Timestamp fechaHora;
-    private BigDecimal montoTotal;
+    private BigInteger montoTotal;
     private String eMailCliente;
     private String razonSocialCliente;
 
@@ -58,11 +59,11 @@ public class Factura {
 
     @Basic
     @Column(name = "montoTotal")
-    public BigDecimal getMontoTotal() {
+    public BigInteger getMontoTotal() {
         return montoTotal;
     }
 
-    public void setMontoTotal(BigDecimal montoTotal) {
+    public void setMontoTotal(BigInteger montoTotal) {
         this.montoTotal = montoTotal;
     }
 
@@ -90,31 +91,19 @@ public class Factura {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Factura factura = (Factura) o;
-
-        if (idTipoFactura != factura.idTipoFactura) return false;
-        if (idNumericoSucursal != factura.idNumericoSucursal) return false;
-        if (idNumericoFactura != factura.idNumericoFactura) return false;
-        if (fechaHora != null ? !fechaHora.equals(factura.fechaHora) : factura.fechaHora != null) return false;
-        if (montoTotal != null ? !montoTotal.equals(factura.montoTotal) : factura.montoTotal != null) return false;
-        if (eMailCliente != null ? !eMailCliente.equals(factura.eMailCliente) : factura.eMailCliente != null)
-            return false;
-        if (razonSocialCliente != null ? !razonSocialCliente.equals(factura.razonSocialCliente) : factura.razonSocialCliente != null)
-            return false;
-
-        return true;
+        return idTipoFactura == factura.idTipoFactura &&
+                idNumericoSucursal == factura.idNumericoSucursal &&
+                idNumericoFactura == factura.idNumericoFactura &&
+                Objects.equals(fechaHora, factura.fechaHora) &&
+                Objects.equals(montoTotal, factura.montoTotal) &&
+                Objects.equals(eMailCliente, factura.eMailCliente) &&
+                Objects.equals(razonSocialCliente, factura.razonSocialCliente);
     }
 
     @Override
     public int hashCode() {
-        int result = idTipoFactura;
-        result = 31 * result + idNumericoSucursal;
-        result = 31 * result + idNumericoFactura;
-        result = 31 * result + (fechaHora != null ? fechaHora.hashCode() : 0);
-        result = 31 * result + (montoTotal != null ? montoTotal.hashCode() : 0);
-        result = 31 * result + (eMailCliente != null ? eMailCliente.hashCode() : 0);
-        result = 31 * result + (razonSocialCliente != null ? razonSocialCliente.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idTipoFactura, idNumericoSucursal, idNumericoFactura, fechaHora, montoTotal, eMailCliente, razonSocialCliente);
     }
 }

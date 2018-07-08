@@ -1,6 +1,7 @@
 package entities.gestionStock;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "UnidadesMedida", schema = "BeFruit", catalog = "")
@@ -32,19 +33,14 @@ public class UnidadMedida {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         UnidadMedida that = (UnidadMedida) o;
-
-        if (idUnidad != that.idUnidad) return false;
-        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
-
-        return true;
+        return idUnidad == that.idUnidad &&
+                Objects.equals(nombre, that.nombre);
     }
 
     @Override
     public int hashCode() {
-        int result = idUnidad;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idUnidad, nombre);
     }
 }

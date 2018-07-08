@@ -1,6 +1,5 @@
 package entities.gestionStock.services;
 
-import entities.gestionStock.Insumo;
 import entities.gestionStock.controllers.InsumoController;
 
 import javax.inject.Inject;

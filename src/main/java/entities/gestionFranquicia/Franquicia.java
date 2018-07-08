@@ -1,6 +1,7 @@
 package entities.gestionFranquicia;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Franquicias", schema = "BeFruit", catalog = "")
@@ -76,28 +77,18 @@ public class Franquicia {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Franquicia that = (Franquicia) o;
-
-        if (idFranquicia != that.idFranquicia) return false;
-        if (cuit != that.cuit) return false;
-        if (direccion != null ? !direccion.equals(that.direccion) : that.direccion != null) return false;
-        if (nombreDueno != null ? !nombreDueno.equals(that.nombreDueno) : that.nombreDueno != null) return false;
-        if (eMailDueno != null ? !eMailDueno.equals(that.eMailDueno) : that.eMailDueno != null) return false;
-        if (apellidoDueno != null ? !apellidoDueno.equals(that.apellidoDueno) : that.apellidoDueno != null)
-            return false;
-
-        return true;
+        return idFranquicia == that.idFranquicia &&
+                cuit == that.cuit &&
+                Objects.equals(direccion, that.direccion) &&
+                Objects.equals(nombreDueno, that.nombreDueno) &&
+                Objects.equals(eMailDueno, that.eMailDueno) &&
+                Objects.equals(apellidoDueno, that.apellidoDueno);
     }
 
     @Override
     public int hashCode() {
-        int result = idFranquicia;
-        result = 31 * result + cuit;
-        result = 31 * result + (direccion != null ? direccion.hashCode() : 0);
-        result = 31 * result + (nombreDueno != null ? nombreDueno.hashCode() : 0);
-        result = 31 * result + (eMailDueno != null ? eMailDueno.hashCode() : 0);
-        result = 31 * result + (apellidoDueno != null ? apellidoDueno.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idFranquicia, cuit, direccion, nombreDueno, eMailDueno, apellidoDueno);
     }
 }

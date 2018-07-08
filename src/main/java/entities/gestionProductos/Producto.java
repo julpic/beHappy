@@ -1,6 +1,7 @@
 package entities.gestionProductos;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Productos", schema = "BeFruit", catalog = "")
@@ -32,19 +33,14 @@ public class Producto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Producto producto = (Producto) o;
-
-        if (idProducto != producto.idProducto) return false;
-        if (nombre != null ? !nombre.equals(producto.nombre) : producto.nombre != null) return false;
-
-        return true;
+        return idProducto == producto.idProducto &&
+                Objects.equals(nombre, producto.nombre);
     }
 
     @Override
     public int hashCode() {
-        int result = idProducto;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idProducto, nombre);
     }
 }

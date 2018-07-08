@@ -1,7 +1,8 @@
 package entities.gestionVenta;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Objects;
 
 @Entity
 @Table(name = "DetallesVenta", schema = "BeFruit", catalog = "")
@@ -10,7 +11,7 @@ public class DetalleVenta {
     private int idDetalle;
     private int idVenta;
     private int cantidad;
-    private BigDecimal subtotal;
+    private BigInteger subtotal;
 
     @Id
     @Column(name = "idDetalle")
@@ -44,11 +45,11 @@ public class DetalleVenta {
 
     @Basic
     @Column(name = "subtotal")
-    public BigDecimal getSubtotal() {
+    public BigInteger getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(BigDecimal subtotal) {
+    public void setSubtotal(BigInteger subtotal) {
         this.subtotal = subtotal;
     }
 
@@ -56,23 +57,16 @@ public class DetalleVenta {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         DetalleVenta that = (DetalleVenta) o;
-
-        if (idDetalle != that.idDetalle) return false;
-        if (idVenta != that.idVenta) return false;
-        if (cantidad != that.cantidad) return false;
-        if (subtotal != null ? !subtotal.equals(that.subtotal) : that.subtotal != null) return false;
-
-        return true;
+        return idDetalle == that.idDetalle &&
+                idVenta == that.idVenta &&
+                cantidad == that.cantidad &&
+                Objects.equals(subtotal, that.subtotal);
     }
 
     @Override
     public int hashCode() {
-        int result = idDetalle;
-        result = 31 * result + idVenta;
-        result = 31 * result + cantidad;
-        result = 31 * result + (subtotal != null ? subtotal.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idDetalle, idVenta, cantidad, subtotal);
     }
 }

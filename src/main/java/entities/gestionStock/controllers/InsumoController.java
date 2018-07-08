@@ -1,7 +1,5 @@
 package entities.gestionStock.controllers;
 
-import entities.gestionStock.Insumo;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

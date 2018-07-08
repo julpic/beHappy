@@ -1,7 +1,5 @@
 package entities.gestionStock.services;
 
-import entities.gestionStock.Insumo;
-
 import javax.ws.rs.*;
 
 @Path("/unidadMedida")

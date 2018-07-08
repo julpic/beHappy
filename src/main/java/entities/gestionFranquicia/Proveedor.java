@@ -1,6 +1,7 @@
 package entities.gestionFranquicia;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Proveedores", schema = "BeFruit", catalog = "")
@@ -65,27 +66,17 @@ public class Proveedor {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Proveedor proveedor = (Proveedor) o;
-
-        if (idProveedor != proveedor.idProveedor) return false;
-        if (cuit != proveedor.cuit) return false;
-        if (razonSocial != null ? !razonSocial.equals(proveedor.razonSocial) : proveedor.razonSocial != null)
-            return false;
-        if (eMail != null ? !eMail.equals(proveedor.eMail) : proveedor.eMail != null) return false;
-        if (telefonoContacto != null ? !telefonoContacto.equals(proveedor.telefonoContacto) : proveedor.telefonoContacto != null)
-            return false;
-
-        return true;
+        return idProveedor == proveedor.idProveedor &&
+                cuit == proveedor.cuit &&
+                Objects.equals(razonSocial, proveedor.razonSocial) &&
+                Objects.equals(eMail, proveedor.eMail) &&
+                Objects.equals(telefonoContacto, proveedor.telefonoContacto);
     }
 
     @Override
     public int hashCode() {
-        int result = idProveedor;
-        result = 31 * result + cuit;
-        result = 31 * result + (razonSocial != null ? razonSocial.hashCode() : 0);
-        result = 31 * result + (eMail != null ? eMail.hashCode() : 0);
-        result = 31 * result + (telefonoContacto != null ? telefonoContacto.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idProveedor, cuit, razonSocial, eMail, telefonoContacto);
     }
 }

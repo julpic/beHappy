@@ -1,14 +1,15 @@
 package entities.gestionProductos;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Tamanios", schema = "BeFruit", catalog = "")
 public class Tamanio {
     private int idTam;
     private String nombre;
-    private BigDecimal precio;
+    private BigInteger precio;
 
     @Id
     @Column(name = "idTam")
@@ -32,11 +33,11 @@ public class Tamanio {
 
     @Basic
     @Column(name = "precio")
-    public BigDecimal getPrecio() {
+    public BigInteger getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigDecimal precio) {
+    public void setPrecio(BigInteger precio) {
         this.precio = precio;
     }
 
@@ -44,21 +45,15 @@ public class Tamanio {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Tamanio tamanio = (Tamanio) o;
-
-        if (idTam != tamanio.idTam) return false;
-        if (nombre != null ? !nombre.equals(tamanio.nombre) : tamanio.nombre != null) return false;
-        if (precio != null ? !precio.equals(tamanio.precio) : tamanio.precio != null) return false;
-
-        return true;
+        return idTam == tamanio.idTam &&
+                Objects.equals(nombre, tamanio.nombre) &&
+                Objects.equals(precio, tamanio.precio);
     }
 
     @Override
     public int hashCode() {
-        int result = idTam;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + (precio != null ? precio.hashCode() : 0);
-        return result;
+
+        return Objects.hash(idTam, nombre, precio);
     }
 }
