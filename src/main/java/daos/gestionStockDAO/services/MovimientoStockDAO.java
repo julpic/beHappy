@@ -1,7 +1,11 @@
 package daos.gestionStockDAO.services;
 
+import entities.gestionStock.DetalleMovimientoStock;
+import entities.gestionStock.MovimientoStock;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -9,7 +13,10 @@ import java.util.Objects;
 public class MovimientoStockDAO {
     private int idMovimientoStock;
     private Integer idVenta;
+    private Integer idTurno;
     private Timestamp fechaHora;
+    private Timestamp fechaHoraAnulacion;
+    private boolean entrada;
 
     @Id
     @Column(name = "idMovimientoStock")
@@ -41,6 +48,25 @@ public class MovimientoStockDAO {
         this.fechaHora = fechaHora;
     }
 
+    @Basic
+    @Column(name = "idTurno")
+    public Integer getIdTurno() { return idTurno; }
+
+    public void setIdTurno(Integer idTurno) { this.idTurno = idTurno; }
+
+    @Basic
+    @Column(name = "fechaHoraAnulacion")
+    public Timestamp getFechaHoraAnulacion() { return fechaHoraAnulacion; }
+
+    public void setFechaHoraAnulacion(Timestamp fechaHoraAnulacion) { this.fechaHoraAnulacion = fechaHoraAnulacion; }
+
+    @Basic
+    @Column(name = "entrada")
+    public boolean isEntrada() { return entrada; }
+
+    public void setEntrada(boolean entrada) { this.entrada = entrada; }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,5 +81,16 @@ public class MovimientoStockDAO {
     public int hashCode() {
 
         return Objects.hash(idMovimientoStock, idVenta, fechaHora);
+    }
+
+    public MovimientoStock getMoviminetoStock(List<DetalleMovimientoStock> detalles){
+        MovimientoStock ms = new MovimientoStock();
+        ms.setIdMovimientoStock(this.idMovimientoStock);
+        ms.setFechaHora(this.fechaHora);
+        ms.setFehcaHoraAnulacion(this.fechaHoraAnulacion);
+        ms.setEntrada(this.entrada);
+        ms.setDetalles(detalles);
+
+        return ms;
     }
 }

@@ -9,17 +9,16 @@ import java.util.Objects;
 public class DetalleMovimientoStock {
     private int idDetalleMovimientoStock;
     private int idMovimiento;
+    private Insumo insumo;
     private int cantidad;
 
 
+    //Getters y Setters
     public int getIdDetalleMovimientoStock() {
         return idDetalleMovimientoStock;
     }
 
-    public void setIdDetalleMovimientoStock(int idDetalleMovimientoStock) {
-        this.idDetalleMovimientoStock = idDetalleMovimientoStock;
-    }
-
+    public void setIdDetalleMovimientoStock(int idDetalleMovimientoStock) { this.idDetalleMovimientoStock = idDetalleMovimientoStock; }
 
     public int getIdMovimiento() {
         return idMovimiento;
@@ -36,6 +35,12 @@ public class DetalleMovimientoStock {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public Insumo getInsumo() { return insumo; }
+
+    public void setInsumo(Insumo insumo) { this.insumo = insumo; }
+
+
 
     @Override
     public boolean equals(Object o) {

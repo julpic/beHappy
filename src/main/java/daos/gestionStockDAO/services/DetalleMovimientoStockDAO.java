@@ -1,5 +1,8 @@
 package daos.gestionStockDAO.services;
 
+import entities.gestionStock.DetalleMovimientoStock;
+import entities.gestionStock.Insumo;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -9,6 +12,7 @@ import java.util.Objects;
 public class DetalleMovimientoStockDAO {
     private int idDetalleMovimientoStock;
     private int idMovimiento;
+    private int idInsumo;
     private int cantidad;
 
     @Id
@@ -30,6 +34,12 @@ public class DetalleMovimientoStockDAO {
     public void setIdMovimiento(int idMovimiento) {
         this.idMovimiento = idMovimiento;
     }
+
+    @Basic
+    @Column(name = "idInsumo")
+    public int getIdInsumo() { return idInsumo; }
+
+    public void setIdInsumo(int idInsumo) { this.idInsumo = idInsumo; }
 
     @Basic
     @Column(name = "cantidad")
@@ -55,5 +65,15 @@ public class DetalleMovimientoStockDAO {
     public int hashCode() {
 
         return Objects.hash(idDetalleMovimientoStock, idMovimiento, cantidad);
+    }
+
+    public DetalleMovimientoStock getDetalleMovimiento(Insumo i){
+        DetalleMovimientoStock dms = new DetalleMovimientoStock();
+        dms.setIdDetalleMovimientoStock(this.idDetalleMovimientoStock);
+        dms.setIdMovimiento(this.idMovimiento);
+        dms.setInsumo(i);
+        dms.setCantidad(this.cantidad);
+
+        return dms;
     }
 }
