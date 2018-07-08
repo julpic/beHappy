@@ -1,5 +1,6 @@
 package entities.gestionStock.services;
 
+import entities.gestionStock.Insumo;
 import entities.gestionStock.controllers.InsumoController;
 
 import javax.inject.Inject;
@@ -13,7 +14,7 @@ public class InsumoService {
 
     @GET
     @Path("/test")
-    public void test(){
+    public void test() {
         System.out.println("Nice!");
     }
 

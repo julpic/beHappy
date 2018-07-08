@@ -1,7 +1,7 @@
 package entities.gestionProductos;
 
 import javax.persistence.*;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -11,7 +11,7 @@ public class Promocion {
     private int idPromocion;
     private int activo;
     private Timestamp fechaVigencia;
-    private BigInteger porcentajeDescuento;
+    private BigDecimal porcentajeDescuento;
     private String requisito;
 
     @Id
@@ -46,11 +46,11 @@ public class Promocion {
 
     @Basic
     @Column(name = "porcentajeDescuento")
-    public BigInteger getPorcentajeDescuento() {
+    public BigDecimal getPorcentajeDescuento() {
         return porcentajeDescuento;
     }
 
-    public void setPorcentajeDescuento(BigInteger porcentajeDescuento) {
+    public void setPorcentajeDescuento(BigDecimal porcentajeDescuento) {
         this.porcentajeDescuento = porcentajeDescuento;
     }
 

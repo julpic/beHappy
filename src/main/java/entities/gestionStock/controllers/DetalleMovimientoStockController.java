@@ -11,6 +11,7 @@ import java.util.List;
 
 @Stateless
 public class DetalleMovimientoStockController {
+/*
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
@@ -41,5 +42,6 @@ public class DetalleMovimientoStockController {
     }
 
 
+*/
 
 }

@@ -1,7 +1,7 @@
 package entities.gestionVenta;
 
 import javax.persistence.*;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "Ventas", schema = "BeFruit", catalog = "")
 public class Venta {
     private int idVenta;
-    private BigInteger montoTotal;
+    private BigDecimal montoTotal;
     private Timestamp fechaHoraVenta;
 
     @Id
@@ -24,11 +24,11 @@ public class Venta {
 
     @Basic
     @Column(name = "montoTotal")
-    public BigInteger getMontoTotal() {
+    public BigDecimal getMontoTotal() {
         return montoTotal;
     }
 
-    public void setMontoTotal(BigInteger montoTotal) {
+    public void setMontoTotal(BigDecimal montoTotal) {
         this.montoTotal = montoTotal;
     }
 

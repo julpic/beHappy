@@ -1,7 +1,7 @@
 package entities.gestionFacturacion;
 
 import javax.persistence.*;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public class Factura {
     private int idNumericoSucursal;
     private int idNumericoFactura;
     private Timestamp fechaHora;
-    private BigInteger montoTotal;
+    private BigDecimal montoTotal;
     private String eMailCliente;
     private String razonSocialCliente;
 
@@ -59,11 +59,11 @@ public class Factura {
 
     @Basic
     @Column(name = "montoTotal")
-    public BigInteger getMontoTotal() {
+    public BigDecimal getMontoTotal() {
         return montoTotal;
     }
 
-    public void setMontoTotal(BigInteger montoTotal) {
+    public void setMontoTotal(BigDecimal montoTotal) {
         this.montoTotal = montoTotal;
     }
 

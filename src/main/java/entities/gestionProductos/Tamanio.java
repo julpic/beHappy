@@ -1,7 +1,7 @@
 package entities.gestionProductos;
 
 import javax.persistence.*;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Tamanio {
     private int idTam;
     private String nombre;
-    private BigInteger precio;
+    private BigDecimal precio;
 
     @Id
     @Column(name = "idTam")
@@ -33,11 +33,11 @@ public class Tamanio {
 
     @Basic
     @Column(name = "precio")
-    public BigInteger getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigInteger precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 

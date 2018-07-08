@@ -1,5 +1,8 @@
 package entities.gestionStock.controllers;
 
+import entities.gestionStock.DetalleMovimientoStock;
+import entities.gestionStock.MovimientoStock;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +13,7 @@ import java.util.List;
 
 @Stateless
 public class MovimientoStockController {
-    @PersistenceContext(name = "beFruitPersistenceUnit")
+/*    @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
     //Se debe devolver el movimiento solicitado junto con sus correspondientes detalles
@@ -19,24 +22,24 @@ public class MovimientoStockController {
         MovimientoStock actual = entityManager.find(MovimientoStock.class, id);
         List<DetalleMovimientoStock> detalles = buscarDetalles(actual.getIdMovimientoStock());
 
-        for (DetalleMovimientoStock d: detalles) {
+        for (DetalleMovimientoStock d : detalles) {
             actual.addDetalle(d);
         }
         return actual;
     }
 
-    private List<DetalleMovimientoStock> buscarDetalles(int idMovimiento){
+    private List<DetalleMovimientoStock> buscarDetalles(int idMovimiento) {
         DetalleMovimientoStockController detalleController = new DetalleMovimientoStockController();
-        return  detalleController.find(idMovimiento);
+        return detalleController.find(idMovimiento);
     }
 
     //Se deben devolver los movimientos junto con sus correspondientes detalles
     //Ver que el metodo siguiente lo cumpla
     public List<MovimientoStock> findAll() {
         List<MovimientoStock> movimientos = entityManager.createQuery("SELECT i FROM MovimientoStock i").getResultList();
-        for (MovimientoStock m: movimientos) {
+        for (MovimientoStock m : movimientos) {
             List<DetalleMovimientoStock> detalles = buscarDetalles(m.getIdMovimientoStock());
-            for (DetalleMovimientoStock d: detalles) {
+            for (DetalleMovimientoStock d : detalles) {
                 m.addDetalle(d);
             }
         }
@@ -48,13 +51,13 @@ public class MovimientoStockController {
     public int create(MovimientoStock ms) {
         int idMovimiento = buscarUltimoID() + 1;
         ms.setIdMovimientoStock(idMovimiento);
-        if (entityManager.find(MovimientoStock.class, ms.getIdMovimientoStock()) == null){
+        if (entityManager.find(MovimientoStock.class, ms.getIdMovimientoStock()) == null) {
             entityManager.persist(ms);
         }
         return idMovimiento;
     }
 
-    private int buscarUltimoID(){
+    private int buscarUltimoID() {
         Query q = entityManager.createQuery("SELECT MAX(i.idMovimiento) FROM DetalleMovimientoStock i");
         return (Integer) q.getSingleResult();
 
@@ -76,12 +79,12 @@ public class MovimientoStockController {
         entityManager.merge(actual);
     }
 
-    private void revertirDetalles(List<DetalleMovimientoStock> detalles, boolean entrada){
+    private void revertirDetalles(List<DetalleMovimientoStock> detalles, boolean entrada) {
         DetalleMovimientoStockController detalleController = new DetalleMovimientoStockController();
 
-        for (DetalleMovimientoStock d: detalles) {
+        for (DetalleMovimientoStock d : detalles) {
             detalleController.remove(d, entrada);
         }
-    }
+    }*/
 
 }

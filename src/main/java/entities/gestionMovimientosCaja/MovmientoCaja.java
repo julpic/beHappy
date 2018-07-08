@@ -1,7 +1,7 @@
 package entities.gestionMovimientosCaja;
 
 import javax.persistence.*;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -10,8 +10,8 @@ import java.util.Objects;
 public class MovmientoCaja {
     private int idMovmientoCaja;
     private Timestamp fechaHora;
-    private BigInteger montoReal;
-    private BigInteger montoSupesto;
+    private BigDecimal montoReal;
+    private BigDecimal montoSupesto;
 
     @Id
     @Column(name = "idMovmientoCaja")
@@ -35,21 +35,21 @@ public class MovmientoCaja {
 
     @Basic
     @Column(name = "montoReal")
-    public BigInteger getMontoReal() {
+    public BigDecimal getMontoReal() {
         return montoReal;
     }
 
-    public void setMontoReal(BigInteger montoReal) {
+    public void setMontoReal(BigDecimal montoReal) {
         this.montoReal = montoReal;
     }
 
     @Basic
     @Column(name = "montoSupesto")
-    public BigInteger getMontoSupesto() {
+    public BigDecimal getMontoSupesto() {
         return montoSupesto;
     }
 
-    public void setMontoSupesto(BigInteger montoSupesto) {
+    public void setMontoSupesto(BigDecimal montoSupesto) {
         this.montoSupesto = montoSupesto;
     }
 

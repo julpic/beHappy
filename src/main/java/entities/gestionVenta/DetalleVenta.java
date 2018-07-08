@@ -1,7 +1,7 @@
 package entities.gestionVenta;
 
 import javax.persistence.*;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -11,7 +11,7 @@ public class DetalleVenta {
     private int idDetalle;
     private int idVenta;
     private int cantidad;
-    private BigInteger subtotal;
+    private BigDecimal subtotal;
 
     @Id
     @Column(name = "idDetalle")
@@ -45,11 +45,11 @@ public class DetalleVenta {
 
     @Basic
     @Column(name = "subtotal")
-    public BigInteger getSubtotal() {
+    public BigDecimal getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(BigInteger subtotal) {
+    public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
 
