@@ -62,24 +62,13 @@ public class MovimientoStockEJB {
         return idMovimiento;
     }
 
-    /*public void remove(int id) {
-        MovimientoStock actual = buscarMovimientoStock(id);
-        boolean entrada = actual.isEntrada();
+    public void anularMovimientoStock(int id, MovimientoStock ms) {
+       MovimientoStockDB x = entityManager.find(MovimientoStockDB.class, id);
 
-        List<DetalleMovimientoStock> detalles = buscarDetalles(actual.getIdMovimientoStock());
-
-        revertirDetalles(detalles, entrada);
-
-        Date date = new Date();
-        Timestamp fechaAnulacion = new Timestamp(date.getTime());
-        actual.setFechaHoraAnulacion(fechaAnulacion);
-        entityManager.merge(actual);
+       if (x != null) {
+            x.setFechaHoraAnulacion(java.sql.Timestamp.valueOf(ms.getFehcaHoraAnulacion().toString()));
+            entityManager.merge(x);
+        }
     }
 
-    private void revertirDetalles(List<DetalleMovimientoStockDB> detalles, boolean entrada) {
-        DetalleMovimientoStockController detalleController = new DetalleMovimientoStockController();
-
-        for (DetalleMovimientoStockDB d : detalles) {
-            detalleController.remove(d, entrada);
-        }*/
 }

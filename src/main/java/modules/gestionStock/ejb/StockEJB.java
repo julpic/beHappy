@@ -81,8 +81,9 @@ public class StockEJB {
         return rms.crearMovimientoStock(ms);
     }
 
-    public void modificarMovimientoStock(int id, MovimientoStock ms){
+    public void anularMovimientoStock(int id, MovimientoStock ms){
         MovimientoStockEJB rms = new MovimientoStockEJB();
+        rms.anularMovimientoStock(id, ms);
     }
 
     //Accesos a la base de datos pertinentes a los detalles

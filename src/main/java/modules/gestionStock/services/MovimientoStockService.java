@@ -26,16 +26,10 @@ public class MovimientoStockService {
 
     @POST
     @Consumes("application/json")
-    public void create(MovimientoStock ms) {
-        msController.create(ms);
+    public int create(MovimientoStock ms) {
+        return msController.create(ms);
     }
 
-    @PUT
-    @Path("/{id}")
-    @Consumes("application/json")
-    public void update(@PathParam("id") int id, MovimientoStock incoming) {
-        msController.update(id, incoming);
-    }
 
     @DELETE
     @Path("/{id}")

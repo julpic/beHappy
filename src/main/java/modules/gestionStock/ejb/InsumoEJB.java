@@ -19,7 +19,7 @@ public class InsumoEJB {
     }
 
     public List<Insumo> buscarInsumos() {
-        List<InsumoDB> insumosDAO = entityManager.createQuery("SELECT i FROM InsumoDB i").getResultList();
+        List<InsumoDB> insumosDAO = entityManager.createQuery("SELECT i FROM InsumoDB i WHERE i.alta = true").getResultList();
         ArrayList<Insumo> insumos = new ArrayList<Insumo>();
         UnidadMedidaEJB rs = new UnidadMedidaEJB();
         for(InsumoDB iDAO: insumosDAO){

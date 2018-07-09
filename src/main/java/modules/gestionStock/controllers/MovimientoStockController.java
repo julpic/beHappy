@@ -25,8 +25,6 @@ public class MovimientoStockController {
         return rms.crearMovimientoStock(ms);
     }
 
-    public void update(int id, MovimientoStock ms){rms.modificarMovimientoStock(id, ms);}
-
     public void remove(int id) {
         MovimientoStock actual = find(id);
         boolean entrada = actual.isEntrada();
@@ -34,6 +32,8 @@ public class MovimientoStockController {
 
         revertirDetalles(detalles, entrada);
         actual.anular();
+
+        rms.anularMovimientoStock(id,actual);
     }
 
     private void revertirDetalles(List<DetalleMovimientoStock> detalles, boolean entrada) {
