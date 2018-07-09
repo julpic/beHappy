@@ -1,4 +1,4 @@
-package daos.gestionStockDAO.services;
+package modules.gestionStock.dbEntities;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

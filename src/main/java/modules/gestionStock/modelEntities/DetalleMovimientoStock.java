@@ -1,8 +1,5 @@
-package entities.gestionStock;
+package modules.gestionStock.modelEntities;
 
-import daos.gestionStockDAO.services.DetalleMovimientoStockPK;
-
-import javax.persistence.*;
 import java.util.Objects;
 
 

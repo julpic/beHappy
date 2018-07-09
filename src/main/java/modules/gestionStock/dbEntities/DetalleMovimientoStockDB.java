@@ -1,21 +1,24 @@
-package daos.gestionStockDAO.services;
+package modules.gestionStock.dbEntities;
 
-import entities.gestionStock.DetalleMovimientoStock;
-import entities.gestionStock.Insumo;
+import modules.gestionStock.modelEntities.DetalleMovimientoStock;
+import modules.gestionStock.modelEntities.Insumo;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "DetallesMovimientosStock", schema = "BeFruit", catalog = "")
+@Table(name = "DetallesMovimientosStock", schema = "BeFruit")
 @IdClass(DetalleMovimientoStockPK.class)
-public class DetalleMovimientoStockDAO {
+public class DetalleMovimientoStockDB {
     private int idDetalleMovimientoStock;
     private int idMovimiento;
     private int idInsumo;
     private int cantidad;
 
-    public DetalleMovimientoStockDAO(DetalleMovimientoStock d, int id, int idMovimiento) {
+    public DetalleMovimientoStockDB() {
+    }
+
+    public DetalleMovimientoStockDB(DetalleMovimientoStock d, int id, int idMovimiento) {
         this.idDetalleMovimientoStock = id;
         this.idMovimiento = idMovimiento;
         this.idInsumo = d.getInsumo().getIdInsumo();
@@ -44,9 +47,13 @@ public class DetalleMovimientoStockDAO {
 
     @Basic
     @Column(name = "idInsumo")
-    public int getIdInsumo() { return idInsumo; }
+    public int getIdInsumo() {
+        return idInsumo;
+    }
 
-    public void setIdInsumo(int idInsumo) { this.idInsumo = idInsumo; }
+    public void setIdInsumo(int idInsumo) {
+        this.idInsumo = idInsumo;
+    }
 
     @Basic
     @Column(name = "cantidad")
@@ -62,7 +69,7 @@ public class DetalleMovimientoStockDAO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DetalleMovimientoStockDAO that = (DetalleMovimientoStockDAO) o;
+        DetalleMovimientoStockDB that = (DetalleMovimientoStockDB) o;
         return idDetalleMovimientoStock == that.idDetalleMovimientoStock &&
                 idMovimiento == that.idMovimiento &&
                 cantidad == that.cantidad;
@@ -74,7 +81,7 @@ public class DetalleMovimientoStockDAO {
         return Objects.hash(idDetalleMovimientoStock, idMovimiento, cantidad);
     }
 
-    public DetalleMovimientoStock getDetalleMovimiento(Insumo i){
+    public DetalleMovimientoStock getDetalleMovimiento(Insumo i) {
         DetalleMovimientoStock dms = new DetalleMovimientoStock();
         dms.setIdDetalleMovimientoStock(this.idDetalleMovimientoStock);
         dms.setIdMovimiento(this.idMovimiento);

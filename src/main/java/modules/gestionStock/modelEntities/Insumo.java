@@ -1,4 +1,4 @@
-package entities.gestionStock;
+package modules.gestionStock.modelEntities;
 
 
 import java.util.Objects;
@@ -40,7 +40,7 @@ public class Insumo {
         return stockMinimo;
     }
 
-    public entities.gestionStock.UnidadMedida getUnidadMedida() {
+    public modules.gestionStock.modelEntities.UnidadMedida getUnidadMedida() {
         return UnidadMedida;
     }
 
@@ -48,7 +48,7 @@ public class Insumo {
         this.stockMinimo = stockMinimo;
     }
 
-    public void setUnidadMedida(entities.gestionStock.UnidadMedida unidadMedida) {
+    public void setUnidadMedida(modules.gestionStock.modelEntities.UnidadMedida unidadMedida) {
         UnidadMedida = unidadMedida;
     }
 

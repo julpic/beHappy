@@ -1,13 +1,12 @@
-package entities.gestionStock.controllers;
+package modules.gestionStock.controllers;
 
-import daos.gestionStockDAO.repositorios.RepositorioStock;
-import entities.gestionStock.MovimientoStock;
-import entities.gestionStock.UnidadMedida;
+import modules.gestionStock.ejb.StockEJB;
+import modules.gestionStock.modelEntities.UnidadMedida;
 
 import java.util.List;
 
 public class UnidadMedidaController {
-    RepositorioStock rs = new RepositorioStock();
+    StockEJB rs = new StockEJB();
 
 
     public UnidadMedida find(int id) {

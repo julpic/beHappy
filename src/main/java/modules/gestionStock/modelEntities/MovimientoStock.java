@@ -1,4 +1,4 @@
-package entities.gestionStock;
+package modules.gestionStock.modelEntities;
 
 
 import java.util.Date;

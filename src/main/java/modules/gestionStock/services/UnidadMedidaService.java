@@ -1,6 +1,6 @@
-package entities.gestionStock.services;
+package modules.gestionStock.services;
 
-import entities.gestionStock.Insumo;
+import modules.gestionStock.modelEntities.Insumo;
 
 import javax.ws.rs.*;
 

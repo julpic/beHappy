@@ -1,18 +1,16 @@
-package entities.gestionStock.controllers;
+package modules.gestionStock.controllers;
 
-import daos.gestionStockDAO.repositorios.RepositorioStock;
-import entities.gestionStock.Insumo;
+import modules.gestionStock.ejb.StockEJB;
+import modules.gestionStock.modelEntities.Insumo;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 @ApplicationScoped
 public class InsumoController {
     @PersistenceContext(name = "beFruitPersistenceUnit")
-    RepositorioStock rs;
+    StockEJB rs;
 
     //Hay que mostrar el insumo con su unidad de medida
     public Insumo find(int id) {

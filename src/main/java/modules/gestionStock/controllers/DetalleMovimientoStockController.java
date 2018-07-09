@@ -1,8 +1,8 @@
-package entities.gestionStock.controllers;
+package modules.gestionStock.controllers;
 
-import daos.gestionStockDAO.repositorios.RepositorioStock;
-import entities.gestionStock.DetalleMovimientoStock;
-import entities.gestionStock.Insumo;
+import modules.gestionStock.ejb.StockEJB;
+import modules.gestionStock.modelEntities.DetalleMovimientoStock;
+import modules.gestionStock.modelEntities.Insumo;
 
 import javax.ejb.Stateless;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class DetalleMovimientoStockController {
 
     public void create(List<DetalleMovimientoStock> detalles, boolean entrada, int idMovimiento){
-        RepositorioStock rs = new RepositorioStock();
+        StockEJB rs = new StockEJB();
         for(DetalleMovimientoStock det : detalles){
             det.getInsumo().registrarMovimiento(det.getCantidad(), entrada);
         }

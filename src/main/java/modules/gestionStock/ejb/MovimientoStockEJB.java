@@ -1,9 +1,9 @@
-package daos.gestionStockDAO.repositorios;
+package modules.gestionStock.ejb;
 
-import daos.gestionStockDAO.services.DetalleMovimientoStockDAO;
-import daos.gestionStockDAO.services.MovimientoStockDAO;
-import entities.gestionStock.DetalleMovimientoStock;
-import entities.gestionStock.MovimientoStock;
+import modules.gestionStock.dbEntities.DetalleMovimientoStockDB;
+import modules.gestionStock.dbEntities.MovimientoStockDB;
+import modules.gestionStock.modelEntities.DetalleMovimientoStock;
+import modules.gestionStock.modelEntities.MovimientoStock;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,23 +11,23 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioMovimientoStock {
+public class MovimientoStockEJB {
 
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
     public MovimientoStock buscarMovimientoStock(int id){
-        MovimientoStockDAO msDao = entityManager.find(MovimientoStockDAO.class, id);
+        MovimientoStockDB msDao = entityManager.find(MovimientoStockDB.class, id);
         return msDao.getMoviminetoStock(buscarDetalles(id));
     }
 
     private List<DetalleMovimientoStock> buscarDetalles(int idMovimiento) {
-        RepositorioDetalleMovimientoStock rdms = new RepositorioDetalleMovimientoStock();
-        RepositorioInsumo ri = new RepositorioInsumo();
-        List<DetalleMovimientoStockDAO> detallesDAO = rdms.buscarDetallesDeMovimiento(idMovimiento);
+        DetalleMovimientoStockEJB rdms = new DetalleMovimientoStockEJB();
+        InsumoEJB ri = new InsumoEJB();
+        List<DetalleMovimientoStockDB> detallesDAO = rdms.buscarDetallesDeMovimiento(idMovimiento);
         ArrayList<DetalleMovimientoStock> detalles = new ArrayList<DetalleMovimientoStock>();
 
-        for(DetalleMovimientoStockDAO detDao : detallesDAO){
+        for(DetalleMovimientoStockDB detDao : detallesDAO){
             DetalleMovimientoStock det = detDao.getDetalleMovimiento(ri.buscarInsumo(detDao.getIdInsumo()));
             detalles.add(det);
         }
@@ -46,7 +46,7 @@ public class RepositorioMovimientoStock {
     }
 
     private int buscarUltimoID() {
-        Query q = entityManager.createQuery("SELECT MAX(i.idMovimiento) FROM DetalleMovimientoStockDAO i");
+        Query q = entityManager.createQuery("SELECT MAX(i.idMovimiento) FROM DetalleMovimientoStockDB i");
         return (Integer) q.getSingleResult();
 
     }
@@ -55,8 +55,8 @@ public class RepositorioMovimientoStock {
     public int crearMovimientoStock(MovimientoStock ms) {
         int idMovimiento = buscarUltimoID() + 1;
         ms.setIdMovimientoStock(idMovimiento);
-        if (entityManager.find(MovimientoStockDAO.class, ms.getIdMovimientoStock()) == null) {
-            MovimientoStockDAO msDAO = new MovimientoStockDAO(ms, idMovimiento);
+        if (entityManager.find(MovimientoStockDB.class, ms.getIdMovimientoStock()) == null) {
+            MovimientoStockDB msDAO = new MovimientoStockDB(ms, idMovimiento);
             entityManager.persist(msDAO);
         }
         return idMovimiento;
@@ -76,10 +76,10 @@ public class RepositorioMovimientoStock {
         entityManager.merge(actual);
     }
 
-    private void revertirDetalles(List<DetalleMovimientoStockDAO> detalles, boolean entrada) {
+    private void revertirDetalles(List<DetalleMovimientoStockDB> detalles, boolean entrada) {
         DetalleMovimientoStockController detalleController = new DetalleMovimientoStockController();
 
-        for (DetalleMovimientoStockDAO d : detalles) {
+        for (DetalleMovimientoStockDB d : detalles) {
             detalleController.remove(d, entrada);
         }*/
 }

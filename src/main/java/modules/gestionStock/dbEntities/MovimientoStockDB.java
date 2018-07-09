@@ -1,7 +1,7 @@
-package daos.gestionStockDAO.services;
+package modules.gestionStock.dbEntities;
 
-import entities.gestionStock.DetalleMovimientoStock;
-import entities.gestionStock.MovimientoStock;
+import modules.gestionStock.modelEntities.DetalleMovimientoStock;
+import modules.gestionStock.modelEntities.MovimientoStock;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "MovimientosStock", schema = "BeFruit", catalog = "")
-public class MovimientoStockDAO {
+public class MovimientoStockDB {
     private int idMovimientoStock;
     private Integer idVenta;
     private Integer idTurno;
@@ -18,7 +18,10 @@ public class MovimientoStockDAO {
     private Timestamp fechaHoraAnulacion;
     private boolean entrada;
 
-    public MovimientoStockDAO(MovimientoStock ms, int id) {
+    public MovimientoStockDB() {
+    }
+
+    public MovimientoStockDB(MovimientoStock ms, int id) {
         this.idMovimientoStock = id;
         this.fechaHora = java.sql.Timestamp.valueOf(ms.getFechaHora().toString());
         this.fechaHoraAnulacion = java.sql.Timestamp.valueOf(ms.getFehcaHoraAnulacion().toString());
@@ -57,28 +60,40 @@ public class MovimientoStockDAO {
 
     @Basic
     @Column(name = "idTurno")
-    public Integer getIdTurno() { return idTurno; }
+    public Integer getIdTurno() {
+        return idTurno;
+    }
 
-    public void setIdTurno(Integer idTurno) { this.idTurno = idTurno; }
+    public void setIdTurno(Integer idTurno) {
+        this.idTurno = idTurno;
+    }
 
     @Basic
     @Column(name = "fechaHoraAnulacion")
-    public Timestamp getFechaHoraAnulacion() { return fechaHoraAnulacion; }
+    public Timestamp getFechaHoraAnulacion() {
+        return fechaHoraAnulacion;
+    }
 
-    public void setFechaHoraAnulacion(Timestamp fechaHoraAnulacion) { this.fechaHoraAnulacion = fechaHoraAnulacion; }
+    public void setFechaHoraAnulacion(Timestamp fechaHoraAnulacion) {
+        this.fechaHoraAnulacion = fechaHoraAnulacion;
+    }
 
     @Basic
     @Column(name = "entrada")
-    public boolean isEntrada() { return entrada; }
+    public boolean isEntrada() {
+        return entrada;
+    }
 
-    public void setEntrada(boolean entrada) { this.entrada = entrada; }
+    public void setEntrada(boolean entrada) {
+        this.entrada = entrada;
+    }
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MovimientoStockDAO that = (MovimientoStockDAO) o;
+        MovimientoStockDB that = (MovimientoStockDB) o;
         return idMovimientoStock == that.idMovimientoStock &&
                 Objects.equals(idVenta, that.idVenta) &&
                 Objects.equals(fechaHora, that.fechaHora);
@@ -90,7 +105,7 @@ public class MovimientoStockDAO {
         return Objects.hash(idMovimientoStock, idVenta, fechaHora);
     }
 
-    public MovimientoStock getMoviminetoStock(List<DetalleMovimientoStock> detalles){
+    public MovimientoStock getMoviminetoStock(List<DetalleMovimientoStock> detalles) {
         MovimientoStock ms = new MovimientoStock();
         ms.setIdMovimientoStock(this.idMovimientoStock);
         ms.setFechaHora(this.fechaHora);

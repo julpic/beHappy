@@ -1,17 +1,16 @@
-package entities.gestionStock.controllers;
+package modules.gestionStock.controllers;
 
 
-import daos.gestionStockDAO.repositorios.RepositorioStock;
-import entities.gestionStock.DetalleMovimientoStock;
-import entities.gestionStock.MovimientoStock;
+import modules.gestionStock.ejb.StockEJB;
+import modules.gestionStock.modelEntities.DetalleMovimientoStock;
+import modules.gestionStock.modelEntities.MovimientoStock;
 
 import javax.ejb.Stateless;
-import java.util.Date;
 import java.util.List;
 
 @Stateless
 public class MovimientoStockController {
-    RepositorioStock rms = new RepositorioStock();
+    StockEJB rms = new StockEJB();
 
 
     public MovimientoStock find(int id) {

@@ -1,17 +1,19 @@
-package daos.gestionStockDAO.services;
+package modules.gestionStock.dbEntities;
 
-import entities.gestionStock.UnidadMedida;
+import modules.gestionStock.modelEntities.UnidadMedida;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
-@Table(name = "UnidadesMedida", schema = "BeFruit", catalog = "")
-public class UnidadMedidaDAO {
+@Table(name = "UnidadesMedida", schema = "BeFruit")
+public class UnidadMedidaDB {
     private int idUnidad;
     private String nombre;
 
-    public UnidadMedidaDAO(UnidadMedida um, int id) {
+    public UnidadMedidaDB() {
+    }
+
+    public UnidadMedidaDB(UnidadMedida um, int id) {
         this.nombre = um.getNombre();
         this.idUnidad = id;
     }
@@ -36,7 +38,7 @@ public class UnidadMedidaDAO {
         this.nombre = nombre;
     }
 
-    public UnidadMedida getUnidadMedida(){
+    public UnidadMedida createUnidadMedida() {
         UnidadMedida um = new UnidadMedida();
         um.setNombre(this.nombre);
         return um;

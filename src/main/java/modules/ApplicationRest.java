@@ -1,4 +1,4 @@
-package entities;
+package modules;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

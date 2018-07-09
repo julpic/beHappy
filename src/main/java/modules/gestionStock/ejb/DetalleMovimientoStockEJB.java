@@ -1,19 +1,19 @@
-package daos.gestionStockDAO.repositorios;
+package modules.gestionStock.ejb;
 
-import daos.gestionStockDAO.services.DetalleMovimientoStockDAO;
-import entities.gestionStock.DetalleMovimientoStock;
+import modules.gestionStock.dbEntities.DetalleMovimientoStockDB;
+import modules.gestionStock.modelEntities.DetalleMovimientoStock;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
-public class RepositorioDetalleMovimientoStock {
+public class DetalleMovimientoStockEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
-    public List<DetalleMovimientoStockDAO> buscarDetallesDeMovimiento(int idMovimiento) {
-        Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStockDAO i WHERE i.idMovimiento = :idMov")
+    public List<DetalleMovimientoStockDB> buscarDetallesDeMovimiento(int idMovimiento) {
+        Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStockDB i WHERE i.idMovimiento = :idMov")
                 .setParameter("idMov", idMovimiento);
         return  q.getResultList();
     }
@@ -21,7 +21,7 @@ public class RepositorioDetalleMovimientoStock {
     public void crearDetallesDeUnMovimiento(int idMovimiento, List<DetalleMovimientoStock> detalles){
         int idDetalle = 0;
         for(DetalleMovimientoStock det : detalles){
-            DetalleMovimientoStockDAO detDAO = new DetalleMovimientoStockDAO(det, idDetalle, idMovimiento);
+            DetalleMovimientoStockDB detDAO = new DetalleMovimientoStockDB(det, idDetalle, idMovimiento);
             entityManager.persist(detDAO);
             idDetalle ++;
         }
