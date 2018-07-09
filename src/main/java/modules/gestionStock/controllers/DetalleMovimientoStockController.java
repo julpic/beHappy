@@ -10,7 +10,7 @@ import java.util.List;
 @Stateless
 public class DetalleMovimientoStockController {
 
-    public void create(List<DetalleMovimientoStock> detalles, boolean entrada, int idMovimiento){
+    public void create(List<DetalleMovimientoStock> detalles, int idMovimiento, boolean entrada){
         StockEJB rs = new StockEJB();
         for(DetalleMovimientoStock det : detalles){
             det.getInsumo().registrarMovimiento(det.getCantidad(), entrada);

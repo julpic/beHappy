@@ -6,6 +6,7 @@ import modules.gestionStock.modelEntities.UnidadMedida;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class UnidadMedidaEJB {
     }
 
     public int buscarIDUnidadMedida(String nombreU){
-        Query q = entityManager.createQuery("SELECT um.idUnidad FROM UnidadMedidaDB um WHERE um.nombre = :nombreU")
+        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT um.idUnidad FROM UnidadMedidaDB um WHERE um.nombre = :nombreU")
                 .setParameter("nombreU", nombreU);
-        return (int) q.getSingleResult();
+        return q.getSingleResult();
     }
 
     public List<UnidadMedida> buscarUnidadesMedida(){

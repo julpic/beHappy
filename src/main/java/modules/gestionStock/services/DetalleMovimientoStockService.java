@@ -14,7 +14,7 @@ public class DetalleMovimientoStockService {
 
     @POST
     @Consumes("application/json")
-    public int create(List<DetalleMovimientoStock> dms, int idMovimiento, boolean entrada) {
-        return dmsController.create(dms, idMovimiento, entrada);
+    public void create(List<DetalleMovimientoStock> dms, int idMovimiento, boolean entrada) {
+        dmsController.create(dms, idMovimiento, entrada);
     }
 }
