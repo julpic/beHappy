@@ -1,41 +1,42 @@
 package modules.gestionStock.services;
 
-import modules.gestionStock.modelEntities.Insumo;
+import modules.gestionStock.controllers.UnidadMedidaController;
+import modules.gestionStock.modelEntities.UnidadMedida;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
+import java.util.List;
 
 @Path("/unidadMedida")
 public class UnidadMedidaService {
+    @Inject
+    UnidadMedidaController umController;
+
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public void get(@PathParam("id") int id) {
-
+    public UnidadMedida get(@PathParam("id") int id) {
+        return umController.find(id);
     }
 
     @GET
     @Produces("application/json")
-    public void getAll() {
-
+    public List<UnidadMedida> getAll() {
+        return umController.findAll();
     }
 
     @POST
     @Consumes("application/json")
-    public void create() {
-
+    public void create(UnidadMedida um) {
+        umController.create(um);
     }
 
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, Insumo incoming) {
-
+    public void update(@PathParam("id") int id, UnidadMedida incoming) {
+        umController.update(id,incoming);
     }
 
-    @DELETE
-    @Path("/{id}")
-    public void remove(@PathParam("id") int id) {
-
-    }
 
 }

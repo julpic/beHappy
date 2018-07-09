@@ -81,6 +81,10 @@ public class StockEJB {
         return rms.crearMovimientoStock(ms);
     }
 
+    public void modificarMovimientoStock(int id, MovimientoStock ms){
+        MovimientoStockEJB rms = new MovimientoStockEJB();
+    }
+
     //Accesos a la base de datos pertinentes a los detalles
     public void crearDetallesMovimientoStock(List<DetalleMovimientoStock> detalles, int idMovimiento) {
         DetalleMovimientoStockEJB rDet = new DetalleMovimientoStockEJB();

@@ -3,11 +3,12 @@ package modules.gestionStock.controllers;
 import modules.gestionStock.ejb.StockEJB;
 import modules.gestionStock.modelEntities.Insumo;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@ApplicationScoped
+@Stateless
 public class InsumoController {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     StockEJB rs;
