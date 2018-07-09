@@ -8,6 +8,8 @@ import entities.gestionStock.UnidadMedida;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RepositorioUnidadMedida {
     @PersistenceContext(name = "beFruitPersistenceUnit")
@@ -22,6 +24,17 @@ public class RepositorioUnidadMedida {
         Query q = entityManager.createQuery("SELECT um.idUnidad FROM UnidadesMedida um WHERE um.nombre = :nombreU")
                 .setParameter("nombreU", nombreU);
         return (int) q.getSingleResult();
+    }
+
+    public List<UnidadMedida> buscarUnidadesMedida(){
+        List<UnidadMedidaDAO> unidadesDAO = entityManager.createQuery("SELECT i FROM UnidadesMedida i").getResultList();
+        ArrayList<UnidadMedida> unidades = new ArrayList<UnidadMedida>();
+        RepositorioUnidadMedida rs = new RepositorioUnidadMedida();
+        for(UnidadMedidaDAO uDAO: unidadesDAO){
+            unidades.add(uDAO.getUnidadMedida());
+        }
+
+        return unidades;
     }
 
     public void crearUnidadMedida(UnidadMedida um) {

@@ -1,6 +1,7 @@
 package entities.gestionStock.controllers;
 
-import daos.gestionStockDAO.repositorios.RepositorioMovimientoStock;
+
+import daos.gestionStockDAO.repositorios.RepositorioStock;
 import entities.gestionStock.DetalleMovimientoStock;
 import entities.gestionStock.MovimientoStock;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Stateless
 public class MovimientoStockController {
-    RepositorioMovimientoStock rms = new RepositorioMovimientoStock();
+    RepositorioStock rms = new RepositorioStock();
 
 
     public MovimientoStock find(int id) {

@@ -52,6 +52,11 @@ public class RepositorioStock {
         return rum.buscarUnidadMedida(id);
     }
 
+    public List<UnidadMedida> buscarUnidadesMedida(){
+        RepositorioUnidadMedida rum = new RepositorioUnidadMedida();
+        return rum.buscarUnidadesMedida();
+    }
+
     public void crearUnidadMedida(UnidadMedida um) {
         RepositorioUnidadMedida rum = new RepositorioUnidadMedida();
         rum.crearUnidadMedida(um);
