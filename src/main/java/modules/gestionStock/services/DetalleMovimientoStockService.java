@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import java.util.List;
 
+@Path("/detalleMovimientoStock")
 public class DetalleMovimientoStockService {
     @Inject
     DetalleMovimientoStockController dmsController;
