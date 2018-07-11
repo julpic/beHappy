@@ -14,18 +14,21 @@ public class DetalleMovimientoStockController {
     DetalleMovimientoStockEJB detalleMovimientoStockEJB;
     @Inject
     InsumoController insumoController;
+    @Inject
+    MovimientoStockController movimientoStockController;
 
     public List<DetalleMovimientoStock> findAll(int idMovimiento){
         return detalleMovimientoStockEJB.findAll(idMovimiento);
     }
 
-    public void create(List<DetalleMovimientoStock> detalles, boolean entrada) {
+    public void create(List<DetalleMovimientoStock> detalles) {
         int idInsumo;
         int cantidad;
+        MovimientoStock x = movimientoStockController.find(detalles.get(0).getIdMovimiento());
         for (DetalleMovimientoStock det : detalles) {
             idInsumo = det.getIdInsumo();
             cantidad = det.getCantidad();
-            insumoController.updateStock(idInsumo, cantidad, entrada);
+            insumoController.updateStock(idInsumo, cantidad, x.isEntrada());
         }
         detalleMovimientoStockEJB.createAll(detalles);
     }
