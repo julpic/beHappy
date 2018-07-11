@@ -1,30 +1,31 @@
 package modules.gestionStock.controllers;
 
-import modules.gestionStock.ejb.StockEJB;
-import modules.gestionStock.modelEntities.UnidadMedida;
+import modules.gestionStock.dbEntities.UnidadMedida;
+import modules.gestionStock.ejb.UnidadMedidaEJB;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
 public class UnidadMedidaController {
-    StockEJB rs = new StockEJB();
-
+    @Inject
+    UnidadMedidaEJB unidadMedidaEJB;
 
     public UnidadMedida find(int id) {
-        return rs.buscarUnidadMedida(id);
+        return unidadMedidaEJB.find(id);
     }
 
     public List<UnidadMedida> findAll() {
-        return rs.buscarUnidadesMedida();
+        return unidadMedidaEJB.findAll();
     }
 
     public void create(UnidadMedida um) {
-        rs.crearUnidadMedida(um);
+        unidadMedidaEJB.create(um);
     }
 
     public void update(int id, UnidadMedida um) {
-        rs.modificarUnidadMedida(id, um);
+        unidadMedidaEJB.update(id, um);
     }
 
 }

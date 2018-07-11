@@ -1,29 +1,31 @@
 package modules.gestionStock.ejb;
 
-import modules.gestionStock.dbEntities.DetalleMovimientoStockDB;
-import modules.gestionStock.modelEntities.DetalleMovimientoStock;
+import modules.gestionStock.dbEntities.DetalleMovimientoStock;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+@Stateless
 public class DetalleMovimientoStockEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
-    public List<DetalleMovimientoStockDB> buscarDetallesDeMovimiento(int idMovimiento) {
-        Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStockDB i WHERE i.idMovimiento = :idMov")
+    public List<DetalleMovimientoStock> findAll(int idMovimiento) {
+        Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStock i WHERE i.idMovimiento = :idMov")
                 .setParameter("idMov", idMovimiento);
-        return  q.getResultList();
+        return q.getResultList();
     }
 
-    public void crearDetallesDeUnMovimiento(int idMovimiento, List<DetalleMovimientoStock> detalles){
+    //preguntar si desde el front le pueden dar un valor de 0 a n en el id de cada detalle
+    public void createAll(List<DetalleMovimientoStock> detalles) {
         int idDetalle = 0;
-        for(DetalleMovimientoStock det : detalles){
-            DetalleMovimientoStockDB detDAO = new DetalleMovimientoStockDB(det, idDetalle, idMovimiento);
-            entityManager.persist(detDAO);
-            idDetalle ++;
+        for (DetalleMovimientoStock det : detalles) {
+            det.setIdDetalleMovimientoStock(idDetalle);
+            entityManager.persist(det);
+            idDetalle++;
         }
     }
 }

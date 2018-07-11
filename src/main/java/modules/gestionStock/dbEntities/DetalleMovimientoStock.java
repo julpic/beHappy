@@ -1,28 +1,18 @@
 package modules.gestionStock.dbEntities;
 
-import modules.gestionStock.modelEntities.DetalleMovimientoStock;
-import modules.gestionStock.modelEntities.Insumo;
-
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "DetallesMovimientosStock", schema = "BeFruit")
 @IdClass(DetalleMovimientoStockPK.class)
-public class DetalleMovimientoStockDB {
+public class DetalleMovimientoStock {
     private int idDetalleMovimientoStock;
     private int idMovimiento;
     private int idInsumo;
     private int cantidad;
 
-    public DetalleMovimientoStockDB() {
-    }
-
-    public DetalleMovimientoStockDB(DetalleMovimientoStock d, int id, int idMovimiento) {
-        this.idDetalleMovimientoStock = id;
-        this.idMovimiento = idMovimiento;
-        this.idInsumo = d.getInsumo().getIdInsumo();
-        this.cantidad = d.getCantidad();
+    public DetalleMovimientoStock() {
     }
 
     @Id
@@ -69,7 +59,7 @@ public class DetalleMovimientoStockDB {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DetalleMovimientoStockDB that = (DetalleMovimientoStockDB) o;
+        DetalleMovimientoStock that = (DetalleMovimientoStock) o;
         return idDetalleMovimientoStock == that.idDetalleMovimientoStock &&
                 idMovimiento == that.idMovimiento &&
                 cantidad == that.cantidad;
@@ -81,13 +71,4 @@ public class DetalleMovimientoStockDB {
         return Objects.hash(idDetalleMovimientoStock, idMovimiento, cantidad);
     }
 
-    public DetalleMovimientoStock getDetalleMovimiento(Insumo i) {
-        DetalleMovimientoStock dms = new DetalleMovimientoStock();
-        dms.setIdDetalleMovimientoStock(this.idDetalleMovimientoStock);
-        dms.setIdMovimiento(this.idMovimiento);
-        dms.setInsumo(i);
-        dms.setCantidad(this.cantidad);
-
-        return dms;
-    }
 }

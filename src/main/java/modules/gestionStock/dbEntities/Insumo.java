@@ -1,14 +1,10 @@
 package modules.gestionStock.dbEntities;
 
-import modules.gestionStock.modelEntities.Insumo;
-import modules.gestionStock.modelEntities.UnidadMedida;
-import modules.gestionStock.ejb.UnidadMedidaEJB;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Insumos", schema = "BeFruit", catalog = "")
-public class InsumoDB {
+@Table(name = "Insumos", schema = "BeFruit")
+public class Insumo {
     private int idInsumo;
     private String nombre;
     private int cantidadStock;
@@ -16,17 +12,7 @@ public class InsumoDB {
     private int idUnidadMedida;
     private boolean alta;
 
-    public InsumoDB() {
-    }
-
-    public InsumoDB(Insumo i) {
-        this.idInsumo = i.getIdInsumo();
-        this.nombre = i.getNombre();
-        this.cantidadStock = i.getCantidadStock();
-        this.stockMinimo = i.getStockMinimo();
-        UnidadMedidaEJB rs = new UnidadMedidaEJB();
-        this.idUnidadMedida = rs.buscarIDUnidadMedida(i.getUnidadMedida().getNombre());
-        this.alta = true;
+    public Insumo() {
     }
 
     public void darDeBaja() {
@@ -92,16 +78,6 @@ public class InsumoDB {
 
     public void setAlta(boolean alta) {
         this.alta = alta;
-    }
-
-    public Insumo getInsumo(UnidadMedida um) {
-        Insumo i = new Insumo();
-        i.setNombre(this.nombre);
-        i.setCantidadStock(this.cantidadStock);
-        i.setIdInsumo(this.idInsumo);
-        i.setStockMinimo(this.stockMinimo);
-        i.setUnidadMedida(um);
-        return i;
     }
 
 }

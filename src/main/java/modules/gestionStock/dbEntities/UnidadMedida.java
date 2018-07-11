@@ -1,21 +1,14 @@
 package modules.gestionStock.dbEntities;
 
-import modules.gestionStock.modelEntities.UnidadMedida;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "UnidadesMedida", schema = "BeFruit")
-public class UnidadMedidaDB {
+public class UnidadMedida {
     private int idUnidad;
     private String nombre;
 
-    public UnidadMedidaDB() {
-    }
-
-    public UnidadMedidaDB(UnidadMedida um, int id) {
-        this.nombre = um.getNombre();
-        this.idUnidad = id;
+    public UnidadMedida() {
     }
 
     @Id
@@ -36,12 +29,6 @@ public class UnidadMedidaDB {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public UnidadMedida createUnidadMedida() {
-        UnidadMedida um = new UnidadMedida();
-        um.setNombre(this.nombre);
-        return um;
     }
 
 }

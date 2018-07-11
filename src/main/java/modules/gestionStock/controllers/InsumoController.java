@@ -1,40 +1,43 @@
 package modules.gestionStock.controllers;
 
-import modules.gestionStock.ejb.StockEJB;
-import modules.gestionStock.modelEntities.Insumo;
+import modules.gestionStock.dbEntities.Insumo;
+import modules.gestionStock.ejb.InsumoEJB;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.PersistenceContext;
+import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
 public class InsumoController {
-    @PersistenceContext(name = "beFruitPersistenceUnit")
-    StockEJB rs;
+    @Inject
+    InsumoEJB insumoEJB;
 
     //Hay que mostrar el insumo con su unidad de medida
     public Insumo find(int id) {
-        return rs.buscarInsumo(id);
+        return insumoEJB.find(id);
     }
 
     public List<Insumo> findAll() {
-        return rs.buscarInsumos();
+        return insumoEJB.findAll();
     }
 
     public void create(Insumo i) {
-        rs.crearInsumo(i);
+        insumoEJB.create(i);
     }
 
-    public List<Insumo> buscarInsumosConStockInsuficiente(){
-        return rs.buscarInsumosConStockInsuficiente();
+    public List<Insumo> buscarInsumosConStockInsuficiente() {
+        return insumoEJB.findInsStock();
     }
 
     public void update(int id, Insumo i) {
-        rs.modificarInsumo(id, i);
+        insumoEJB.update(id, i);
     }
 
     public void remove(int id) {
-        rs.eliminarInsumo(id);
+        insumoEJB.remove(id);
+    }
+
+    public void updateStock(int idInsumo, int cantidad, boolean entrada) {
+        insumoEJB.updateStock(idInsumo, cantidad, entrada);
     }
 }

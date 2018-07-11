@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class EmpleadoPK {
+public class EmpleadoPK implements Serializable{
     private int idEmpleado;
     private int idFranquicia;
 

@@ -1,37 +1,45 @@
 package modules.gestionStock.controllers;
 
-import modules.gestionStock.ejb.StockEJB;
-import modules.gestionStock.modelEntities.DetalleMovimientoStock;
-import modules.gestionStock.modelEntities.Insumo;
+import modules.gestionStock.dbEntities.DetalleMovimientoStock;
+import modules.gestionStock.dbEntities.MovimientoStock;
+import modules.gestionStock.ejb.DetalleMovimientoStockEJB;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
 public class DetalleMovimientoStockController {
+    @Inject
+    DetalleMovimientoStockEJB detalleMovimientoStockEJB;
+    @Inject
+    InsumoController insumoController;
 
-    public void create(List<DetalleMovimientoStock> detalles, int idMovimiento, boolean entrada){
-        StockEJB rs = new StockEJB();
-        for(DetalleMovimientoStock det : detalles){
-            det.getInsumo().registrarMovimiento(det.getCantidad(), entrada);
+    public List<DetalleMovimientoStock> findAll(int idMovimiento){
+        return detalleMovimientoStockEJB.findAll(idMovimiento);
+    }
+
+    public void create(List<DetalleMovimientoStock> detalles, boolean entrada) {
+        int idInsumo;
+        int cantidad;
+        for (DetalleMovimientoStock det : detalles) {
+            idInsumo = det.getIdInsumo();
+            cantidad = det.getCantidad();
+            insumoController.updateStock(idInsumo, cantidad, entrada);
         }
-        rs.crearDetallesMovimientoStock(detalles, idMovimiento);
+        detalleMovimientoStockEJB.createAll(detalles);
     }
 
-    public void remove(DetalleMovimientoStock d, boolean entrada) {
-            Insumo insumoACambiar = buscarInsumo(d);
-            insumoACambiar.cancelarMovimiento(d.getCantidad(), entrada);
-            InsumoController ic = new InsumoController();
-            ic.update(insumoACambiar.getIdInsumo(), insumoACambiar);
+    public void removeAll(List<DetalleMovimientoStock> detalles) {
+        for (DetalleMovimientoStock det : detalles) {
+            remove(det);
+        }
     }
 
-    private Insumo buscarInsumo(DetalleMovimientoStock detalle){
-        int idInsumo = detalle.getInsumo().getIdInsumo();
-        InsumoController ic = new InsumoController();
-        return ic.find(idInsumo);
+    public void remove(DetalleMovimientoStock det) {
+        int idInsumo = det.getIdInsumo();
+        int cantidad = det.getCantidad();
+        insumoController.updateStock(idInsumo, cantidad, true);
     }
-
-
-
 
 }

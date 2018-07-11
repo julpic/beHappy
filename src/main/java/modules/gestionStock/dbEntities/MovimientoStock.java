@@ -1,16 +1,12 @@
 package modules.gestionStock.dbEntities;
 
-import modules.gestionStock.modelEntities.DetalleMovimientoStock;
-import modules.gestionStock.modelEntities.MovimientoStock;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "MovimientosStock", schema = "BeFruit", catalog = "")
-public class MovimientoStockDB {
+@Table(name = "MovimientosStock", schema = "BeFruit")
+public class MovimientoStock {
     private int idMovimientoStock;
     private Integer idVenta;
     private Integer idTurno;
@@ -18,14 +14,7 @@ public class MovimientoStockDB {
     private Timestamp fechaHoraAnulacion;
     private boolean entrada;
 
-    public MovimientoStockDB() {
-    }
-
-    public MovimientoStockDB(MovimientoStock ms, int id) {
-        this.idMovimientoStock = id;
-        this.fechaHora = java.sql.Timestamp.valueOf(ms.getFechaHora().toString());
-        this.fechaHoraAnulacion = java.sql.Timestamp.valueOf(ms.getFehcaHoraAnulacion().toString());
-        this.entrada = ms.isEntrada();
+    public MovimientoStock() {
     }
 
     @Id
@@ -93,7 +82,7 @@ public class MovimientoStockDB {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MovimientoStockDB that = (MovimientoStockDB) o;
+        MovimientoStock that = (MovimientoStock) o;
         return idMovimientoStock == that.idMovimientoStock &&
                 Objects.equals(idVenta, that.idVenta) &&
                 Objects.equals(fechaHora, that.fechaHora);
@@ -105,14 +94,4 @@ public class MovimientoStockDB {
         return Objects.hash(idMovimientoStock, idVenta, fechaHora);
     }
 
-    public MovimientoStock getMoviminetoStock(List<DetalleMovimientoStock> detalles) {
-        MovimientoStock ms = new MovimientoStock();
-        ms.setIdMovimientoStock(this.idMovimientoStock);
-        ms.setFechaHora(this.fechaHora);
-        ms.setFehcaHoraAnulacion(this.fechaHoraAnulacion);
-        ms.setEntrada(this.entrada);
-        ms.setDetalles(detalles);
-
-        return ms;
-    }
 }

@@ -5,6 +5,14 @@ DONE -Agregar atributo para baja de un cliente y la franquicia
 DONE -Agregar fechas de cancelacion/anulacion a las transacciones que lo requieran (Asi no necesitamos una clase estado que este al vicio)
 DONE -Insumos cantidadStock VARCHAR.
 
+Clases aregladas:
+DetalleMomivientoStockController
+InsumoController
+MovimientoStockController
+UnidadMedidaController
+
+
+
 Prioridad en el armado de paquetes/Orden en el cual se codifican:
 
 - Manejo de Stock: Insumo, MovimientoStock, DetalleMovimientoStock
@@ -16,13 +24,13 @@ Prioridad en el armado de paquetes/Orden en el cual se codifican:
 - Gestion de Usuarios: Usuario, Sesion, Perfil, Turno,Permiso
 
   <<Se vera durante todo el proceso de sw, Lo iremos modifcando mientras vayamos aprendiendo como se hace>>
-- Gestion de Productos: Producto, Promocion, Sabor, Tamaño
+- Gestion de Productos: Producto, Promocion, Sabor, Tamaï¿½o
 
 
 - Gestion de Ventas: Venta, DetalleVenta, MedioPago
 
 
-- Gestión de Caja: Movimiento de Caja,
+- Gestiï¿½n de Caja: Movimiento de Caja,
  DetalleMovimientoCaja
 
 

@@ -1,45 +1,48 @@
 package modules.gestionStock.controllers;
 
 
-import modules.gestionStock.ejb.StockEJB;
-import modules.gestionStock.modelEntities.DetalleMovimientoStock;
-import modules.gestionStock.modelEntities.MovimientoStock;
+import modules.gestionStock.dbEntities.DetalleMovimientoStock;
+import modules.gestionStock.dbEntities.MovimientoStock;
+import modules.gestionStock.ejb.MovimientoStockEJB;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Stateless
 public class MovimientoStockController {
-    StockEJB rms = new StockEJB();
-
+    @Inject
+    MovimientoStockEJB movimientoStockEJB;
+    @Inject
+    DetalleMovimientoStockController detalleMovimientoStockController;
 
     public MovimientoStock find(int id) {
-       return rms.buscarMovimientoStock(id);
+        return movimientoStockEJB.find(id);
     }
 
     public List<MovimientoStock> findAll() {
-        return rms.buscarMovimientosStock();
+        return movimientoStockEJB.findAll();
     }
 
-    public int create(MovimientoStock ms) {
-        return rms.crearMovimientoStock(ms);
+    public void create(MovimientoStock ms) {
+        movimientoStockEJB.create(ms);
     }
 
     public void remove(int id) {
         MovimientoStock actual = find(id);
-        boolean entrada = actual.isEntrada();
-        List<DetalleMovimientoStock> detalles = actual.getDetalles();
+        List<DetalleMovimientoStock> detalles = detalleMovimientoStockController.findAll(id);
 
-        revertirDetalles(detalles, entrada);
-        actual.anular();
+        restoreStock(detalles);
+        actual.setFechaHoraAnulacion(new Timestamp(System.currentTimeMillis()));
 
-        rms.anularMovimientoStock(id,actual);
+        movimientoStockEJB.cancel(id, actual);
     }
 
-    private void revertirDetalles(List<DetalleMovimientoStock> detalles, boolean entrada) {
-        DetalleMovimientoStockController detalleController = new DetalleMovimientoStockController();
+    private void restoreStock(List<DetalleMovimientoStock> detalles) {
         for (DetalleMovimientoStock d : detalles) {
-            detalleController.remove(d, entrada);
+            detalleMovimientoStockController.remove(d);
         }
     }
 }
