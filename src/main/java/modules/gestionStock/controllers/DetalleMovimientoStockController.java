@@ -21,6 +21,11 @@ public class DetalleMovimientoStockController {
         return detalleMovimientoStockEJB.findAll(idMovimiento);
     }
 
+    public List<DetalleMovimientoStock> findAll(){
+        return detalleMovimientoStockEJB.findAll();
+    }
+
+
     public void create(List<DetalleMovimientoStock> detalles) {
         int idInsumo;
         int cantidad;

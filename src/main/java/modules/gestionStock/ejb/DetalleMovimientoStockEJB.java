@@ -19,6 +19,11 @@ public class DetalleMovimientoStockEJB {
         return q.getResultList();
     }
 
+    public List<DetalleMovimientoStock> findAll() {
+        Query q = entityManager.createQuery("SELECT i FROM DetalleMovimientoStock i, MovimientoStock m WHERE m.fechaHoraAnulacion IS NULL");
+        return q.getResultList();
+    }
+
     //preguntar si desde el front le pueden dar un valor de 0 a n en el id de cada detalle
     public void createAll(List<DetalleMovimientoStock> detalles) {
         int idDetalle = 0;
