@@ -33,16 +33,12 @@ public class DetalleMovimientoStockController {
         detalleMovimientoStockEJB.createAll(detalles);
     }
 
-    public void removeAll(List<DetalleMovimientoStock> detalles) {
-        for (DetalleMovimientoStock det : detalles) {
-            remove(det);
-        }
-    }
 
-    public void remove(DetalleMovimientoStock det) {
+    public void restore(DetalleMovimientoStock det) {
+        MovimientoStock x = movimientoStockController.find(det.getIdMovimiento());
         int idInsumo = det.getIdInsumo();
         int cantidad = det.getCantidad();
-        insumoController.updateStock(idInsumo, cantidad, true);
+        insumoController.updateStock(idInsumo, cantidad, !(x.isEntrada()));
     }
 
 }

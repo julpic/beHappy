@@ -7,7 +7,6 @@ import modules.gestionStock.ejb.MovimientoStockEJB;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class MovimientoStockController {
 
     private void restoreStock(List<DetalleMovimientoStock> detalles) {
         for (DetalleMovimientoStock d : detalles) {
-            detalleMovimientoStockController.remove(d);
+            detalleMovimientoStockController.restore(d);
         }
     }
 }
