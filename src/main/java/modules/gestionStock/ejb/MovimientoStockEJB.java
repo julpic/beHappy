@@ -40,7 +40,8 @@ public class MovimientoStockEJB {
     }
 
     public List<MovimientoStock> findAll() {
-        return movimientoStockController.findAll();
+        Query q = entityManager.createQuery("SELECT i FROM MovimientoStock i");
+        return q.getResultList();
     }
 
     private int buscarUltimoID() {

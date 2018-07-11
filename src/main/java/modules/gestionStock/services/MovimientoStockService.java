@@ -38,3 +38,11 @@ public class MovimientoStockService {
         movimientoStockController.remove(id);
     }
 }
+/*{
+   "idMovimientoStock":"1",
+   "idVenta":"null",
+   "idTurno":"null",
+   "fechaHora":"2018-07-11T17:01:00.000Z",
+   "fechaHoraAnulacion":"null",
+   "entrada":true
+}*/
