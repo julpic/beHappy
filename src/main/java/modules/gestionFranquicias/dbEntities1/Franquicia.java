@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "franquicias", schema = "befruit", catalog = "")
+@Table(name = "Franquicias", schema = "BeFruit", catalog = "")
 
 public class Franquicia {
     private int idFranquicia;

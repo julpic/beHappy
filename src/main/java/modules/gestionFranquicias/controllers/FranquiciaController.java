@@ -2,7 +2,6 @@ package modules.gestionFranquicias.controllers;
 
 import modules.gestionFranquicias.dbEntities1.Franquicia;
 import modules.gestionFranquicias.ejb.FranquiciaEJB;
-import modules.gestionStock.dbEntities.Insumo;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -25,8 +24,8 @@ public class FranquiciaController {
         franquiciaEJB.create(f);
     }
 
-    public void update(int id, Insumo i) {
-        franquiciaEJB.update(id, i);
+    public void update(int id, Franquicia f) {
+        franquiciaEJB.update(id, f);
     }
 
     public void remove(int id) { franquiciaEJB.remove(id); }
