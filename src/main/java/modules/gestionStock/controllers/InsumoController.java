@@ -12,7 +12,7 @@ public class InsumoController {
     @Inject
     InsumoEJB insumoEJB;
 
-    //Hay que mostrar el insumo con su unidad de medida
+
     public Insumo find(int id) {
         return insumoEJB.find(id);
     }

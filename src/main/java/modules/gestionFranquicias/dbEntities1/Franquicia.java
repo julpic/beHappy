@@ -5,14 +5,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "franquicias", schema = "befruit", catalog = "")
 
-public class FranquiciaDB {
+public class Franquicia {
     private int idFranquicia;
     private int cuit;
     private String direccion;
     private String nombreDueno;
     private String eMailDueno;
     private String apellidoDueno;
-    private byte alta;
+    private boolean alta;
 
     @Id
     @Column(name = "idFranquicia")
@@ -76,11 +76,11 @@ public class FranquiciaDB {
 
     @Basic
     @Column(name = "alta")
-    public byte getAlta() {
+    public boolean getAlta() {
         return alta;
     }
 
-    public void setAlta(byte alta) {
+    public void setAlta(boolean alta) {
         this.alta = alta;
     }
 
@@ -88,7 +88,7 @@ public class FranquiciaDB {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FranquiciaDB that = (FranquiciaDB) o;
+        Franquicia that = (Franquicia) o;
         return idFranquicia == that.idFranquicia &&
                 cuit == that.cuit &&
                 alta == that.alta &&
@@ -102,5 +102,9 @@ public class FranquiciaDB {
     public int hashCode() {
 
         return Objects.hash(idFranquicia, cuit, direccion, nombreDueno, eMailDueno, apellidoDueno, alta);
+    }
+
+    public void darDeBaja(){
+        this.alta = false;
     }
 }
