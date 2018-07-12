@@ -1,3 +1,4 @@
+-Ver si el CUIT lo hacemos String, es un nuemro demasiado grande para ser int
 -En la tabla Proveedores razonSocial puede ser otra tabla.
 -Agregar y mapear MedioPago
 DONE -Agregar stock minimo para los insumos para cumplir con requisito de envio de mail cuando se tiene menos stock que el minimo.
@@ -5,11 +6,6 @@ DONE -Agregar atributo para baja de un cliente y la franquicia
 DONE -Agregar fechas de cancelacion/anulacion a las transacciones que lo requieran (Asi no necesitamos una clase estado que este al vicio)
 DONE -Insumos cantidadStock VARCHAR.
 
-Clases aregladas:
-DetalleMomivientoStockController
-InsumoController
-MovimientoStockController
-UnidadMedidaController
 
 
 
