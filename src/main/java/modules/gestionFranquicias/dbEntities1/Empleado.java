@@ -7,16 +7,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "Empleados", schema = "BeFruit", catalog = "")
 @IdClass(EmpleadoPK.class)
-public class EmpleadoDB {
+public class Empleado {
     private int idEmpleado;
     private int idFranquicia;
     private String apellido;
-    private int dni;
+    private long dni;
     private String eMail;
     private Timestamp fechaNacimiento;
     private String nombre;
-    private int telefonoContacto;
-    private byte alta;
+    private long telefonoContacto;
+    private boolean alta;
 
     @Id
     @Column(name = "idEmpleado")
@@ -50,11 +50,11 @@ public class EmpleadoDB {
 
     @Basic
     @Column(name = "dni")
-    public int getDni() {
+    public long getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(long dni) {
         this.dni = dni;
     }
 
@@ -90,21 +90,21 @@ public class EmpleadoDB {
 
     @Basic
     @Column(name = "telefonoContacto")
-    public int getTelefonoContacto() {
+    public long getTelefonoContacto() {
         return telefonoContacto;
     }
 
-    public void setTelefonoContacto(int telefonoContacto) {
+    public void setTelefonoContacto(long telefonoContacto) {
         this.telefonoContacto = telefonoContacto;
     }
 
     @Basic
     @Column(name = "alta")
-    public byte getAlta() {
+    public boolean getAlta() {
         return alta;
     }
 
-    public void setAlta(byte alta) {
+    public void setAlta(boolean alta) {
         this.alta = alta;
     }
 
@@ -112,7 +112,7 @@ public class EmpleadoDB {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EmpleadoDB that = (EmpleadoDB) o;
+        Empleado that = (Empleado) o;
         return idEmpleado == that.idEmpleado &&
                 idFranquicia == that.idFranquicia &&
                 dni == that.dni &&
@@ -128,6 +128,10 @@ public class EmpleadoDB {
     public int hashCode() {
 
         return Objects.hash(idEmpleado, idFranquicia, apellido, dni, eMail, fechaNacimiento, nombre, telefonoContacto, alta);
+    }
+
+    public void darDeBaja(){
+        this.alta = false;
     }
 }
 

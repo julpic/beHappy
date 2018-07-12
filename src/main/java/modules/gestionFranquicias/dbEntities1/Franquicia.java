@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Franquicia {
     private int idFranquicia;
-    private int cuit;
+    private long cuit;
     private String direccion;
     private String nombreDueno;
     private String eMailDueno;
@@ -26,11 +26,11 @@ public class Franquicia {
 
     @Basic
     @Column(name = "CUIT")
-    public int getCuit() {
+    public long getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(long cuit) {
         this.cuit = cuit;
     }
 
