@@ -1,4 +1,4 @@
-package modules.gestionFranquicias.dbEntities1;
+package modules.gestionFranquicias.dbEntities;
 import javax.persistence.*;
 import java.util.Objects;
 

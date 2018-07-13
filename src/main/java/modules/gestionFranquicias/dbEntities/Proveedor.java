@@ -1,17 +1,17 @@
-package modules.gestionFranquicias.dbEntities1;
+package modules.gestionFranquicias.dbEntities;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "Proveedores", schema = "BeFruit", catalog = "")
-public class ProveedorDB {
+public class Proveedor {
     private int idProveedor;
-    private int cuit;
+    private String cuit;
     private String razonSocial;
     private String eMail;
-    private Integer telefonoContacto;
-    private Byte alta;
+    private String telefonoContacto;
+    private boolean alta;
 
     @Id
     @Column(name = "idProveedor")
@@ -25,11 +25,11 @@ public class ProveedorDB {
 
     @Basic
     @Column(name = "CUIT")
-    public int getCuit() {
+    public String getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(String cuit) {
         this.cuit = cuit;
     }
 
@@ -55,21 +55,21 @@ public class ProveedorDB {
 
     @Basic
     @Column(name = "telefonoContacto")
-    public Integer getTelefonoContacto() {
+    public String getTelefonoContacto() {
         return telefonoContacto;
     }
 
-    public void setTelefonoContacto(Integer telefonoContacto) {
+    public void setTelefonoContacto(String telefonoContacto) {
         this.telefonoContacto = telefonoContacto;
     }
 
     @Basic
     @Column(name = "alta")
-    public Byte getAlta() {
+    public boolean getAlta() {
         return alta;
     }
 
-    public void setAlta(Byte alta) {
+    public void setAlta(boolean alta) {
         this.alta = alta;
     }
 
@@ -77,7 +77,7 @@ public class ProveedorDB {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProveedorDB that = (ProveedorDB) o;
+        Proveedor that = (Proveedor) o;
         return idProveedor == that.idProveedor &&
                 cuit == that.cuit &&
                 Objects.equals(razonSocial, that.razonSocial) &&

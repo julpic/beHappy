@@ -1,6 +1,6 @@
 package modules.gestionFranquicias.ejb;
 
-import modules.gestionFranquicias.dbEntities1.Empleado;
+import modules.gestionFranquicias.dbEntities.Empleado;
 
 
 import javax.ejb.Stateless;
@@ -46,7 +46,6 @@ public class EmpleadoEJB {
             x.setTelefonoContacto(e.getTelefonoContacto());
             x.setAlta(e.getAlta());
             entityManager.merge(x);
-
         }
     }
 

@@ -1,6 +1,6 @@
 package modules.gestionFranquicias.controllers;
 
-import modules.gestionFranquicias.dbEntities1.Franquicia;
+import modules.gestionFranquicias.dbEntities.Franquicia;
 import modules.gestionFranquicias.ejb.FranquiciaEJB;
 
 import javax.ejb.Stateless;

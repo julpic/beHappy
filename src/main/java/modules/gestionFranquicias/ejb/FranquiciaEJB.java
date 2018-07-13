@@ -1,6 +1,6 @@
 package modules.gestionFranquicias.ejb;
 
-import modules.gestionFranquicias.dbEntities1.Franquicia;
+import modules.gestionFranquicias.dbEntities.Franquicia;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

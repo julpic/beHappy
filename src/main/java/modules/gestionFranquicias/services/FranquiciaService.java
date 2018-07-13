@@ -1,7 +1,7 @@
 package modules.gestionFranquicias.services;
 
 import modules.gestionFranquicias.controllers.FranquiciaController;
-import modules.gestionFranquicias.dbEntities1.Franquicia;
+import modules.gestionFranquicias.dbEntities.Franquicia;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

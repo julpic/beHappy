@@ -1,4 +1,4 @@
-package modules.gestionFranquicias.dbEntities1;
+package modules.gestionFranquicias.dbEntities;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
