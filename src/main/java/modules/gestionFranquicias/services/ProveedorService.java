@@ -1,7 +1,7 @@
 package modules.gestionFranquicias.services;
 
 import modules.gestionFranquicias.controllers.ProveedorController;
-import modules.gestionFranquicias.dbEntities.Proveedor;
+import modules.gestionFranquicias.modelEntities.ProveedorModel;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -16,13 +16,13 @@ public class ProveedorService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public Proveedor get(@PathParam("id") int id) {
+    public ProveedorModel get(@PathParam("id") int id) {
         return proveedorController.find(id);
     }
 
     @GET
     @Produces("application/json")
-    public List<Proveedor> getAll() {
+    public List<ProveedorModel> getAll() {
         return proveedorController.findAll();
     }
 
@@ -30,8 +30,8 @@ public class ProveedorService {
     //caso contrario 304 Not Modified
     @POST
     @Consumes("application/json")
-    public Response create(Proveedor e) {
-        if (proveedorController.create(e)) return Response.accepted().build();
+    public Response create(ProveedorModel p) {
+        if (proveedorController.create(p)) return Response.accepted().build();
         return Response.notModified().build();
     }
 
@@ -40,8 +40,8 @@ public class ProveedorService {
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public Response update(@PathParam("id") int id, Proveedor e) {
-        if (proveedorController.update(id, e)) return Response.accepted().build();
+    public Response update(@PathParam("id") int id, ProveedorModel p) {
+        if (proveedorController.update(id, p)) return Response.accepted().build();
         return Response.notModified().build();
     }
 
