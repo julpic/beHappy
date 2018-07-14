@@ -1,5 +1,6 @@
 package modules.gestionStock.services;
 
+import modules.gestionStock.ModelEntities.UnidadMedidaModel;
 import modules.gestionStock.controllers.UnidadMedidaController;
 import modules.gestionStock.dbEntities.UnidadMedida;
 
@@ -15,26 +16,26 @@ public class UnidadMedidaService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public UnidadMedida get(@PathParam("id") int id) {
+    public UnidadMedidaModel get(@PathParam("id") int id) {
         return unidadMedidaController.find(id);
     }
 
     @GET
     @Produces("application/json")
-    public List<UnidadMedida> getAll() {
+    public List<UnidadMedidaModel> getAll() {
         return unidadMedidaController.findAll();
     }
 
     @POST
     @Consumes("application/json")
-    public void create(UnidadMedida um) {
+    public void create(UnidadMedidaModel um) {
         unidadMedidaController.create(um);
     }
 
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, UnidadMedida incoming) {
+    public void update(@PathParam("id") int id, UnidadMedidaModel incoming) {
         unidadMedidaController.update(id, incoming);
     }
 

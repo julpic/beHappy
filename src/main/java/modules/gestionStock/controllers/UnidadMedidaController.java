@@ -1,10 +1,12 @@
 package modules.gestionStock.controllers;
 
+import modules.gestionStock.ModelEntities.UnidadMedidaModel;
 import modules.gestionStock.dbEntities.UnidadMedida;
 import modules.gestionStock.ejb.UnidadMedidaEJB;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -12,20 +14,26 @@ public class UnidadMedidaController {
     @Inject
     UnidadMedidaEJB unidadMedidaEJB;
 
-    public UnidadMedida find(int id) {
-        return unidadMedidaEJB.find(id);
+    public UnidadMedidaModel find(int id) {
+        UnidadMedidaModel umm = new UnidadMedidaModel(unidadMedidaEJB.find(id));
+        return umm;
+
     }
 
-    public List<UnidadMedida> findAll() {
-        return unidadMedidaEJB.findAll();
+    public List<UnidadMedidaModel> findAll() {
+        List<UnidadMedida> unidadMedidas = unidadMedidaEJB.findAll();
+        ArrayList<UnidadMedidaModel> unidadesModel = new ArrayList<UnidadMedidaModel>();
+        for(UnidadMedida um : unidadMedidas){
+            UnidadMedidaModel umm = new UnidadMedidaModel(um);
+            unidadesModel.add(umm);
+        }
+        return unidadesModel;
     }
 
-    public void create(UnidadMedida um) {
-        unidadMedidaEJB.create(um);
-    }
+    public void create(UnidadMedidaModel um) { unidadMedidaEJB.create(um.getDBEntity()); }
 
-    public void update(int id, UnidadMedida um) {
-        unidadMedidaEJB.update(id, um);
+    public void update(int id, UnidadMedidaModel um) {
+        unidadMedidaEJB.update(id, um.getDBEntity());
     }
 
 }

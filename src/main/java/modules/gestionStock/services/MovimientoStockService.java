@@ -1,7 +1,7 @@
 package modules.gestionStock.services;
 
+import modules.gestionStock.ModelEntities.MovimientoStockModel;
 import modules.gestionStock.controllers.MovimientoStockController;
-import modules.gestionStock.dbEntities.MovimientoStock;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -15,19 +15,19 @@ public class MovimientoStockService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public MovimientoStock get(@PathParam("id") int id) {
+    public MovimientoStockModel get(@PathParam("id") int id) {
         return movimientoStockController.find(id);
     }
 
     @GET
     @Produces("application/json")
-    public List<MovimientoStock> getAll() {
+    public List<MovimientoStockModel> getAll() {
         return movimientoStockController.findAll();
     }
 
     @POST
     @Consumes("application/json")
-    public void create(MovimientoStock ms) {
+    public void create(MovimientoStockModel ms) {
         movimientoStockController.create(ms);
     }
 

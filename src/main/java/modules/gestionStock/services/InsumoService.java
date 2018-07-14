@@ -1,7 +1,8 @@
 package modules.gestionStock.services;
 
+import modules.gestionStock.ModelEntities.InsumoModel;
 import modules.gestionStock.controllers.InsumoController;
-import modules.gestionStock.dbEntities.Insumo;
+
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -15,26 +16,26 @@ public class InsumoService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public Insumo get(@PathParam("id") int id) {
+    public InsumoModel get(@PathParam("id") int id) {
         return insumoController.find(id);
     }
 
     @GET
     @Produces("application/json")
-    public List<Insumo> getAll() {
+    public List<InsumoModel> getAll() {
         return insumoController.findAll();
     }
 
     @POST
     @Consumes("application/json")
-    public void create(Insumo i) {
+    public void create(InsumoModel i) {
         insumoController.create(i);
     }
 
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, Insumo i) {
+    public void update(@PathParam("id") int id, InsumoModel i) {
         insumoController.update(id, i);
     }
 

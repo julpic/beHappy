@@ -1,6 +1,8 @@
 package modules.gestionStock.controllers;
 
 
+import modules.gestionStock.ModelEntities.DetalleMovimientoStockModel;
+import modules.gestionStock.ModelEntities.MovimientoStockModel;
 import modules.gestionStock.dbEntities.DetalleMovimientoStock;
 import modules.gestionStock.dbEntities.MovimientoStock;
 import modules.gestionStock.ejb.MovimientoStockEJB;
@@ -8,6 +10,7 @@ import modules.gestionStock.ejb.MovimientoStockEJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -17,31 +20,47 @@ public class MovimientoStockController {
     @Inject
     DetalleMovimientoStockController detalleMovimientoStockController;
 
-    public MovimientoStock find(int id) {
-        return movimientoStockEJB.find(id);
+    public MovimientoStockModel find(int id) {
+        MovimientoStock ms = movimientoStockEJB.find(id);
+        List<DetalleMovimientoStockModel> detalles  = detalleMovimientoStockController.findAll(id);
+        MovimientoStockModel msm = new MovimientoStockModel(ms,detalles);
+        return msm;
     }
 
-    public List<MovimientoStock> findAll() {
-        return movimientoStockEJB.findAll();
+    public List<MovimientoStockModel> findAll() {
+        List<MovimientoStock> movimientos = movimientoStockEJB.findAll();
+        ArrayList<MovimientoStockModel> movimientosModel = new ArrayList<MovimientoStockModel>();
+        for(MovimientoStock mov: movimientos){
+            List<DetalleMovimientoStockModel> detalles  = detalleMovimientoStockController.findAll(mov.getIdMovimientoStock());
+            MovimientoStockModel msm = new MovimientoStockModel(mov,detalles);
+            movimientosModel.add(msm);
+        }
+        return movimientosModel;
     }
 
-    public void create(MovimientoStock ms) {
-        movimientoStockEJB.create(ms);
+    public void create(MovimientoStockModel msm) {
+        movimientoStockEJB.create(msm.getDBEntity());
     }
 
     public void remove(int id) {
-        MovimientoStock actual = find(id);
-        List<DetalleMovimientoStock> detalles = detalleMovimientoStockController.findAll(id);
+        MovimientoStockModel movModel = find(id);
+        MovimientoStock actual = movModel.getDBEntity();
+        List<DetalleMovimientoStockModel> detallesModel = detalleMovimientoStockController.findAll(id);
+        ArrayList<DetalleMovimientoStock> detalles = new ArrayList<DetalleMovimientoStock>();
 
-        restoreStock(detalles);
+        for (DetalleMovimientoStockModel detModel : detallesModel) {
+            DetalleMovimientoStock det = detModel.getDBEntity(id);
+            detalles.add(det);
+        }
+
+        restoreStock(detalles, id);
         actual.setFechaHoraAnulacion(new Timestamp(System.currentTimeMillis()));
-
         movimientoStockEJB.cancel(id, actual);
     }
 
-    private void restoreStock(List<DetalleMovimientoStock> detalles) {
+    private void restoreStock(List<DetalleMovimientoStock> detalles, int idMovimiento) {
         for (DetalleMovimientoStock d : detalles) {
-            detalleMovimientoStockController.restore(d);
+            detalleMovimientoStockController.restore(d, idMovimiento);
         }
     }
 }
