@@ -15,7 +15,7 @@ public class Empleado {
     private String eMail;
     private Timestamp fechaNacimiento;
     private String nombre;
-    private long telefonoContacto;
+    private String telefonoContacto;
     private boolean alta;
 
     @Id
@@ -90,11 +90,11 @@ public class Empleado {
 
     @Basic
     @Column(name = "telefonoContacto")
-    public long getTelefonoContacto() {
+    public String getTelefonoContacto() {
         return telefonoContacto;
     }
 
-    public void setTelefonoContacto(long telefonoContacto) {
+    public void setTelefonoContacto(String telefonoContacto) {
         this.telefonoContacto = telefonoContacto;
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FranquiciaModel {
     private int idFranquicia;
-    private long cuit;
+    private String cuit;
     private String direccion;
     private String nombreDueno;
     private String eMailDueno;

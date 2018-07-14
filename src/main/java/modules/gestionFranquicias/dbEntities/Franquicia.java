@@ -1,4 +1,5 @@
 package modules.gestionFranquicias.dbEntities;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ import java.util.Objects;
 
 public class Franquicia {
     private int idFranquicia;
-    private long cuit;
+    private String cuit;
     private String direccion;
     private String nombreDueno;
     private String eMailDueno;
@@ -26,11 +27,11 @@ public class Franquicia {
 
     @Basic
     @Column(name = "CUIT")
-    public long getCuit() {
+    public String getCuit() {
         return cuit;
     }
 
-    public void setCuit(long cuit) {
+    public void setCuit(String cuit) {
         this.cuit = cuit;
     }
 
@@ -104,7 +105,7 @@ public class Franquicia {
         return Objects.hash(idFranquicia, cuit, direccion, nombreDueno, eMailDueno, apellidoDueno, alta);
     }
 
-    public void darDeBaja(){
+    public void darDeBaja() {
         this.alta = false;
     }
 }
