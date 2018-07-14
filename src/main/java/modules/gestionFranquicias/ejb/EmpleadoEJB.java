@@ -25,6 +25,12 @@ public class EmpleadoEJB {
         return q.getResultList();
     }
 
+    public List<Empleado> findAll(int idFranquicia) {
+        Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE (e.alta = true AND e.idFranquicia = :id)")
+                .setParameter("id", idFranquicia);
+        return q.getResultList();
+    }
+
     public void create(Empleado e) {
         Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idEmpleado = :id").setParameter("id",e.getIdEmpleado());
         if ( q.getResultList().isEmpty()) {

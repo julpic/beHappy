@@ -2,6 +2,7 @@ package modules.gestionFranquicias.services;
 
 import modules.gestionFranquicias.controllers.FranquiciaController;
 import modules.gestionFranquicias.dbEntities.Franquicia;
+import modules.gestionFranquicias.modelEntities.FranquiciaModel;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -15,24 +16,24 @@ public class FranquiciaService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public Franquicia get(@PathParam("id") int id) {
+    public FranquiciaModel get(@PathParam("id") int id) {
         return franquiciaController.find(id);
     }
 
     @GET
     @Produces("application/json")
-    public List<Franquicia> getAll() { return franquiciaController.findAll(); }
+    public List<FranquiciaModel> getAll() { return franquiciaController.findAll(); }
 
     @POST
     @Consumes("application/json")
-    public void create(Franquicia f) {
+    public void create(FranquiciaModel f) {
         franquiciaController.create(f);
     }
 
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, Franquicia f) {
+    public void update(@PathParam("id") int id, FranquiciaModel f) {
         franquiciaController.update(id, f);
     }
 
