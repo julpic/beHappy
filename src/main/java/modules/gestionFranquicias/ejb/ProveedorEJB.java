@@ -1,5 +1,6 @@
 package modules.gestionFranquicias.ejb;
 
+import modules.gestionFranquicias.dbEntities.InsumosXProveedor;
 import modules.gestionFranquicias.dbEntities.Proveedor;
 
 import javax.ejb.Stateless;
@@ -33,6 +34,18 @@ public class ProveedorEJB {
         if (x == null) {
             entityManager.persist(p);
         }
+    }
+
+    public boolean create(int idInsumo, int idProveedor) {
+        InsumosXProveedor ixp = new InsumosXProveedor();
+        ixp.setIdInsumo(idInsumo);
+        ixp.setIdProveedor(idProveedor);
+        InsumosXProveedor x = entityManager.find(InsumosXProveedor.class, ixp);
+        if (x == null) {
+            entityManager.persist(ixp);
+            return true;
+        }
+        return false;
     }
 
     public void update(int id, Proveedor p) {

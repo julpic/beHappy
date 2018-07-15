@@ -42,6 +42,13 @@ public class ProveedorService {
         return Response.notModified().build();
     }
 
+    @POST
+    @Consumes("application/json")
+    public Response create(int idInsumo, int idProveedor) {
+        if (proveedorController.create(idInsumo, idProveedor)) return Response.accepted().build();
+        return Response.notModified().build();
+    }
+
     //Si el cuit es valido respuesta 202 Accepted
     //caso contrario 304 Not Modified
     @PUT

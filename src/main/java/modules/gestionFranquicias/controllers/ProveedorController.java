@@ -51,6 +51,14 @@ public class ProveedorController {
         return false;
     }
 
+    public boolean create(int idInsumo, int idProveedor) {
+            if(proveedorEJB.create(idInsumo, idProveedor)){
+                return true;
+            };
+            return false;
+
+    }
+
     public boolean update(int id, ProveedorModel p) {
         Proveedor e = p.getDBEntity();
         if (CuitValidator.validarCuit(e.getCuit())) {
