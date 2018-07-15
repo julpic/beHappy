@@ -39,6 +39,17 @@ public class InsumoController {
         return insumosModels;
     }
 
+    public List<InsumoModel> findAll(int idProveedor) {
+        List<Insumo> insumos = insumoEJB.findAll(idProveedor);
+        ArrayList<InsumoModel> insumosModels = new ArrayList<InsumoModel>();
+        for (Insumo i : insumos){
+            UnidadMedidaModel umm = new UnidadMedidaModel(unidadMedidaEJB.find(i.getIdUnidadMedida()));
+            InsumoModel im = new InsumoModel(i,umm);
+            insumosModels.add(im);
+        }
+        return insumosModels;
+    }
+
     public void create(InsumoModel im) {
         Insumo i = im.getDBEntity();
         insumoEJB.create(i);

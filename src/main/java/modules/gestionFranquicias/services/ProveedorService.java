@@ -26,6 +26,13 @@ public class ProveedorService {
         return proveedorController.findAll();
     }
 
+    //Devuelve los proveedores que entregan dicho insumo
+    @GET
+    @Produces("application/json")
+    public List<ProveedorModel> getAll(int idInsumo) {
+        return proveedorController.findAll(idInsumo);
+    }
+
     //Si el cuit es valido respuesta 202 Accepted
     //caso contrario 304 Not Modified
     @POST

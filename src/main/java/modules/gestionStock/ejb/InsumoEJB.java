@@ -22,6 +22,12 @@ public class InsumoEJB {
         return q.getResultList();
     }
 
+    public List<Insumo> findAll(int idProveedor) {
+        Query q = entityManager.createQuery("SELECT i FROM Insumo i , InsumosXProveedor ip WHERE i.idInsumo = ip.idInsumo AND i.alta = true AND ip.idProveedor = :idProveedor")
+                .setParameter("idProveedor", idProveedor);
+        return q.getResultList();
+    }
+
     public List<Insumo> findInsStock() {
         Query q = entityManager.createQuery("SELECT i FROM Insumo i WHERE i.cantidadStock <= i.stockMinimo");
         return q.getResultList();

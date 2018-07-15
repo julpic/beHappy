@@ -22,6 +22,12 @@ public class ProveedorEJB {
         return q.getResultList();
     }
 
+    public List<Proveedor> findAll(int idInsumo) {
+        Query q = entityManager.createQuery("SELECT i FROM Proveedor i, InsumosXProveedor ip WHERE i.idProveedor = ip.idProveedor AND ip.idInsumo = :idInsumo")
+                .setParameter("idInsumo", idInsumo);
+        return q.getResultList();
+    }
+
     public void create(Proveedor p) {
         Proveedor x = entityManager.find(Proveedor.class, p.getIdProveedor());
         if (x == null) {

@@ -31,6 +31,16 @@ public class ProveedorController {
         return proveedoresModel;
     }
 
+    public List<ProveedorModel> findAll(int idInsumo) {
+        List<Proveedor> proveedores = proveedorEJB.findAll(idInsumo);
+        ArrayList<ProveedorModel> proveedoresModel = new ArrayList<ProveedorModel>();
+        for(Proveedor e: proveedores){
+            ProveedorModel em = new ProveedorModel(e);
+            proveedoresModel.add(em);
+        }
+        return proveedoresModel;
+    }
+
     public boolean create(ProveedorModel p) {
         Proveedor e = p.getDBEntity();
         if (CuitValidator.validarCuit(e.getCuit())) {
