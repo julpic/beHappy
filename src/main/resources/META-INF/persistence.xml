@@ -3,5 +3,10 @@
 
     <persistence-unit name="beFruitPersistenceUnit">
         <jta-data-source>java:/beFruit</jta-data-source>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/BeFruit" />
+        </properties>
     </persistence-unit>
 </persistence>

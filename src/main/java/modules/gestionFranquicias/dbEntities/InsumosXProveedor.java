@@ -1,11 +1,12 @@
 package modules.gestionFranquicias.dbEntities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "InsumosXProveedor", schema = "BeFruit", catalog = "")
-public class InsumosXProveedor {
+public class InsumosXProveedor implements Serializable {
     public int idProveedor;
     public int idInsumo;
 

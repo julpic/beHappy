@@ -1,6 +1,5 @@
 package modules.gestionStock.ejb;
 
-import modules.gestionStock.controllers.DetalleMovimientoStockController;
 import modules.gestionStock.controllers.MovimientoStockController;
 import modules.gestionStock.dbEntities.DetalleMovimientoStock;
 import modules.gestionStock.dbEntities.MovimientoStock;
@@ -17,7 +16,7 @@ public class MovimientoStockEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
     @Inject
-    DetalleMovimientoStockController detalleMovimientoStockController;
+    DetalleMovimientoStockEJB detalleMovimientoStockEJB;
     @Inject
     MovimientoStockController movimientoStockController;
 
@@ -26,7 +25,8 @@ public class MovimientoStockEJB {
     }
 
     private List<DetalleMovimientoStock> findDetalles(int idMovimiento) {
-        return detalleMovimientoStockController.findAll(idMovimiento);
+        return detalleMovimientoStockEJB.findAll(idMovimiento);
+    }
 /*        DetalleMovimientoStockEJB rdms = new DetalleMovimientoStockEJB();
         InsumoEJB ri = new InsumoEJB();
         List<DetalleMovimientoStock> detallesDAO = rdms.buscarDetallesDeMovimiento(idMovimiento);
@@ -36,9 +36,9 @@ public class MovimientoStockEJB {
             DetalleMovimientoStock det = detDao.getDetalleMovimiento(ri.buscarInsumo(detDao.getIdInsumo()));
             detalles.add(det);
         }
-        return detalles;*/
+        return detalles;
     }
-
+*/
     public List<MovimientoStock> findAll() {
         Query q = entityManager.createQuery("SELECT i FROM MovimientoStock i");
         return q.getResultList();
