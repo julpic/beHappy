@@ -13,7 +13,7 @@ public class EmpleadoModel {
     private String eMail;
     private Date fechaNacimiento;
     private String nombre;
-    private long telefonoContacto;
+    private String telefonoContacto;
     private boolean alta;
 
     public EmpleadoModel(Empleado e) {
