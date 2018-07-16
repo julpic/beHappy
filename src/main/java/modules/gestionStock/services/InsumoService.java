@@ -1,7 +1,9 @@
 package modules.gestionStock.services;
 
+import com.google.gson.Gson;
 import modules.gestionStock.ModelEntities.InsumoModel;
 import modules.gestionStock.controllers.InsumoController;
+
 
 
 import javax.inject.Inject;
@@ -16,34 +18,47 @@ public class InsumoService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public InsumoModel get(@PathParam("id") int id) {
-        return insumoController.find(id);
+    public String get(@PathParam("id") int id) {
+        InsumoModel im = insumoController.find(id);
+        Gson gson = new Gson();
+        String json = gson.toJson(im);
+        return json;
     }
 
     @GET
     @Produces("application/json")
-    public List<InsumoModel> getAll() {
-        return insumoController.findAll();
+    public String getAll() {
+        List<InsumoModel> insumos = insumoController.findAll();
+        Gson gson = new Gson();
+        String json = gson.toJson(insumos);
+        return json;
     }
 
     //Devuelve todos los insumos que cierto proveedor provee (valga la redundancia)
     @GET
     @Path("proveedor/{id}")
     @Produces("application/json")
-    public List<InsumoModel> getAll(@PathParam("id") int idProveedor) {
-        return insumoController.findAll(idProveedor);
+    public String getAll(@PathParam("id") int idProveedor) {
+        List<InsumoModel> insumos = insumoController.findAll(idProveedor);
+        Gson gson = new Gson();
+        String json = gson.toJson(insumos);
+        return json;
     }
 
     @POST
     @Consumes("application/json")
-    public void create(InsumoModel i) {
+    public void create(String json) {
+        Gson gson = new Gson();
+        InsumoModel i = gson.fromJson(json, InsumoModel.class);
         insumoController.create(i);
     }
 
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, InsumoModel i) {
+    public void update(@PathParam("id") int id, String json) {
+        Gson gson = new Gson();
+        InsumoModel i = gson.fromJson(json, InsumoModel.class);
         insumoController.update(id, i);
     }
 

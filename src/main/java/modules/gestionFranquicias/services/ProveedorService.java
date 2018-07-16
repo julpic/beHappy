@@ -1,6 +1,8 @@
 package modules.gestionFranquicias.services;
 
+import com.google.gson.Gson;
 import modules.gestionFranquicias.controllers.ProveedorController;
+import modules.gestionFranquicias.dbEntities.Proveedor;
 import modules.gestionFranquicias.modelEntities.ProveedorModel;
 
 import javax.inject.Inject;
@@ -16,14 +18,20 @@ public class ProveedorService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public ProveedorModel get(@PathParam("id") int id) {
-        return proveedorController.find(id);
+    public String get(@PathParam("id") int id) {
+        ProveedorModel p = proveedorController.find(id);
+        Gson gson = new Gson();
+        String json = gson.toJson(p);
+        return json;
     }
 
     @GET
     @Produces("application/json")
-    public List<ProveedorModel> getAll() {
-        return proveedorController.findAll();
+    public String getAll() {
+        List<ProveedorModel> proveedores = proveedorController.findAll();
+        Gson gson = new Gson();
+        String json = gson.toJson(proveedores);
+        return json;
     }
 
     //Si el parametro insumo es igual a true devuelve los proveedores que entregan dicho insumo
@@ -31,15 +39,20 @@ public class ProveedorService {
     @GET
     @Path("compuesto/{id}")
     @Produces("application/json")
-    public List<ProveedorModel> getAll(@PathParam("id") int idInsumo, boolean insumo) {
-        return proveedorController.findAll(idInsumo,insumo);
+    public String getAll(@PathParam("id") int idInsumo, boolean insumo) {
+        List<ProveedorModel> proveedores = proveedorController.findAll(idInsumo,insumo);
+        Gson gson = new Gson();
+        String json = gson.toJson(proveedores);
+        return json;
     }
 
     //Si el cuit es valido respuesta 202 Accepted
     //caso contrario 304 Not Modified
     @POST
     @Consumes("application/json")
-    public Response create(ProveedorModel p) {
+    public Response create(String json) {
+        Gson gson = new Gson();
+        ProveedorModel p = gson.fromJson(json, ProveedorModel.class);
         if (proveedorController.create(p)) return Response.accepted().build();
         return Response.notModified().build();
     }
@@ -57,7 +70,9 @@ public class ProveedorService {
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public Response update(@PathParam("id") int id, ProveedorModel p) {
+    public Response update(@PathParam("id") int id, String json) {
+        Gson gson = new Gson();
+        ProveedorModel p = gson.fromJson(json, ProveedorModel.class);
         if (proveedorController.update(id, p)) return Response.accepted().build();
         return Response.notModified().build();
     }

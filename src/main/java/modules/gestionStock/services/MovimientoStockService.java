@@ -1,5 +1,6 @@
 package modules.gestionStock.services;
 
+import com.google.gson.Gson;
 import modules.gestionStock.ModelEntities.MovimientoStockModel;
 import modules.gestionStock.controllers.MovimientoStockController;
 
@@ -15,19 +16,27 @@ public class MovimientoStockService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public MovimientoStockModel get(@PathParam("id") int id) {
-        return movimientoStockController.find(id);
+    public String get(@PathParam("id") int id) {
+        MovimientoStockModel msm = movimientoStockController.find(id);
+        Gson gson = new Gson();
+        String json = gson.toJson(msm);
+        return json;
     }
 
     @GET
     @Produces("application/json")
-    public List<MovimientoStockModel> getAll() {
-        return movimientoStockController.findAll();
+    public String getAll() {
+        List<MovimientoStockModel> movimientos = movimientoStockController.findAll();
+        Gson gson = new Gson();
+        String json = gson.toJson(movimientos);
+        return json;
     }
 
     @POST
     @Consumes("application/json")
-    public void create(MovimientoStockModel ms) {
+    public void create(String json) {
+        Gson gson = new Gson();
+        MovimientoStockModel ms = gson.fromJson(json, MovimientoStockModel.class);
         movimientoStockController.create(ms);
     }
 

@@ -1,5 +1,6 @@
 package modules.gestionStock.services;
 
+import com.google.gson.Gson;
 import modules.gestionStock.ModelEntities.UnidadMedidaModel;
 import modules.gestionStock.controllers.UnidadMedidaController;
 import modules.gestionStock.dbEntities.UnidadMedida;
@@ -16,27 +17,37 @@ public class UnidadMedidaService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public UnidadMedidaModel get(@PathParam("id") int id) {
-        return unidadMedidaController.find(id);
+    public String get(@PathParam("id") int id) {
+        UnidadMedidaModel umm = unidadMedidaController.find(id);
+        Gson gson = new Gson();
+        String json = gson.toJson(umm);
+        return json;
     }
 
     @GET
     @Produces("application/json")
-    public List<UnidadMedidaModel> getAll() {
-        return unidadMedidaController.findAll();
+    public String getAll() {
+        List<UnidadMedidaModel> unidades = unidadMedidaController.findAll();
+        Gson gson = new Gson();
+        String json = gson.toJson(unidades);
+        return json;
     }
 
     @POST
     @Consumes("application/json")
-    public void create(UnidadMedidaModel um) {
+    public void create(String json) {
+        Gson gson = new Gson();
+        UnidadMedidaModel um = gson.fromJson(json, UnidadMedidaModel.class);
         unidadMedidaController.create(um);
     }
 
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, UnidadMedidaModel incoming) {
-        unidadMedidaController.update(id, incoming);
+    public void update(@PathParam("id") int id, String json) {
+        Gson gson = new Gson();
+        UnidadMedidaModel um = gson.fromJson(json, UnidadMedidaModel.class);
+        unidadMedidaController.update(id, um);
     }
 
 

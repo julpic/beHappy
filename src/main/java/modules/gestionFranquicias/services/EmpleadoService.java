@@ -1,6 +1,8 @@
 package modules.gestionFranquicias.services;
 
+import com.google.gson.Gson;
 import modules.gestionFranquicias.controllers.EmpleadoController;
+import modules.gestionFranquicias.dbEntities.Empleado;
 import modules.gestionFranquicias.modelEntities.EmpleadoModel;
 
 
@@ -16,22 +18,36 @@ public class EmpleadoService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public EmpleadoModel get(@PathParam("id") int id) { return empleadoController.find(id); }
+    public String get(@PathParam("id") int id) {
+        EmpleadoModel e = empleadoController.find(id);
+        Gson gson = new Gson();
+        String json = gson.toJson(e);
+        return json;
+    }
 
     @GET
     @Produces("application/json")
-    public List<EmpleadoModel> getAll() { return empleadoController.findAll(); }
+    public String getAll() {
+        List<EmpleadoModel> empleados = empleadoController.findAll();
+        Gson gson = new Gson();
+        String json = gson.toJson(empleados);
+        return json;
+    }
 
     @POST
     @Consumes("application/json")
-    public void create(EmpleadoModel e) {
+    public void create(String json) {
+        Gson gson = new Gson();
+        EmpleadoModel e = gson.fromJson(json,EmpleadoModel.class);
         empleadoController.create(e);
     }
 
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, EmpleadoModel e) {
+    public void update(@PathParam("id") int id, String json) {
+        Gson gson = new Gson();
+        EmpleadoModel e = gson.fromJson(json,EmpleadoModel.class);
         empleadoController.update(id, e);
     }
 

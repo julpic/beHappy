@@ -1,11 +1,14 @@
 package modules.gestionStock.services;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import modules.gestionStock.ModelEntities.DetalleMovimientoStockModel;
 import modules.gestionStock.controllers.DetalleMovimientoStockController;
-import modules.gestionStock.dbEntities.DetalleMovimientoStock;
+
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Path("/detalleMovimientoStock")
@@ -16,22 +19,31 @@ public class DetalleMovimientoStockService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public List<DetalleMovimientoStockModel> get(@PathParam("id") int idMovimiento) {
-        return detalleMovimientoStockController.findAll(idMovimiento);
+    public String get(@PathParam("id") int idMovimiento) {
+        List<DetalleMovimientoStockModel> detalles = detalleMovimientoStockController.findAll(idMovimiento);
+        Gson gson = new Gson();
+        String json = gson.toJson(detalles);
+        return json;
     }
 
 
     //Muestra todos los detalles que pertenezcan a un movimiento que no fue anulado
     @GET
     @Produces("application/json")
-    public List<DetalleMovimientoStockModel> get() {
-        return detalleMovimientoStockController.findAll();
+    public String get() {
+        List<DetalleMovimientoStockModel> detalles = detalleMovimientoStockController.findAll();
+        Gson gson = new Gson();
+        String json = gson.toJson(detalles);
+        return json;
     }
 
 
     @POST
     @Consumes("application/json")
-    public void create(List<DetalleMovimientoStockModel> detalles, int idMovimiento) {
+    public void create(String json, int idMovimiento) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<DetalleMovimientoStockModel>>() {}.getType();
+        List<DetalleMovimientoStockModel> detalles  = gson.fromJson(json, type);
         detalleMovimientoStockController.create(detalles,idMovimiento);
     }
 }
