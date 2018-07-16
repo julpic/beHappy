@@ -13,12 +13,13 @@ public class InsumosXProveedorService {
     @Inject
     ProveedorController proveedorController;
 
-    //Devuelve los proveedores que entregan dicho insumo
+    //Si el parametro insumo es igual a true devuelve los proveedores que entregan dicho insumo
+    //Si el parametro insumo es igual a false devuelve todos los proveedores de dicha franquicia
     @GET
     @Path("/{id}")
      @Produces("application/json")
-     public List<ProveedorModel> getAll(@PathParam("id") int idInsumo) {
-        return proveedorController.findAll(idInsumo);
+     public List<ProveedorModel> getAll(@PathParam("id") int idInsumo, boolean insumo) {
+        return proveedorController.findAll(idInsumo,insumo);
        }
 
     @POST

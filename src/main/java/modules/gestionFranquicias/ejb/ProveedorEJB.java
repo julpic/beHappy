@@ -23,9 +23,15 @@ public class ProveedorEJB {
         return q.getResultList();
     }
 
-    public List<Proveedor> findAll(int idInsumo) {
-        Query q = entityManager.createQuery("SELECT i FROM Proveedor i, InsumosXProveedor ip WHERE i.idProveedor = ip.idProveedor AND ip.idInsumo = :idInsumo")
-                .setParameter("idInsumo", idInsumo);
+    public List<Proveedor> findAll(int idExterno, boolean insumo) {
+        Query q;
+        if(insumo){
+            q = entityManager.createQuery("SELECT i FROM Proveedor i, InsumosXProveedor ip WHERE i.idProveedor = ip.idProveedor AND ip.idInsumo = :idInsumo")
+                    .setParameter("idInsumo", idExterno);
+        }else{
+            q = entityManager.createQuery("SELECT i FROM Proveedor i, ProveedoresXFranquica pf WHERE i.idProveedor = pf.idProveedor AND pf.idFranquicia = :idFranquicia")
+                    .setParameter("idFranquicia", idExterno);
+        }
         return q.getResultList();
     }
 

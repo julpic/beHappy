@@ -31,8 +31,8 @@ public class ProveedorController {
         return proveedoresModel;
     }
 
-    public List<ProveedorModel> findAll(int idInsumo) {
-        List<Proveedor> proveedores = proveedorEJB.findAll(idInsumo);
+    public List<ProveedorModel> findAll(int idInsumo, boolean insumo) {
+        List<Proveedor> proveedores = proveedorEJB.findAll(idInsumo, insumo);
         ArrayList<ProveedorModel> proveedoresModel = new ArrayList<ProveedorModel>();
         for(Proveedor e: proveedores){
             ProveedorModel em = new ProveedorModel(e);
