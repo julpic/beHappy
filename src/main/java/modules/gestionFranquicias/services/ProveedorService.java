@@ -26,12 +26,29 @@ public class ProveedorService {
         return proveedorController.findAll();
     }
 
+    //Si el parametro insumo es igual a true devuelve los proveedores que entregan dicho insumo
+    //Si el parametro insumo es igual a false devuelve todos los proveedores de dicha franquicia
+    @GET
+    @Path("compuesto/{id}")
+    @Produces("application/json")
+    public List<ProveedorModel> getAll(@PathParam("id") int idInsumo, boolean insumo) {
+        return proveedorController.findAll(idInsumo,insumo);
+    }
+
     //Si el cuit es valido respuesta 202 Accepted
     //caso contrario 304 Not Modified
     @POST
     @Consumes("application/json")
     public Response create(ProveedorModel p) {
         if (proveedorController.create(p)) return Response.accepted().build();
+        return Response.notModified().build();
+    }
+
+    @POST
+    @Path("insumo")
+    @Consumes("application/json")
+    public Response create(int idInsumo, int idProveedor) {
+        if (proveedorController.create(idInsumo, idProveedor)) return Response.accepted().build();
         return Response.notModified().build();
     }
 

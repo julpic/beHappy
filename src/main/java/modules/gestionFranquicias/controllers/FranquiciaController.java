@@ -37,6 +37,19 @@ public class FranquiciaController {
         return franquiciasModel;
     }
 
+    public List<FranquiciaModel> findAll(int idProveedor) {
+        List<Franquicia> franquicias =  franquiciaEJB.findAll(idProveedor);
+        ArrayList<FranquiciaModel> franquiciasModel = new ArrayList<FranquiciaModel>();
+
+        for(Franquicia f: franquicias){
+            List<EmpleadoModel> e = empleadoController.findAll(f.getIdFranquicia());
+            FranquiciaModel fm = new FranquiciaModel(f,e);
+            franquiciasModel.add(fm);
+        }
+
+        return franquiciasModel;
+    }
+
 
     public void create(FranquiciaModel f) {
         franquiciaEJB.create(f.getDBEntity());

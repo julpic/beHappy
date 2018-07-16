@@ -5,7 +5,6 @@ import modules.gestionStock.ModelEntities.UnidadMedidaModel;
 import modules.gestionStock.dbEntities.Insumo;
 import modules.gestionStock.dbEntities.UnidadMedida;
 import modules.gestionStock.ejb.InsumoEJB;
-import modules.gestionStock.ejb.UnidadMedidaEJB;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,13 +15,14 @@ import java.util.List;
 public class InsumoController {
     @Inject
     InsumoEJB insumoEJB;
-    UnidadMedidaEJB unidadMedidaEJB;
+    @Inject
+    UnidadMedidaController unidadMedidaController;
 
 
     public InsumoModel find(int id) {
 
         Insumo i = insumoEJB.find(id);
-        UnidadMedidaModel umm = new UnidadMedidaModel(unidadMedidaEJB.find(i.getIdUnidadMedida()));
+        UnidadMedidaModel umm = unidadMedidaController.find(i.getIdUnidadMedida());
         InsumoModel im = new InsumoModel(i,umm);
         return im;
 
@@ -32,7 +32,7 @@ public class InsumoController {
         List<Insumo> insumos = insumoEJB.findAll();
         ArrayList<InsumoModel> insumosModels = new ArrayList<InsumoModel>();
         for (Insumo i : insumos){
-            UnidadMedidaModel umm = new UnidadMedidaModel(unidadMedidaEJB.find(i.getIdUnidadMedida()));
+            UnidadMedidaModel umm = unidadMedidaController.find(i.getIdUnidadMedida());
             InsumoModel im = new InsumoModel(i,umm);
             insumosModels.add(im);
         }
@@ -43,7 +43,7 @@ public class InsumoController {
         List<Insumo> insumos = insumoEJB.findAll(idProveedor);
         ArrayList<InsumoModel> insumosModels = new ArrayList<InsumoModel>();
         for (Insumo i : insumos){
-            UnidadMedidaModel umm = new UnidadMedidaModel(unidadMedidaEJB.find(i.getIdUnidadMedida()));
+            UnidadMedidaModel umm = unidadMedidaController.find(i.getIdUnidadMedida());
             InsumoModel im = new InsumoModel(i,umm);
             insumosModels.add(im);
         }

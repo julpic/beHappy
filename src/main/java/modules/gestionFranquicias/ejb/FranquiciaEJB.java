@@ -22,6 +22,13 @@ public class FranquiciaEJB {
         return q.getResultList();
     }
 
+    public List<Franquicia> findAll(int idProveedor) {
+        Query q = entityManager.createQuery("SELECT f FROM Franquicia f , ProveedoresXFranquica pf WHERE f.idFranquicia = pf.idFranquicia " +
+                "AND f.alta = true AND pf.idProveedor = :idProveedor")
+                .setParameter("idProveedor", idProveedor);
+        return q.getResultList();
+    }
+
     public void create(Franquicia f) {
         if (entityManager.find(Franquicia.class, f.getIdFranquicia()) == null) {
             entityManager.persist(f);

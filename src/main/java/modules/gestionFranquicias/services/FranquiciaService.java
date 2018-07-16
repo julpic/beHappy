@@ -24,6 +24,11 @@ public class FranquiciaService {
     @Produces("application/json")
     public List<FranquiciaModel> getAll() { return franquiciaController.findAll(); }
 
+    @GET
+    @Path("proveedor/{id}")
+    @Produces("application/json")
+    public List<FranquiciaModel> getAll(@PathParam("id") int idProveedor) { return franquiciaController.findAll(idProveedor); }
+
     @POST
     @Consumes("application/json")
     public void create(FranquiciaModel f) {
