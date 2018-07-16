@@ -26,12 +26,6 @@ public class InsumoService {
         return insumoController.findAll();
     }
 
-    //Devuelve todos los insumos que cierto proveedor provee (valga la redundancia)
-    @GET
-    @Produces("application/json")
-    public List<InsumoModel> getAll(int idProveedor) {
-        return insumoController.findAll(idProveedor);
-    }
 
     @POST
     @Consumes("application/json")

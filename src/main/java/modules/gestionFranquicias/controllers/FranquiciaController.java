@@ -37,6 +37,7 @@ public class FranquiciaController {
         return franquiciasModel;
     }
 
+
     public void create(FranquiciaModel f) {
         franquiciaEJB.create(f.getDBEntity());
     }

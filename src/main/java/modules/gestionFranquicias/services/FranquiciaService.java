@@ -1,7 +1,7 @@
 package modules.gestionFranquicias.services;
 
 import modules.gestionFranquicias.controllers.FranquiciaController;
-import modules.gestionFranquicias.dbEntities.Franquicia;
+
 import modules.gestionFranquicias.modelEntities.FranquiciaModel;
 
 import javax.inject.Inject;

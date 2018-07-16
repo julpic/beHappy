@@ -26,26 +26,12 @@ public class ProveedorService {
         return proveedorController.findAll();
     }
 
-    //Devuelve los proveedores que entregan dicho insumo
-    @GET
-    @Produces("application/json")
-    public List<ProveedorModel> getAll(int idInsumo) {
-        return proveedorController.findAll(idInsumo);
-    }
-
     //Si el cuit es valido respuesta 202 Accepted
     //caso contrario 304 Not Modified
     @POST
     @Consumes("application/json")
     public Response create(ProveedorModel p) {
         if (proveedorController.create(p)) return Response.accepted().build();
-        return Response.notModified().build();
-    }
-
-    @POST
-    @Consumes("application/json")
-    public Response create(int idInsumo, int idProveedor) {
-        if (proveedorController.create(idInsumo, idProveedor)) return Response.accepted().build();
         return Response.notModified().build();
     }
 
