@@ -1,10 +1,628 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Drugs Shipping</title>
+    <meta charset="utf-8">
+    <title>beFruit</title>
+    <link href="assets/css/materialize.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://brick.a.ssl.fastly.net/Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="assets/css/style.css" rel="stylesheet">
+
 </head>
-<body>
-Hola
+
+<body ng-controller="beFruitController">
+
+<div class="wrapper">
+    <nav class="nav-extended">
+        <div class="container-fluid">
+            <button type="button" class="sidebar-open d-lg-none">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand d-none d-lg-inline-block" href="index.html">
+                <img id="logo-be" class=" brand-logo img-fluid logo" src="assets/img/beFruit%20fy.png"  >
+            </a>
+
+            <ul class="right hide-on-med-and-down">
+
+                <li class="nav-item dropdown">
+                    <span class="account-description">Administrador</span>
+                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>
+
+
+                                <span class="account-name center ">
+                            Alan Brito v2</span>
+
+
+
+                    </a>
+                    <!--CHEQUEAR QUE ANGULAR TRAIGA EL NOMBRE DEL USUARIO!!-->
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!"><i class="tiny material-icons">face</i>Mi Usuario</a></li>
+                        <li><a href="#!"><i class="tiny material-icons">build</i>Configuración</a></li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li><a href="#!"><i class="tiny material-icons">vpn_key</i>Cerrar Sesión</a></li>
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+
+        <div class="page-body">
+            <div class="container-fluid" style="height: 10px">
+                <div class="page-sidebar toggled sidebar">
+                    <nav1 class="sidebar-collapse d-none d-lg-block">
+                        <i class="material-icons show-on-collapsed">arrow_forward</i>
+                        <i class="material-icons hide-on-collapsed">arrow_back </i>
+                    </nav1>
+
+                    <ul class="nav nav-pills nav-stacked" id="sidebar-stacked">
+                        <li class="d-lg-none">
+                            <a href="#" class="sidebar-close"><i class="ion ion-ios-arrow-left"></i></a>
+                        </li>
+                        <li class="nav-item" ng-click="Inicio()">
+                            <a class="nav-link" href="#"><i class="fas active fa-home"></i><span class="nav-text">Inicio</span></a>
+                        </li>
+                        <li class="nav-item" ng-click="Venta()">
+                            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> <span class="nav-text">Venta</span></a>
+                        </li>
+                        <li class="nav-item" ng-click="Stock()">
+                            <a class="nav-link" href="#"><i class="fas fa-dolly"></i><span class="nav-text">Stock</span></a>
+                        </li>
+                        <li class="nav-item" ng-click="Caja()">
+                            <a class="nav-link" href="#"><i class="fas fa-dollar-sign"></i> <span class="nav-text">Control de caja</span></a>
+                        </li>
+                        <li class="nav-item" ng-click="Empleados()">
+                            <a class="nav-link" href="#"><i class="fas fa-users"></i> <span class="nav-text">Empleados</span></a>
+                        </li>
+                        <li class="nav-item" ng-click="Informes()">
+                            <a class="nav-link" href="#"><i class="fas fa-chart-pie"></i> <span class="nav-text">Informes</span></a>
+                        </li>
+                        <li class="nav-item" ng-click="Promociones()">
+                            <a class="nav-link" href="#"><i class="fas fa-tag"></i> <span class="nav-text">Promociones</span></a>
+                        </li>
+                        <li class="nav-item" ng-click="Sucursales()">
+                            <a class="nav-link" href="#"><i class="fas fa-building"></i> <span class="nav-text">Sucursal</span></a>
+                        </li>
+                        <li class="nav-item" ng-click="Configuracion()">
+                            <a class="nav-link" href="#"><i class="fas fa-cogs"></i><span class="nav-text">Configuración</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="page-content">
+
+                    <!--INICIO-->
+                    <div class="row" ng-show="accion == 'Inicio'">
+                        <div class="col-12">
+                            <div class="card card-default widget">
+                                <div class="card-heading">
+                                    <div class="card-controls">
+                                        <!--<a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                                        <a href="#" class="widget-close"><i class="fa fa-times"></i></a>-->
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    {{title}}
+                                    {{unidad}}
+                                    {{nvoInsumo}}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!--STOCK-->
+                    <div class="row" ng-show="accion == 'Stock'">
+                        <div class="col-md-12">
+                            <div class="card card-default widget">
+                                <div class="card-heading">
+                                    <div class="card-controls">
+                                        <!--<a href="#" class="widget-minify">
+                    <i class="fa fa-chevron-up"></i>
+                  </a>
+                  <a href="#" class="widget-close">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </div>-->
+                                    </div>
+
+                                    <div class="card-body">
+                                        <ul class="nav nav-tabs">
+                                            <li role="presentation" class="nav-item" ng-click="Stock1()">
+                                                <a href="#" role="tab" data-toggle="tab" class="nav-link active show" aria-selected="true">Stock</a>
+                                            </li>
+                                            <li role="presentation" class="nav-item" ng-click="Stock2()">
+                                                <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Movimientos</a>
+                                            </li>
+                                            <li role="presentation" class="nav-item" ng-click="Stock3()">
+                                                <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Nuevo movimiento</a>
+                                            </li>
+                                            <li role="presentation" class="nav-item" ng-click="Agregar()">
+                                                <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Insumos</a>
+                                            </li>
+                                            <li role="presentation" class="nav-item" ng-click="Stock5()">
+                                                <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Unidad de medida</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="tab-content" ng-show="subaccion == 'Stock1'">
+
+                                            <div class="tab-pane fade in active show" role="tabcard">
+
+                                                <div class="row" style="">
+                                                    <div class="col-sm" style="overflow: auto; height: 425px;">
+
+
+
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Id</th>
+                                                                <th>Nombre</th>
+                                                                <th>Cantidad Stock</th>
+                                                                <th>Stock Minimo</th>
+                                                                <th>Unidad Medida</th>
+                                                                <th colspan="2">Acciones</th>
+                                                            </tr>
+                                                            </thead>
+
+                                                            <tbody ng-repeat="i in insumos">
+                                                            <tr>
+                                                                <td>{{i.idInsumo}}</td>
+                                                                <td>{{i.nombre}}</td>
+                                                                <td>{{i.cantidadStock}}</td>
+                                                                <td>{{i.stockMinimo}}</td>
+                                                                <td>{{i.unidadMedida.nombre}}</td>
+                                                                <td><a ng-click="BuscarPorId(i)" href="#"><i class="material-icons">build</i></a></td>
+                                                                <td ><a ng-click="Borrar()" href="#"><i class="fas fa-trash-alt"></i></a></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <a class=" btn-large waves-effect waves-light white-text " ng-click="Agregar()" title="¿Agergar Articulo???"><i class="material-icons">add</i></a>
+                                                    <div class="offset col 3">
+                                                        <a class="  btn-large waves-effect waves-light white-text tooltipped"  data-position="bottom" data-tooltip="Envia informe de stock bajo" href="#"><i class="material-icons">mail</i></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-content" ng-show="subaccion == 'Stock2'">
+                                            <div role="tabcard" class="tab-pane fade in active show">
+                                                <div class="row" style="  height: 500px; ">
+                                                    <div class="col-sm" style="overflow: auto; height: 500px;">
+                                                        <table class=" table " role="grid" style="width: 100%;  ">
+                                                            <thead class="" style="">
+                                                            <tr role="row" class="">
+                                                                <th class="" style="width: 10px">Nº</th>
+                                                                <th class="" style="width: 120.5px;">Fecha</th>
+                                                                <th class="" style="width: 50px;">Tipo</th>
+                                                                <th class="" style="">Articulo</th>
+                                                                <th class="" style="width: 50px;">Cantidad</th>
+                                                                <th class="" style="width: 50px;">-----</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody ng-repeat="m in movimientos">
+                                                            <tr>
+                                                                <td>{{m.idMovimientos}}</td>
+                                                                <td>{{m.fecha}}</td>
+                                                                <td>{{m.tipo}}</td>
+                                                                <td>{{m.articulo}}</td>
+                                                                <td>{{m.cantidad}}</td>
+                                                                <td>
+                                                                    <buttton type="button" class="btn btn-danger" style="border-radius: 5px"><i class="fas fa-trash-alt"></i></buttton>
+                                                                </td>
+
+                                                            </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content" ng-show="subaccion == 'Stock3'">
+                                            <div role="tabcard" class="tab-panefade in active show ">
+                                                <div class="container " style="height: 450px">
+
+                                                    <div class="container " style="float: left; width: 40%">
+
+                                                    </div>
+
+                                                    <div class="container " style="float: right; width: 60%; overflow: auto; height: 400px; text-align: center; border-left: 1px solid grey">
+                                                        <table class="table table-hover " style="width: 100%; ">
+                                                            <thead class="" style="">
+                                                            <tr>
+                                                                <th scope="col">Nº</th>
+                                                                <th scope="col">Descripcion</th>
+                                                                <th scope="col" style="width: 20px">Cantidad</th>
+                                                                <th scope="col" style="">--</th>
+
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <th scope="row">1</th>
+                                                                <td style="text-align: center">Mark</td>
+                                                                <td style="text-align: center">5</td>
+                                                                <td style="text-align: center">
+                                                                    <buttton type="button" class="btn btn-danger" style="border-radius: 5px"><i class="fas fa-trash-alt"></i></buttton>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div style="float: right ; width: 60%; border-top: 1px solid  grey; padding: 10px ">
+                                                    <button type="button" class=" btn  btn-primary" style="">Aceptar</button>
+                                                    <button type="button" class="btn btn-primary" style="float: right">Canelar</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-content" ng-show="subaccion == 'Stock4'">
+                                            <div role="tabcard" class="tab-pane fade in active show">
+
+                                                <div class="row">
+                                                    <form class="col s12">
+                                                        <div class="row">
+                                                            <!--<div class="input-field col s6">
+                <input id="id_insumo" type="number" class="validate">
+                <label for="id_insumo"> Id del insumo </label>
+            </div>-->
+                                                            <!--<div class="input-field col s12">
+                <input id="nombre" type="text" class="validate">
+                <label for="nombre">Nombre del insumo</label>
+            </div>-->
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="input-field col s4">
+                                                                <input id="nombre" type="text" class="validate" ng-model="nvoInsumo.nombre" placeholder="{{nvoInsumo.idInsumo == null ? '' : 'nvoInsumo.nombre' }}">
+                                                                <label for="nombre">Nombre del insumo</label>
+                                                            </div>
+
+                                                            <div class="input-field col s2">
+                                                                <input id="stockMinimo" type="text" class="validate" placeholder="{{nvoInsumo.idInsumo == null ? '' : 'nvoInsumo.stockMinimo' }}" ng-model="nvoInsumo.stockMinimo">
+                                                                <label for="stockMinimo">
+                                                                    Stock Minimo
+                                                                </label>
+                                                            </div>
+                                                            <div class="input-field col s2">
+                                                                <select>
+                                                                    <option ng-model="nvoInsumo.UnidadMedida" ng-repeat="option in unidad" placeholder="{{nvoInsumo.idInsumo == null ? '' : 'nvoInsumo.UnidadMedida' }}" value="{{option.idUnidad}}">
+                                                                        {{option.nombre}}
+                                                                    </option>
+                                                                </select>
+                                                                <label>Unidad de medida</label>
+                                                            </div>
+
+                                                            <div class="input-field col s4">
+                                                                <input id="cantidadStock" type="text" class="validate" ng-model="nvoInsumo.cantidadStock" placeholder="{{nvoInsumo.idInsumo == null ? '' : 'nvoInsumo.cantidadStock' }}">
+                                                                <label for="cantidadStock" >Cantidad a agregar</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <label ng-model="nvoInsumo.alta" value="true">true</label>
+
+
+
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <a class="waves-effect waves-light btn-large  white-text" ng-click="Grabar()" >{{ nvoInsumo.idInsumo == null ? 'Guardar nuevo!' : 'Guardar cambios!'}}</a>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content" ng-show="subaccion == 'Stock5'">
+                                            <div role="tabcard" class="tab-pane fade in active show">
+                                                <div role="tabcard" class="tab-pane fade in active show">
+                                                    <div class="container " style="height: 450px">
+
+                                                        <div class="container " style="float: left; width: 40%">
+                                                            <table class="table col-sm-2">
+                                                                <thead>
+                                                                <tr>
+                                                                    <td>Nº</td>
+                                                                    <td>Nombre</td>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody ng-repeat="um in unidad">
+                                                                <tr>
+                                                                    <td>{{um.idUnidad}}</td>
+                                                                    <td>{{um.nombre}}</td>
+                                                                    <td><a ng-click="BuscarUmPorId(um)" href="#"><i class="material-icons">build</i></a></td>
+                                                                    <td><a ng-click="Borrar()" href="#"><i class="fas fa-trash-alt"></i></a></td>
+                                                                </tr>
+
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+
+                                                        <div class="container " style="float: right; width: 60%; overflow: auto; height: 400px; text-align: center; border-left: 1px solid grey">
+                                                            <form class="col s12">
+
+                                                                <div class="row">
+
+                                                                    <div class="input-field col col-sm-5">
+                                                                        <input id="idUm" type="text" class="validate" ng-model="nvoUnidad.idUnidad" placeholder="{{nvoUnidad.idUnidad == null ? '' : 'nvoUnidad.idUnidad' }}">
+                                                                        <label for="Nº">ID</label>
+                                                                    </div>
+                                                                    <div class="input-field col col-sm-5" >
+                                                                        <input id="NombreUM" type="text" class="validate" ng-model="nvoUnidad.nombre" placeholder="{{nvoUnidad.nombre == null ? '' : 'nvoUnidad.nombre'}}">
+                                                                        <label for="Nombre">
+                                                                            Nombre
+                                                                        </label>
+                                                                    </div>
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+
+
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <a class="waves-effect waves-light btn-large  white-text" ng-click="Grabar()">Listo!</a>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--VENTA-->
+                            <div class="row" ng-show="accion == 'Venta'">
+                                <div class="col-md-12">
+                                    <div class="card card-default widget">
+                                        <div class="card-heading">
+                                            <div class="card-controls">
+                                                <!--<a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="widget-close"><i class="fa fa-times"></i></a>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--CAJA-->
+                            <div class="row" ng-show="accion == 'Caja'">
+                                <div class="col-md-12">
+                                    <div class="card card-default widget">
+                                        <div class="card-heading">
+                                            <div class="card-controls">
+                                                <!--<a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="widget-close"><i class="fa fa-times"></i></a>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs">
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#" role="tab" data-toggle="tab" class="nav-link active show" aria-selected="true">Caja</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Movimientos</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Cierre de caja</a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!--EMPLEADOS-->
+                            <div class="row" ng-show="accion == 'Empleados'">
+                                <div class="col-md-12">
+                                    <div class="card card-default widget">
+                                        <div class="card-heading">
+                                            <div class="card-controls">
+                                                <!--<a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="widget-close"><i class="fa fa-times"></i></a>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs">
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#" role="tab" data-toggle="tab" class="nav-link active show" aria-selected="true">Empleados</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Nuevo Empleado</a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--INFORMES-->
+                            <div class="row" ng-show="accion == 'Informes'">
+                                <div class="col-md-12">
+                                    <div class="card card-default widget">
+                                        <div class="card-heading">
+                                            <div class="card-controls">
+                                                <!--<a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="widget-close"><i class="fa fa-times"></i></a>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs">
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#" role="tab" data-toggle="tab" class="nav-link active show" aria-selected="true">Ventas</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Empleados</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Stock</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Productos</a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--PROMOCIONES-->
+                            <div class="row" ng-show="accion == 'Promociones'">
+                                <div class="col-md-12">
+                                    <div class="card card-default widget">
+                                        <div class="card-heading">
+                                            <div class="card-controls">
+                                                <!--<a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="widget-close"><i class="fa fa-times"></i></a>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs">
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#" role="tab" data-toggle="tab" class="nav-link active show" aria-selected="true">Promociones</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Agregar</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!--SUCURSALES-->
+                            <div class="row" ng-show="accion == 'Sucursales'">
+                                <div class="col-md-12">
+                                    <div class="card card-default widget">
+                                        <div class="card-heading">
+                                            <div class="card-controls">
+                                                <!--<a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="widget-close"><i class="fa fa-times"></i></a>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs">
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#" role="tab" data-toggle="tab" class="nav-link active show" aria-selected="true">Sucursales</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#" role="tab" data-toggle="tab" class="nav-link" aria-selected="false">Agregar</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!--CONFIGURACION-->
+                            <div class="row" ng-show="accion == 'Configuracion'">
+                                <div class="col-md-12">
+                                    <div class="card card-default widget">
+                                        <div class="card-heading">
+                                            <div class="card-controls">
+                                                <!--<a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                                            <a href="#" class="widget-close"><i class="fa fa-times"></i></a>-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-tabs">
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#" role="tab" data-toggle="tab" class="nav-link active show" aria-selected="true">Configuracion</a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="pt-4 my-md-5 pt-md-5 border-top">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <img class="img-fluid float-right" src="assets/img/AIT.png" width="150">
+                                    </div>
+                                    <div class="col-sm-2 float-left">
+                                        <h5>Contacto</h5>
+                                        <ul class="list-unstyled text-small contact">
+                                            <li class="fas fa-envelope"><a href="#">aitsolutions.org</a></li>
+                                            <li class="fas fa-phone">(351) 123-4567</li>
+                                            <li class="fab fa-facebook">AIT Solutions</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="assets/js/spark.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+        <script src="assets/js/init.js"></script>
+
+
+        <script>
+        </script>
+
 </body>
+
 </html>
