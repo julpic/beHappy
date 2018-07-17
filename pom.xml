@@ -18,8 +18,6 @@
                     <webResources>
                         <resource>
                             <directory>${project.basedir}/src/main/resources</directory>
-                            <targetPath>WEB-INF/classes</targetPath>
-                            <filtering>true</filtering>
                         </resource>
                     </webResources>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
