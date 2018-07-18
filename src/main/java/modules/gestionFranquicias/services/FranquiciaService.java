@@ -7,6 +7,7 @@ import modules.gestionFranquicias.modelEntities.FranquiciaModel;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/franquicia")
@@ -45,19 +46,21 @@ public class FranquiciaService {
 
     @POST
     @Consumes("application/json")
-    public void create(String json) {
+    public Response create(String json) {
         Gson gson = new Gson();
         FranquiciaModel f = gson.fromJson(json, FranquiciaModel.class);
-        franquiciaController.create(f);
+        if (franquiciaController.create(f)) return javax.ws.rs.core.Response.accepted().build();
+        return javax.ws.rs.core.Response.notModified().build();
     }
 
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, String json) {
+    public Response update(@PathParam("id") int id, String json) {
         Gson gson = new Gson();
         FranquiciaModel f = gson.fromJson(json, FranquiciaModel.class);
-        franquiciaController.update(id, f);
+        if (franquiciaController.update(id, f)) return javax.ws.rs.core.Response.accepted().build();
+        return javax.ws.rs.core.Response.notModified().build();
     }
 
     @DELETE

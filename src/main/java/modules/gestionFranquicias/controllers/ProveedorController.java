@@ -54,9 +54,8 @@ public class ProveedorController {
     public boolean create(int idInsumo, int idProveedor) {
             if(proveedorEJB.create(idInsumo, idProveedor)){
                 return true;
-            };
+            }
             return false;
-
     }
 
     public boolean update(int id, ProveedorModel p) {

@@ -5,6 +5,7 @@ import modules.gestionFranquicias.dbEntities.Franquicia;
 import modules.gestionFranquicias.ejb.FranquiciaEJB;
 import modules.gestionFranquicias.modelEntities.EmpleadoModel;
 import modules.gestionFranquicias.modelEntities.FranquiciaModel;
+import utilities.CuitValidator;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -52,12 +53,22 @@ public class FranquiciaController {
     }
 
 
-    public void create(FranquiciaModel f) {
-        franquiciaEJB.create(f.getDBEntity());
+    public boolean create(FranquiciaModel fm)
+    {   Franquicia f = fm.getDBEntity();
+        if (CuitValidator.validarCuit(f.getCuit())) {
+            franquiciaEJB.create(f);
+            return true;
+        }
+        return false;
     }
 
-    public void update(int id, FranquiciaModel f) {
-        franquiciaEJB.update(id, f.getDBEntity());
+    public boolean update(int id, FranquiciaModel fm) {
+        Franquicia f = fm.getDBEntity();
+        if (CuitValidator.validarCuit(f.getCuit())) {
+            franquiciaEJB.update(id, f);
+            return true;
+        }
+        return false;
     }
 
     public void remove(int id) { franquiciaEJB.remove(id); }
