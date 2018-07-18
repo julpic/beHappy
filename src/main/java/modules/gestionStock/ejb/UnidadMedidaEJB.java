@@ -1,6 +1,7 @@
 package modules.gestionStock.ejb;
 
 import modules.gestionStock.dbEntities.UnidadMedida;
+import utilities.GeneradorID;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -29,9 +30,14 @@ public class UnidadMedidaEJB {
     }
 
     public void create(UnidadMedida um) {
+        um.setIdUnidad(buscarNuevoID());
         if (entityManager.find(UnidadMedida.class, um.getIdUnidad()) == null) {
             entityManager.persist(um);
         }
+    }
+
+    public int buscarNuevoID(){
+        return GeneradorID.buscarID(buscarUltimoID());
     }
 
     private int buscarUltimoID() {

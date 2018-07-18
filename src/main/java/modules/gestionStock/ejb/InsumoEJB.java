@@ -1,11 +1,14 @@
 package modules.gestionStock.ejb;
 
+import modules.gestionFranquicias.ejb.FranquiciaEJB;
 import modules.gestionStock.dbEntities.Insumo;
+import utilities.GeneradorID;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
@@ -34,10 +37,21 @@ public class InsumoEJB {
     }
 
     public void create(Insumo i) {
+        i.setIdInsumo(buscarNuevoID());
         if (entityManager.find(Insumo.class, i.getIdInsumo()) == null) {
             entityManager.persist(i);
         }
     }
+
+    public int buscarNuevoID(){
+            return GeneradorID.buscarID(buscarUltimoID());
+    }
+
+    private int buscarUltimoID() {
+        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(i.idInsumo) FROM Insumo i");
+        return (Integer) q.getSingleResult();
+    }
+
 
     public void update(int id, Insumo i) {
         Insumo x = entityManager.find(Insumo.class, id);

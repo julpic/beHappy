@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
@@ -27,6 +28,11 @@ public class FranquiciaEJB {
                 "AND f.alta = true AND pf.idProveedor = :idProveedor")
                 .setParameter("idProveedor", idProveedor);
         return q.getResultList();
+    }
+
+    public Integer findIDFranquicia(){
+        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(f.idFranquicia) FROM Franquicia f WHERE f.alta = true");
+        return q.getSingleResult();
     }
 
     public void create(Franquicia f) {
