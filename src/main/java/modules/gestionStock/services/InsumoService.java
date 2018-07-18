@@ -16,7 +16,7 @@ public class InsumoService {
     InsumoController insumoController;
 
     @GET
-    @Path("/{id}")
+    @Path("secured/{id}")
     @Produces("application/json")
     public String get(@PathParam("id") int id) {
         InsumoModel im = insumoController.find(id);
