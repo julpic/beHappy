@@ -3,6 +3,7 @@ package modules.gestionStock.ejb;
 import modules.gestionStock.controllers.MovimientoStockController;
 import modules.gestionStock.dbEntities.DetalleMovimientoStock;
 import modules.gestionStock.dbEntities.MovimientoStock;
+import utilities.GeneradorID;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -44,12 +45,17 @@ public class MovimientoStockEJB {
         return q.getResultList();
     }
 
+    public int buscarNuevoID(){
+        return GeneradorID.buscarID(buscarUltimoID());
+    }
+
     private int buscarUltimoID() {
         Query q = entityManager.createQuery("SELECT MAX(i.idMovimiento) FROM DetalleMovimientoStock i");
         return (Integer) q.getSingleResult();
     }
 
     public void create(MovimientoStock ms) {
+        ms.setIdMovimientoStock(buscarNuevoID());
         if (entityManager.find(MovimientoStock.class, ms.getIdMovimientoStock()) == null) {
             entityManager.persist(ms);
         }
