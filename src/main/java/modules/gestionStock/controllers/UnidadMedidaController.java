@@ -30,7 +30,7 @@ public class UnidadMedidaController {
         return unidadesModel;
     }
 
-    public void create(UnidadMedidaModel um) { unidadMedidaEJB.create(um.getDBEntity()); }
+    public boolean create(UnidadMedidaModel um) { return unidadMedidaEJB.create(um.getDBEntity()); }
 
     public void update(int id, UnidadMedidaModel um) {
         unidadMedidaEJB.update(id, um.getDBEntity());

@@ -3,10 +3,10 @@ package modules.gestionStock.services;
 import com.google.gson.Gson;
 import modules.gestionStock.ModelEntities.UnidadMedidaModel;
 import modules.gestionStock.controllers.UnidadMedidaController;
-import modules.gestionStock.dbEntities.UnidadMedida;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/unidadMedida")
@@ -35,10 +35,11 @@ public class UnidadMedidaService {
 
     @POST
     @Consumes("application/json")
-    public void create(String json) {
+    public Response create(String json) {
         Gson gson = new Gson();
         UnidadMedidaModel um = gson.fromJson(json, UnidadMedidaModel.class);
-        unidadMedidaController.create(um);
+        if ( unidadMedidaController.create(um)) return javax.ws.rs.core.Response.accepted().build();
+        return javax.ws.rs.core.Response.notModified().build();
     }
 
     @PUT
@@ -48,6 +49,7 @@ public class UnidadMedidaService {
         Gson gson = new Gson();
         UnidadMedidaModel um = gson.fromJson(json, UnidadMedidaModel.class);
         unidadMedidaController.update(id, um);
+
     }
 
 

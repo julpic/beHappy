@@ -31,6 +31,20 @@ public class EmpleadoEJB {
         return q.getResultList();
     }
 
+    public Integer buscarUltimoID(int idFranquicia){
+        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(e.idEmpleado) FROM Empleado e WHERE e.idFranquicia = :id")
+                .setParameter("id", idFranquicia);
+        return q.getSingleResult();
+    }
+
+    public Integer buscarNuevoID(int idFranquicia){
+        Integer ultimoID = buscarUltimoID(idFranquicia);
+        if(ultimoID == null){
+            return 1;
+        }
+        return ultimoID + 1;
+    }
+
     public void create(Empleado e) {
         Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idEmpleado = :id").setParameter("id",e.getIdEmpleado());
         if ( q.getResultList().isEmpty()) {

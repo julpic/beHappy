@@ -49,6 +49,9 @@ public class InsumoEJB {
 
     private int buscarUltimoID() {
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(i.idInsumo) FROM Insumo i");
+        if(q.getSingleResult() == null){
+            return 0;
+        }
         return (Integer) q.getSingleResult();
     }
 

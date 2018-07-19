@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
@@ -29,20 +30,25 @@ public class UnidadMedidaEJB {
         return q.getResultList();
     }
 
-    public void create(UnidadMedida um) {
-        um.setIdUnidad(buscarNuevoID());
-        if (entityManager.find(UnidadMedida.class, um.getIdUnidad()) == null) {
+    public boolean create(UnidadMedida um) {
+        Integer id = buscarNuevoID();
+        if (id > 0){
+            um.setIdUnidad(id);
             entityManager.persist(um);
+            return true;
+        }else{
+            return false;
         }
     }
 
-    public int buscarNuevoID(){
-        return GeneradorID.buscarID(buscarUltimoID());
-    }
+    public int buscarNuevoID(){ return GeneradorID.buscarID(buscarUltimoID()); }
 
     private int buscarUltimoID() {
-        Query q = entityManager.createQuery("SELECT MAX(um.idUnidad) FROM UnidadMedida um");
-        return (Integer) q.getSingleResult();
+        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(um.idUnidad) FROM UnidadMedida um");
+        if(q.getSingleResult() == null){
+            return 0;
+        }
+        return q.getSingleResult();
     }
 
     public void update(int id, UnidadMedida um) {

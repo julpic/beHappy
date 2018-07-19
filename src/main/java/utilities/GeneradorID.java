@@ -7,8 +7,40 @@ public class GeneradorID {
     public static int buscarID(int ultimoID){
         //Busco el id de la franquicia
         FranquiciaEJB franquiciaEJB = new FranquiciaEJB();
-        int idFranquicia = franquiciaEJB.findIDFranquicia();
+        Integer idFranquicia = franquiciaEJB.findIDFranquicia();
+        if (idFranquicia == null){
+            return -1;
+        }
+        int idObjeto;
 
+        if (ultimoID != 0){
+            idObjeto = idObjeto(ultimoID, idFranquicia);
+        }else{
+            idObjeto = 1;
+        }
+
+        //Se forma el id que ira a la bd con el formato necesario
+        String idObjetoNuevo = Integer.toString(idFranquicia) + "00" + Integer.toString(idObjeto);
+        //Se retorna el valor numerico
+        return Integer.parseInt(idObjetoNuevo);
+    }
+
+    public static int buscarID(int ultimoID, int idFranquicia){
+        int idObjeto;
+
+        if (ultimoID != 0){
+            idObjeto = idObjeto(ultimoID, idFranquicia);
+        }else{
+            idObjeto = 1;
+        }
+
+        //Se forma el id que ira a la bd con el formato necesario
+        String idObjetoNuevo = Integer.toString(idFranquicia) + "00" + Integer.toString(idObjeto);
+        //Se retorna el valor numerico
+        return Integer.parseInt(idObjetoNuevo);
+    }
+
+    private static int idObjeto(int ultimoID, int idFranquicia){
         //Se convierte el id que se paso a un array de char
         String idUltimo = Integer.toString(ultimoID);
         char[] idArray = idUltimo.toCharArray();
@@ -20,16 +52,14 @@ public class GeneradorID {
         String idObjetoString = "";
 
         for (int i = 0; i < idArray.length; i++){
-            if(i > digitosExtra){
+            if(i >= digitosExtra){
                 idObjetoString += idArray[i];
             }
         }
         //Nuevo id para el objeto
-        int idObjeto = Integer.parseInt(idObjetoString) + 1;
-        //Se forma el id que ira a la bd con el formato necesario
-        String idObjetoNuevo = Integer.toString(idFranquicia) + "00" + Integer.toString(idObjeto);
-        //Se retorna el valor numerico
-        return Integer.parseInt(idObjetoNuevo);
+        int idObjetoViejo = Integer.parseInt(idObjetoString);
+        int idObjetoNuevo = idObjetoViejo + 1;
+        return idObjetoNuevo;
     }
 
 }

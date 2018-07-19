@@ -28,18 +28,7 @@ public class MovimientoStockEJB {
     private List<DetalleMovimientoStock> findDetalles(int idMovimiento) {
         return detalleMovimientoStockEJB.findAll(idMovimiento);
     }
-/*        DetalleMovimientoStockEJB rdms = new DetalleMovimientoStockEJB();
-        InsumoEJB ri = new InsumoEJB();
-        List<DetalleMovimientoStock> detallesDAO = rdms.buscarDetallesDeMovimiento(idMovimiento);
-        ArrayList<DetalleMovimientoStock> detalles = new ArrayList<DetalleMovimientoStock>();
 
-        for (DetalleMovimientoStock detDao : detallesDAO) {
-            DetalleMovimientoStock det = detDao.getDetalleMovimiento(ri.buscarInsumo(detDao.getIdInsumo()));
-            detalles.add(det);
-        }
-        return detalles;
-    }
-*/
     public List<MovimientoStock> findAll() {
         Query q = entityManager.createQuery("SELECT i FROM MovimientoStock i");
         return q.getResultList();
@@ -51,6 +40,9 @@ public class MovimientoStockEJB {
 
     private int buscarUltimoID() {
         Query q = entityManager.createQuery("SELECT MAX(i.idMovimiento) FROM DetalleMovimientoStock i");
+        if(q.getSingleResult() == null){
+            return 0;
+        }
         return (Integer) q.getSingleResult();
     }
 

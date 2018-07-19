@@ -32,10 +32,23 @@ public class FranquiciaEJB {
 
     public Integer findIDFranquicia(){
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(f.idFranquicia) FROM Franquicia f WHERE f.alta = true");
-        return q.getSingleResult();
+        if(q.getSingleResult() == null){
+            return -1;
+        }else{
+            return q.getSingleResult();
+        }
+    }
+
+    public Integer findNuevoID(){
+        Integer ultimoID = findIDFranquicia();
+        if (ultimoID == null){
+            return 1;
+        }
+        return ultimoID + 1;
     }
 
     public void create(Franquicia f) {
+        f.setIdFranquicia(findNuevoID());
         if (entityManager.find(Franquicia.class, f.getIdFranquicia()) == null) {
             entityManager.persist(f);
         }
