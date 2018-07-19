@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -23,7 +24,10 @@ public class MovimientoStockController {
     public MovimientoStockModel find(int id) {
         MovimientoStock ms = movimientoStockEJB.find(id);
         List<DetalleMovimientoStockModel> detalles  = detalleMovimientoStockController.findAll(id);
-        MovimientoStockModel msm = new MovimientoStockModel(ms,detalles);
+        MovimientoStockModel msm = new MovimientoStockModel(ms);
+        if(detalles != null){
+            msm.setDetalles(detalles);
+        }
         return msm;
     }
 
@@ -32,13 +36,18 @@ public class MovimientoStockController {
         ArrayList<MovimientoStockModel> movimientosModel = new ArrayList<MovimientoStockModel>();
         for(MovimientoStock mov: movimientos){
             List<DetalleMovimientoStockModel> detalles  = detalleMovimientoStockController.findAll(mov.getIdMovimientoStock());
-            MovimientoStockModel msm = new MovimientoStockModel(mov,detalles);
+            MovimientoStockModel msm = new MovimientoStockModel(mov);
+            if(detalles != null){
+                msm.setDetalles(detalles);
+            }
             movimientosModel.add(msm);
         }
         return movimientosModel;
     }
 
     public void create(MovimientoStockModel msm) {
+        Date date = new Date();
+        msm.setFechaHora(date);
         movimientoStockEJB.create(msm.getDBEntity());
     }
 

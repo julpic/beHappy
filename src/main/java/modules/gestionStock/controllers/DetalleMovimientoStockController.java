@@ -23,13 +23,17 @@ public class DetalleMovimientoStockController {
 
     public List<DetalleMovimientoStockModel> findAll(int idMovimiento){
         List<DetalleMovimientoStock> detalles= detalleMovimientoStockEJB.findAll(idMovimiento);
-        ArrayList<DetalleMovimientoStockModel> detallesModel = new ArrayList<DetalleMovimientoStockModel>();
-        for(DetalleMovimientoStock det: detalles){
-            InsumoModel im = insumoController.find(det.getIdInsumo());
-            DetalleMovimientoStockModel detModel = new DetalleMovimientoStockModel(det, im);
-            detallesModel.add(detModel);
+        if(!detalles.isEmpty()){
+            ArrayList<DetalleMovimientoStockModel> detallesModel = new ArrayList<DetalleMovimientoStockModel>();
+            for(DetalleMovimientoStock det: detalles){
+                InsumoModel im = insumoController.find(det.getIdInsumo());
+                DetalleMovimientoStockModel detModel = new DetalleMovimientoStockModel(det, im);
+                detallesModel.add(detModel);
+            }
+            return detallesModel;
+        }else{
+            return null;
         }
-        return detallesModel;
     }
 
     public List<DetalleMovimientoStockModel> findAll(){
@@ -48,15 +52,14 @@ public class DetalleMovimientoStockController {
         int idInsumo;
         int cantidad;
 
-        MovimientoStockModel msm = movimientoStockController.find(idMovimiento);
-        MovimientoStock x = msm.getDBEntity();
+        MovimientoStockModel x = movimientoStockController.find(idMovimiento);
         ArrayList<DetalleMovimientoStock> detalles = new ArrayList<DetalleMovimientoStock>();
 
         for (DetalleMovimientoStockModel detModel : detallesModel) {
             DetalleMovimientoStock det = detModel.getDBEntity(idMovimiento);
             idInsumo = det.getIdInsumo();
             cantidad = det.getCantidad();
-            insumoController.updateStock(idInsumo, cantidad, x.isEntrada());
+            insumoController.updateStock(idInsumo, cantidad, x.getEntrada());
             detalles.add(det);
         }
         detalleMovimientoStockEJB.createAll(detalles);
@@ -64,11 +67,11 @@ public class DetalleMovimientoStockController {
 
 
     public void restore(DetalleMovimientoStock det, int idMovimiento) {
-        MovimientoStockModel msm = movimientoStockController.find(idMovimiento);
+        /*MovimientoStockModel msm = movimientoStockController.find(idMovimiento);
         MovimientoStock x = msm.getDBEntity();
         int idInsumo = det.getIdInsumo();
         int cantidad = det.getCantidad();
-        insumoController.updateStock(idInsumo, cantidad, !(x.isEntrada()));
+        insumoController.updateStock(idInsumo, cantidad, !(x.isEntrada()));*/
     }
 
 }

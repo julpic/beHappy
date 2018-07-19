@@ -39,8 +39,9 @@ public class DetalleMovimientoStockService {
 
 
     @POST
+    @Path("/movimiento/{id}")
     @Consumes("application/json")
-    public void create(String json, int idMovimiento) {
+    public void create(String json, @PathParam("id") int idMovimiento) {
         Gson gson = new Gson();
         Type type = new TypeToken<List<DetalleMovimientoStockModel>>() {}.getType();
         List<DetalleMovimientoStockModel> detalles  = gson.fromJson(json, type);

@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Stateless
@@ -35,11 +37,12 @@ public class MovimientoStockEJB {
     }
 
     public int buscarNuevoID(){
-        return GeneradorID.buscarID(buscarUltimoID());
+        GeneradorID genID = new GeneradorID();
+        return genID.buscarID(buscarUltimoID());
     }
 
     private int buscarUltimoID() {
-        Query q = entityManager.createQuery("SELECT MAX(i.idMovimiento) FROM DetalleMovimientoStock i");
+        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(i.idMovimientoStock) FROM MovimientoStock i");
         if(q.getSingleResult() == null){
             return 0;
         }
@@ -48,9 +51,7 @@ public class MovimientoStockEJB {
 
     public void create(MovimientoStock ms) {
         ms.setIdMovimientoStock(buscarNuevoID());
-        if (entityManager.find(MovimientoStock.class, ms.getIdMovimientoStock()) == null) {
             entityManager.persist(ms);
-        }
     }
 
     //Se restaura el stock antes del movimiento?
