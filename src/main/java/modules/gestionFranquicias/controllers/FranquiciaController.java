@@ -26,6 +26,11 @@ public class FranquiciaController {
         return fm;
     }
 
+    public Integer find() {
+        Integer f =  franquiciaEJB.findIDFranquicia();
+       return f;
+    }
+
     public List<FranquiciaModel> findAll() {
         List<Franquicia> franquicias =  franquiciaEJB.findAll();
         ArrayList<FranquiciaModel> franquiciasModel = new ArrayList<FranquiciaModel>();

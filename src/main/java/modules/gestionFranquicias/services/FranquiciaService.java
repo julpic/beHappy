@@ -26,6 +26,17 @@ public class FranquiciaService {
     }
 
     @GET
+    @Path("/franquiciaActual")
+    @Produces("application/json")
+    public String get() {
+        Integer f = franquiciaController.find();
+        Gson gson = new Gson();
+        String json = gson.toJson(f);
+        return json;
+    }
+
+
+    @GET
     @Produces("application/json")
     public String getAll() {
         List<FranquiciaModel> franquicias = franquiciaController.findAll();

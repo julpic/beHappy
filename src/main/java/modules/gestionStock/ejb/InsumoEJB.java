@@ -44,7 +44,8 @@ public class InsumoEJB {
     }
 
     public int buscarNuevoID(){
-            return GeneradorID.buscarID(buscarUltimoID());
+        GeneradorID genID = new GeneradorID();
+        return genID.buscarID(buscarUltimoID());
     }
 
     private int buscarUltimoID() {

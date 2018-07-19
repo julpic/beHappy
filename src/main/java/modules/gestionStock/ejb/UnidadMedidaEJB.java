@@ -4,6 +4,7 @@ import modules.gestionStock.dbEntities.UnidadMedida;
 import utilities.GeneradorID;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -41,7 +42,9 @@ public class UnidadMedidaEJB {
         }
     }
 
-    public int buscarNuevoID(){ return GeneradorID.buscarID(buscarUltimoID()); }
+    public int buscarNuevoID(){
+        GeneradorID genID = new GeneradorID();
+        return genID.buscarID(buscarUltimoID()); }
 
     private int buscarUltimoID() {
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(um.idUnidad) FROM UnidadMedida um");

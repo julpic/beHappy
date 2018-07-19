@@ -31,12 +31,14 @@ public class FranquiciaEJB {
     }
 
     public Integer findIDFranquicia(){
-        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(f.idFranquicia) FROM Franquicia f WHERE f.alta = true");
-        if(q.getSingleResult() == null){
+       /* Query q = entityManager.createQuery("SELECT MAX(f.idFranquicia) FROM Franquicia f WHERE f.alta = true");
+        Integer resultq = (Integer) q.getFirstResult();
+        if(resultq == null){
             return -1;
         }else{
-            return q.getSingleResult();
-        }
+            return resultq;
+        }*/
+        return 1;
     }
 
     public Integer findNuevoID(){
