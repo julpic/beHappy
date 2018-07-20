@@ -1,0 +1,34 @@
+LOCK TABLES `Franquicias` WRITE;
+/*!40000 ALTER TABLE `Franquicias` DISABLE KEYS */;
+INSERT INTO `Franquicias` VALUES (1,'27-93720820-6','Juan Nepper 5520','Maria Mickaela','mickaelacrespo@gmail.com','Crespo',1);
+/*!40000 ALTER TABLE `Franquicias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `UnidadesMedida` WRITE;
+/*!40000 ALTER TABLE `UnidadesMedida` DISABLE KEYS */;
+INSERT INTO `UnidadesMedida` VALUES (1001,'Paquetes'),(1002,'Gramos'),(1003,'Litros'),(1004,'Caja'),(1005,'Unidad');
+/*!40000 ALTER TABLE `UnidadesMedida` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+LOCK TABLES `Insumos` WRITE;
+/*!40000 ALTER TABLE `Insumos` DISABLE KEYS */;
+INSERT INTO `Insumos` VALUES (1001,'Oreo',60,1001,20,1),(1002,'Cereal',10000,1002,3000,1);
+/*!40000 ALTER TABLE `Insumos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `MovimientosStock` WRITE;
+/*!40000 ALTER TABLE `MovimientosStock` DISABLE KEYS */;
+INSERT INTO `MovimientosStock` VALUES (1001,NULL,NULL,'2018-07-19 16:12:43',NULL,1),(1002,NULL,NULL,'2018-07-19 16:39:17',NULL,1);
+/*!40000 ALTER TABLE `MovimientosStock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+LOCK TABLES `DetallesMovimientosStock` WRITE;
+/*!40000 ALTER TABLE `DetallesMovimientosStock` DISABLE KEYS */;
+INSERT INTO `DetallesMovimientosStock` VALUES (0,1001,1001,30),(1,1001,1002,5000),(0,1002,1001,30),(1,1002,1002,5000);
+/*!40000 ALTER TABLE `DetallesMovimientosStock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
