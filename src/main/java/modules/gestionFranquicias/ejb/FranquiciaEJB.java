@@ -31,8 +31,8 @@ public class FranquiciaEJB {
     }
 
     public Integer findIDFranquicia(){
-        Query q = entityManager.createQuery("SELECT f.idFranquicia FROM Franquicia f WHERE f.alta = true");
-        Integer resultq = (Integer) q.getFirstResult();
+        Query q = entityManager.createQuery("SELECT MAX(f.idFranquicia) FROM Franquicia f WHERE f.alta = true");
+        Integer resultq = (Integer) q.getSingleResult();
         if(resultq == null){
             return -1;
         }else{

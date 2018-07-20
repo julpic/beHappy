@@ -2,13 +2,17 @@ package utilities;
 
 import modules.gestionFranquicias.ejb.FranquiciaEJB;
 
-public class GeneradorID {
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 
-    public static int buscarID(int ultimoID){
+@Stateless
+public class GeneradorID {
+    @Inject FranquiciaEJB franquiciaEJB;
+
+    public int buscarID(int ultimoID){
         //Busco el id de la franquicia
-        FranquiciaEJB franquiciaEJB = new FranquiciaEJB();
         Integer idFranquicia = franquiciaEJB.findIDFranquicia();
-        if (idFranquicia == null){
+        if (idFranquicia == null || idFranquicia == 0){
             return -1;
         }
         int idObjeto;
@@ -25,7 +29,7 @@ public class GeneradorID {
         return Integer.parseInt(idObjetoNuevo);
     }
 
-    public static int buscarID(int ultimoID, Integer idFranquicia){
+    public int buscarID(int ultimoID, Integer idFranquicia){
         int idObjeto;
 
         if (idFranquicia == null || idFranquicia == 0){
@@ -44,12 +48,10 @@ public class GeneradorID {
         return Integer.parseInt(idObjetoNuevo);
     }
 
-    private static int idObjeto(int ultimoID, Integer idFranquicia){
+    private int idObjeto(int ultimoID, Integer idFranquicia){
         //Se convierte el id que se paso a un array de char
         String idUltimo = Integer.toString(ultimoID);
         char[] idArray = idUltimo.toCharArray();
-
-
 
         //Declaracion de una variable que ayuda a ver cuando empieza el id del insumo en el
         //ultimo id (Que se compone de idFranquicia + 00 + idObjeto)

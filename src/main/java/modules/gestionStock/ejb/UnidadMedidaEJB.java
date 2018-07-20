@@ -17,7 +17,7 @@ public class UnidadMedidaEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
     @Inject
-    FranquiciaEJB franquiciaEJB;
+    GeneradorID genID;
 
     public UnidadMedida find(int id) {
         return entityManager.find(UnidadMedida.class, id);
@@ -46,8 +46,7 @@ public class UnidadMedidaEJB {
     }
 
     public int buscarNuevoID(){
-        GeneradorID genID = new GeneradorID();
-        return genID.buscarID(buscarUltimoID(), franquiciaEJB.findIDFranquicia());}
+        return genID.buscarID(buscarUltimoID());}
 
     private int buscarUltimoID() {
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(um.idUnidad) FROM UnidadMedida um");
