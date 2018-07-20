@@ -21,7 +21,7 @@ public class MovimientoStockEJB {
     @Inject
     DetalleMovimientoStockEJB detalleMovimientoStockEJB;
     @Inject
-    MovimientoStockController movimientoStockController;
+    GeneradorID genID;
 
     public MovimientoStock find(int id) {
         return entityManager.find(MovimientoStock.class, id);
@@ -37,7 +37,6 @@ public class MovimientoStockEJB {
     }
 
     public int buscarNuevoID(){
-        GeneradorID genID = new GeneradorID();
         return genID.buscarID(buscarUltimoID());
     }
 

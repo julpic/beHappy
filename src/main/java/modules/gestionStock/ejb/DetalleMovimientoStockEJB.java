@@ -26,7 +26,7 @@ public class DetalleMovimientoStockEJB {
 
     //preguntar si desde el front le pueden dar un valor de 0 a n en el id de cada detalle
     public void createAll(List<DetalleMovimientoStock> detalles) {
-        int idDetalle = 0;
+        int idDetalle = 1;
         for (DetalleMovimientoStock det : detalles) {
             det.setIdDetalleMovimientoStock(idDetalle);
             entityManager.persist(det);

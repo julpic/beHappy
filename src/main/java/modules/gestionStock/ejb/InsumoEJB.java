@@ -5,6 +5,7 @@ import modules.gestionStock.dbEntities.Insumo;
 import utilities.GeneradorID;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,6 +16,8 @@ import java.util.List;
 public class InsumoEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
+    @Inject
+    GeneradorID genID;
 
     public Insumo find(int id) {
         return entityManager.find(Insumo.class, id);
@@ -44,7 +47,6 @@ public class InsumoEJB {
     }
 
     public int buscarNuevoID(){
-        GeneradorID genID = new GeneradorID();
         return genID.buscarID(buscarUltimoID());
     }
 
