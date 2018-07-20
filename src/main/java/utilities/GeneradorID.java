@@ -25,8 +25,12 @@ public class GeneradorID {
         return Integer.parseInt(idObjetoNuevo);
     }
 
-    public static int buscarID(int ultimoID, int idFranquicia){
+    public static int buscarID(int ultimoID, Integer idFranquicia){
         int idObjeto;
+
+        if (idFranquicia == null || idFranquicia == 0){
+            return -1;
+        }
 
         if (ultimoID != 0){
             idObjeto = idObjeto(ultimoID, idFranquicia);
@@ -40,10 +44,12 @@ public class GeneradorID {
         return Integer.parseInt(idObjetoNuevo);
     }
 
-    private static int idObjeto(int ultimoID, int idFranquicia){
+    private static int idObjeto(int ultimoID, Integer idFranquicia){
         //Se convierte el id que se paso a un array de char
         String idUltimo = Integer.toString(ultimoID);
         char[] idArray = idUltimo.toCharArray();
+
+
 
         //Declaracion de una variable que ayuda a ver cuando empieza el id del insumo en el
         //ultimo id (Que se compone de idFranquicia + 00 + idObjeto)

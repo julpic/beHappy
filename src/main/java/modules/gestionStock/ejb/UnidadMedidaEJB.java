@@ -1,5 +1,6 @@
 package modules.gestionStock.ejb;
 
+import modules.gestionFranquicias.ejb.FranquiciaEJB;
 import modules.gestionStock.dbEntities.UnidadMedida;
 import utilities.GeneradorID;
 
@@ -15,6 +16,8 @@ import java.util.List;
 public class UnidadMedidaEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
+    @Inject
+    FranquiciaEJB franquiciaEJB;
 
     public UnidadMedida find(int id) {
         return entityManager.find(UnidadMedida.class, id);
@@ -44,7 +47,7 @@ public class UnidadMedidaEJB {
 
     public int buscarNuevoID(){
         GeneradorID genID = new GeneradorID();
-        return genID.buscarID(buscarUltimoID()); }
+        return genID.buscarID(buscarUltimoID(), franquiciaEJB.findIDFranquicia());}
 
     private int buscarUltimoID() {
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(um.idUnidad) FROM UnidadMedida um");
