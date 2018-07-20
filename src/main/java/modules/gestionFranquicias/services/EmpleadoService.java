@@ -18,7 +18,7 @@ public class EmpleadoService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public String get(@PathParam("id") int id) {
+    public String get(@PathParam("id") long id) {
         EmpleadoModel e = empleadoController.find(id);
         Gson gson = new Gson();
         String json = gson.toJson(e);
@@ -45,7 +45,7 @@ public class EmpleadoService {
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, String json) {
+    public void update(@PathParam("id") long id, String json) {
         Gson gson = new Gson();
         EmpleadoModel e = gson.fromJson(json,EmpleadoModel.class);
         empleadoController.update(id, e);
@@ -53,7 +53,7 @@ public class EmpleadoService {
 
     @DELETE
     @Path("/{id}")
-    public void remove(@PathParam("id") int id) {
+    public void remove(@PathParam("id") long id) {
         empleadoController.remove(id);
     }
 }

@@ -15,7 +15,7 @@ public class ProveedorController {
     @Inject
     ProveedorEJB proveedorEJB;
 
-    public ProveedorModel find(int id) {
+    public ProveedorModel find(long id) {
         Proveedor p = proveedorEJB.find(id);
         ProveedorModel pm = new ProveedorModel(p);
         return pm;
@@ -31,7 +31,7 @@ public class ProveedorController {
         return proveedoresModel;
     }
 
-    public List<ProveedorModel> findAll(int idInsumo, boolean insumo) {
+    public List<ProveedorModel> findAll(long idInsumo, boolean insumo) {
         List<Proveedor> proveedores = proveedorEJB.findAll(idInsumo, insumo);
         ArrayList<ProveedorModel> proveedoresModel = new ArrayList<ProveedorModel>();
         for(Proveedor e: proveedores){
@@ -51,14 +51,14 @@ public class ProveedorController {
         return false;
     }
 
-    public boolean create(int idInsumo, int idProveedor) {
+    public boolean create(long idInsumo, long idProveedor) {
             if(proveedorEJB.create(idInsumo, idProveedor)){
                 return true;
             }
             return false;
     }
 
-    public boolean update(int id, ProveedorModel p) {
+    public boolean update(long id, ProveedorModel p) {
         Proveedor e = p.getDBEntity();
         if (CuitValidator.validarCuit(e.getCuit())) {
             proveedorEJB.update(id, e);
@@ -67,7 +67,7 @@ public class ProveedorController {
         return false;
     }
 
-    public void remove(int id) {
+    public void remove(long id) {
         proveedorEJB.remove(id);
     }
 

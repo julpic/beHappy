@@ -3,7 +3,7 @@ package modules.gestionFranquicias.modelEntities;
 import modules.gestionFranquicias.dbEntities.Proveedor;
 
 public class ProveedorModel {
-    private int idProveedor;
+    private long idProveedor;
     private String cuit;
     private String razonSocial;
     private String eMail;
@@ -19,7 +19,7 @@ public class ProveedorModel {
         this.alta = p.getAlta();
     }
 
-    public int getIdProveedor() {
+    public long getIdProveedor() {
         return idProveedor;
     }
 

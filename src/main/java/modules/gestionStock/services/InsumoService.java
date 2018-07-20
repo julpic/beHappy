@@ -18,7 +18,7 @@ public class InsumoService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public String get(@PathParam("id") int id) {
+    public String get(@PathParam("id") long id) {
         InsumoModel im = insumoController.find(id);
         Gson gson = new Gson();
         String json = gson.toJson(im);
@@ -38,7 +38,7 @@ public class InsumoService {
     @GET
     @Path("proveedor/{id}")
     @Produces("application/json")
-    public String getAll(@PathParam("id") int idProveedor) {
+    public String getAll(@PathParam("id") long idProveedor) {
         List<InsumoModel> insumos = insumoController.findAll(idProveedor);
         Gson gson = new Gson();
         String json = gson.toJson(insumos);
@@ -56,7 +56,7 @@ public class InsumoService {
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, String json) {
+    public void update(@PathParam("id") long id, String json) {
         Gson gson = new Gson();
         InsumoModel i = gson.fromJson(json, InsumoModel.class);
         insumoController.update(id, i);
@@ -64,7 +64,7 @@ public class InsumoService {
 
     @DELETE
     @Path("/{id}")
-    public void remove(@PathParam("id") int id) {
+    public void remove(@PathParam("id") long id) {
         insumoController.remove(id);
     }
 

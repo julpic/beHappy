@@ -18,7 +18,7 @@ public class ProveedorService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public String get(@PathParam("id") int id) {
+    public String get(@PathParam("id") long id) {
         ProveedorModel p = proveedorController.find(id);
         Gson gson = new Gson();
         String json = gson.toJson(p);
@@ -39,7 +39,7 @@ public class ProveedorService {
     @GET
     @Path("compuesto/{id}")
     @Produces("application/json")
-    public String getAll(@PathParam("id") int idInsumo, boolean insumo) {
+    public String getAll(@PathParam("id") long idInsumo, boolean insumo) {
         List<ProveedorModel> proveedores = proveedorController.findAll(idInsumo,insumo);
         Gson gson = new Gson();
         String json = gson.toJson(proveedores);
@@ -60,7 +60,7 @@ public class ProveedorService {
     @POST
     @Path("insumo")
     @Consumes("application/json")
-    public Response create(int idInsumo, int idProveedor) {
+    public Response create(long idInsumo, long idProveedor) {
         if (proveedorController.create(idInsumo, idProveedor)) return Response.accepted().build();
         return Response.notModified().build();
     }
@@ -70,7 +70,7 @@ public class ProveedorService {
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public Response update(@PathParam("id") int id, String json) {
+    public Response update(@PathParam("id") long id, String json) {
         Gson gson = new Gson();
         ProveedorModel p = gson.fromJson(json, ProveedorModel.class);
         if (proveedorController.update(id, p)) return Response.accepted().build();
@@ -79,7 +79,7 @@ public class ProveedorService {
 
     @DELETE
     @Path("/{id}")
-    public void remove(@PathParam("id") int id) {
+    public void remove(@PathParam("id") long id) {
         proveedorController.remove(id);
     }
 }

@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 public class MovimientoStockModel {
-    private int idMovimientoStock;
-    private Integer idVenta;
-    private Integer idTurno;
+    private long idMovimientoStock;
+    private Long idVenta;
+    private Long idTurno;
     private Date fechaHora;
     private Date fechaHoraAnulacion;
     private Boolean entrada;
@@ -38,7 +38,7 @@ public class MovimientoStockModel {
         this.entrada = ms.isEntrada();
     }
 
-    public int getIdMovimientoStock() {
+    public long getIdMovimientoStock() {
         return idMovimientoStock;
     }
 

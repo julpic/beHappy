@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
@@ -14,7 +13,7 @@ public class FranquiciaEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
-    public Franquicia find(int id) {
+    public Franquicia find(long id) {
         return entityManager.find(Franquicia.class, id);
     }
 
@@ -23,28 +22,28 @@ public class FranquiciaEJB {
         return q.getResultList();
     }
 
-    public List<Franquicia> findAll(int idProveedor) {
+    public List<Franquicia> findAll(long idProveedor) {
         Query q = entityManager.createQuery("SELECT f FROM Franquicia f , ProveedoresXFranquica pf WHERE f.idFranquicia = pf.idFranquicia " +
                 "AND f.alta = true AND pf.idProveedor = :idProveedor")
                 .setParameter("idProveedor", idProveedor);
         return q.getResultList();
     }
 
-    public Integer findIDFranquicia(){
+    public Long findIDFranquicia() {
         Query q = entityManager.createQuery("SELECT MAX(f.idFranquicia) FROM Franquicia f WHERE f.alta = true");
-        Integer resultq = (Integer) q.getSingleResult();
-        if(resultq == null){
-            return -1;
-        }else{
+        Long resultq = (Long) q.getSingleResult();
+        if (resultq == null) {
+            return (long) -1;
+        } else {
             return resultq;
         }
         //return 1;
     }
 
-    public Integer findNuevoID(){
-        Integer ultimoID = findIDFranquicia();
-        if (ultimoID == null){
-            return 1;
+    public Long findNuevoID() {
+        Long ultimoID = findIDFranquicia();
+        if (ultimoID == null) {
+            return (long) 1;
         }
         return ultimoID + 1;
     }
@@ -56,7 +55,7 @@ public class FranquiciaEJB {
         }
     }
 
-    public void update(int id, Franquicia f) {
+    public void update(long id, Franquicia f) {
         Franquicia x = entityManager.find(Franquicia.class, id);
         if (x != null) {
             x.setApellidoDueno(f.getApellidoDueno());
@@ -69,7 +68,7 @@ public class FranquiciaEJB {
         }
     }
 
-    public void remove(int id) {
+    public void remove(long id) {
         Franquicia x = entityManager.find(Franquicia.class, id);
         if (x != null) {
             x.darDeBaja();

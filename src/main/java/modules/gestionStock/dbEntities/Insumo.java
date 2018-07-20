@@ -5,11 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Insumos", schema = "BeFruit")
 public class Insumo {
-    private int idInsumo;
+    private long idInsumo;
     private String nombre;
     private int cantidadStock;
     private int stockMinimo;
-    private int idUnidadMedida;
+    private long idUnidadMedida;
     private boolean alta;
 
     public Insumo() {
@@ -21,11 +21,11 @@ public class Insumo {
 
     @Id
     @Column(name = "idInsumo")
-    public int getIdInsumo() {
+    public long getIdInsumo() {
         return idInsumo;
     }
 
-    public void setIdInsumo(int idInsumo) {
+    public void setIdInsumo(long idInsumo) {
         this.idInsumo = idInsumo;
     }
 
@@ -62,11 +62,11 @@ public class Insumo {
 
     @Basic
     @Column(name = "idUnidadMedida")
-    public int getIdUnidadMedida() {
+    public long getIdUnidadMedida() {
         return idUnidadMedida;
     }
 
-    public void setIdUnidadMedida(int idUnidadMedida) {
+    public void setIdUnidadMedida(long idUnidadMedida) {
         this.idUnidadMedida = idUnidadMedida;
     }
 

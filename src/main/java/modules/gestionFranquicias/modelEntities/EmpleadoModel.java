@@ -6,8 +6,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class EmpleadoModel {
-    private int idEmpleado;
-    private int idFranquicia;
+    private long idEmpleado;
+    private long idFranquicia;
     private String apellido;
     private long dni;
     private String eMail;
@@ -29,7 +29,7 @@ public class EmpleadoModel {
         this.alta = e.getAlta();
     }
 
-    public int getIdEmpleado() {
+    public long getIdEmpleado() {
         return idEmpleado;
     }
 

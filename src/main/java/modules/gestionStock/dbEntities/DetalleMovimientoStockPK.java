@@ -6,26 +6,26 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class DetalleMovimientoStockPK implements Serializable {
-    private int idDetalleMovimientoStock;
-    private int idMovimiento;
+    private long idDetalleMovimientoStock;
+    private long idMovimiento;
 
     @Column(name = "idDetalleMovimientoStock")
     @Id
-    public int getIdDetalleMovimientoStock() {
+    public long getIdDetalleMovimientoStock() {
         return idDetalleMovimientoStock;
     }
 
-    public void setIdDetalleMovimientoStock(int idDetalleMovimientoStock) {
+    public void setIdDetalleMovimientoStock(long idDetalleMovimientoStock) {
         this.idDetalleMovimientoStock = idDetalleMovimientoStock;
     }
 
     @Column(name = "idMovimiento")
     @Id
-    public int getIdMovimiento() {
+    public long getIdMovimiento() {
         return idMovimiento;
     }
 
-    public void setIdMovimiento(int idMovimiento) {
+    public void setIdMovimiento(long idMovimiento) {
         this.idMovimiento = idMovimiento;
     }
 

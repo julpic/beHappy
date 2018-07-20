@@ -21,7 +21,7 @@ public class DetalleMovimientoStockController {
     @Inject
     MovimientoStockController movimientoStockController;
 
-    public List<DetalleMovimientoStockModel> findAll(int idMovimiento){
+    public List<DetalleMovimientoStockModel> findAll(long idMovimiento){
         List<DetalleMovimientoStock> detalles= detalleMovimientoStockEJB.findAll(idMovimiento);
         if(!detalles.isEmpty()){
             ArrayList<DetalleMovimientoStockModel> detallesModel = new ArrayList<DetalleMovimientoStockModel>();
@@ -48,8 +48,8 @@ public class DetalleMovimientoStockController {
     }
 
 
-    public void create(List<DetalleMovimientoStockModel> detallesModel, int idMovimiento) {
-        int idInsumo;
+    public void create(List<DetalleMovimientoStockModel> detallesModel, long idMovimiento) {
+        long idInsumo;
         int cantidad;
 
         MovimientoStockModel x = movimientoStockController.find(idMovimiento);
@@ -66,10 +66,10 @@ public class DetalleMovimientoStockController {
     }
 
 
-    public void restore(DetalleMovimientoStock det, int idMovimiento) {
+    public void restore(DetalleMovimientoStock det, long idMovimiento) {
         /*MovimientoStockModel msm = movimientoStockController.find(idMovimiento);
         MovimientoStock x = msm.getDBEntity();
-        int idInsumo = det.getIdInsumo();
+        long idInsumo = det.getIdInsumo();
         int cantidad = det.getCantidad();
         insumoController.updateStock(idInsumo, cantidad, !(x.isEntrada()));*/
     }

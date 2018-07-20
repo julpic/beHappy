@@ -23,11 +23,11 @@ public class MovimientoStockEJB {
     @Inject
     GeneradorID genID;
 
-    public MovimientoStock find(int id) {
+    public MovimientoStock find(long id) {
         return entityManager.find(MovimientoStock.class, id);
     }
 
-    private List<DetalleMovimientoStock> findDetalles(int idMovimiento) {
+    private List<DetalleMovimientoStock> findDetalles(long idMovimiento) {
         return detalleMovimientoStockEJB.findAll(idMovimiento);
     }
 
@@ -36,11 +36,11 @@ public class MovimientoStockEJB {
         return q.getResultList();
     }
 
-    public int buscarNuevoID(){
+    public long buscarNuevoID(){
         return genID.buscarID(buscarUltimoID());
     }
 
-    private int buscarUltimoID() {
+    private long buscarUltimoID() {
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(i.idMovimientoStock) FROM MovimientoStock i");
         if(q.getSingleResult() == null){
             return 0;
@@ -54,7 +54,7 @@ public class MovimientoStockEJB {
     }
 
     //Se restaura el stock antes del movimiento?
-    public void cancel(int id, MovimientoStock ms) {
+    public void cancel(long id, MovimientoStock ms) {
         MovimientoStock x = entityManager.find(MovimientoStock.class, id);
         if (x != null) {
             x.setFechaHoraAnulacion(java.sql.Timestamp.valueOf(ms.getFechaHoraAnulacion().toString()));

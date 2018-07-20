@@ -19,7 +19,7 @@ public class UnidadMedidaEJB {
     @Inject
     GeneradorID genID;
 
-    public UnidadMedida find(int id) {
+    public UnidadMedida find(long id) {
         return entityManager.find(UnidadMedida.class, id);
     }
 
@@ -35,7 +35,7 @@ public class UnidadMedidaEJB {
     }
 
     public boolean create(UnidadMedida um) {
-        Integer id = buscarNuevoID();
+        Long id = buscarNuevoID();
         if (id > 0){
             um.setIdUnidad(id);
             entityManager.persist(um);
@@ -45,10 +45,10 @@ public class UnidadMedidaEJB {
         }
     }
 
-    public int buscarNuevoID(){
+    public long buscarNuevoID(){
         return genID.buscarID(buscarUltimoID());}
 
-    private int buscarUltimoID() {
+    private long buscarUltimoID() {
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(um.idUnidad) FROM UnidadMedida um");
         if(q.getSingleResult() == null){
             return 0;
@@ -56,7 +56,7 @@ public class UnidadMedidaEJB {
         return q.getSingleResult();
     }
 
-    public void update(int id, UnidadMedida um) {
+    public void update(long id, UnidadMedida um) {
         UnidadMedida x = entityManager.find(UnidadMedida.class, id);
         if (x != null) {
             x.setNombre(um.getNombre());

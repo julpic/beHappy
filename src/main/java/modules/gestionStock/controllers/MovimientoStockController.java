@@ -21,7 +21,7 @@ public class MovimientoStockController {
     @Inject
     DetalleMovimientoStockController detalleMovimientoStockController;
 
-    public MovimientoStockModel find(int id) {
+    public MovimientoStockModel find(long id) {
         MovimientoStock ms = movimientoStockEJB.find(id);
         List<DetalleMovimientoStockModel> detalles  = detalleMovimientoStockController.findAll(id);
         MovimientoStockModel msm = new MovimientoStockModel(ms);
@@ -51,7 +51,7 @@ public class MovimientoStockController {
         movimientoStockEJB.create(msm.getDBEntity());
     }
 
-    public void remove(int id) {
+    public void remove(long id) {
         MovimientoStockModel movModel = find(id);
         MovimientoStock actual = movModel.getDBEntity();
         List<DetalleMovimientoStockModel> detallesModel = detalleMovimientoStockController.findAll(id);
@@ -67,7 +67,7 @@ public class MovimientoStockController {
         movimientoStockEJB.cancel(id, actual);
     }
 
-    private void restoreStock(List<DetalleMovimientoStock> detalles, int idMovimiento) {
+    private void restoreStock(List<DetalleMovimientoStock> detalles, long idMovimiento) {
         for (DetalleMovimientoStock d : detalles) {
             detalleMovimientoStockController.restore(d, idMovimiento);
         }

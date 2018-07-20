@@ -19,7 +19,7 @@ public class InsumoController {
     UnidadMedidaController unidadMedidaController;
 
 
-    public InsumoModel find(int id) {
+    public InsumoModel find(long id) {
 
         Insumo i = insumoEJB.find(id);
         UnidadMedidaModel umm = unidadMedidaController.find(i.getIdUnidadMedida());
@@ -39,7 +39,7 @@ public class InsumoController {
         return insumosModels;
     }
 
-    public List<InsumoModel> findAll(int idProveedor) {
+    public List<InsumoModel> findAll(long idProveedor) {
         List<Insumo> insumos = insumoEJB.findAll(idProveedor);
         ArrayList<InsumoModel> insumosModels = new ArrayList<InsumoModel>();
         for (Insumo i : insumos){
@@ -59,16 +59,16 @@ public class InsumoController {
         return insumoEJB.findInsStock();
     }
 
-    public void update(int id, InsumoModel im) {
+    public void update(long id, InsumoModel im) {
         Insumo i = im.getDBEntity();
         insumoEJB.update(id, i);
     }
 
-    public void remove(int id) {
+    public void remove(long id) {
         insumoEJB.remove(id);
     }
 
-    public void updateStock(int idInsumo, int cantidad, boolean entrada) {
+    public void updateStock(long idInsumo, int cantidad, boolean entrada) {
         insumoEJB.updateStock(idInsumo, cantidad, entrada);
     }
 }

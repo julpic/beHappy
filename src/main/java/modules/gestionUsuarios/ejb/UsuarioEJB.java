@@ -13,7 +13,7 @@ public class UsuarioEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
-    public Empleado find(int id) {
+    public Empleado find(long id) {
         return entityManager.find(Empleado.class, id);
     }
 

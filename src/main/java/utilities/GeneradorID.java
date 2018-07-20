@@ -9,13 +9,13 @@ import javax.inject.Inject;
 public class GeneradorID {
     @Inject FranquiciaEJB franquiciaEJB;
 
-    public int buscarID(int ultimoID){
+    public long buscarID(long ultimoID){
         //Busco el id de la franquicia
-        Integer idFranquicia = franquiciaEJB.findIDFranquicia();
+        Long idFranquicia = franquiciaEJB.findIDFranquicia();
         if (idFranquicia == null || idFranquicia == 0){
             return -1;
         }
-        int idObjeto;
+        long idObjeto;
 
         if (ultimoID != 0){
             idObjeto = idObjeto(ultimoID, idFranquicia);
@@ -24,13 +24,13 @@ public class GeneradorID {
         }
 
         //Se forma el id que ira a la bd con el formato necesario
-        String idObjetoNuevo = Integer.toString(idFranquicia) + "00" + Integer.toString(idObjeto);
+        String idObjetoNuevo = Long.toString(idFranquicia) + "00" + Long.toString(idObjeto);
         //Se retorna el valor numerico
-        return Integer.parseInt(idObjetoNuevo);
+        return Long.parseLong(idObjetoNuevo);
     }
 
-    public int buscarID(int ultimoID, Integer idFranquicia){
-        int idObjeto;
+    public long buscarID(long ultimoID, Long idFranquicia){
+        long idObjeto;
 
         if (idFranquicia == null || idFranquicia == 0){
             return -1;
@@ -43,20 +43,20 @@ public class GeneradorID {
         }
 
         //Se forma el id que ira a la bd con el formato necesario
-        String idObjetoNuevo = Integer.toString(idFranquicia) + "00" + Integer.toString(idObjeto);
+        String idObjetoNuevo = Long.toString(idFranquicia) + "00" + Long.toString(idObjeto);
         //Se retorna el valor numerico
-        return Integer.parseInt(idObjetoNuevo);
+        return Long.parseLong(idObjetoNuevo);
     }
 
-    private int idObjeto(int ultimoID, Integer idFranquicia){
+    private long idObjeto(long ultimoID, Long idFranquicia){
         //Se convierte el id que se paso a un array de char
-        String idUltimo = Integer.toString(ultimoID);
+        String idUltimo = Long.toString(ultimoID);
         char[] idArray = idUltimo.toCharArray();
 
         //Declaracion de una variable que ayuda a ver cuando empieza el id del insumo en el
         //ultimo id (Que se compone de idFranquicia + 00 + idObjeto)
-        int digitosFranquicia = String.valueOf(idFranquicia).length();
-        int digitosExtra = digitosFranquicia + 2; //El 2se refiere a los 2 ceros siguientes al id de franquicia
+        long digitosFranquicia = String.valueOf(idFranquicia).length();
+        long digitosExtra = digitosFranquicia + 2; //El 2se refiere a los 2 ceros siguientes al id de franquicia
         String idObjetoString = "";
 
         for (int i = 0; i < idArray.length; i++){
@@ -65,8 +65,8 @@ public class GeneradorID {
             }
         }
         //Nuevo id para el objeto
-        int idObjetoViejo = Integer.parseInt(idObjetoString);
-        int idObjetoNuevo = idObjetoViejo + 1;
+        long idObjetoViejo = Long.parseLong(idObjetoString);
+        long idObjetoNuevo = idObjetoViejo + 1;
         return idObjetoNuevo;
     }
 

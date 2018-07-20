@@ -3,7 +3,7 @@ package modules.gestionStock.ModelEntities;
 import modules.gestionStock.dbEntities.Insumo;
 
 public class InsumoModel {
-    private int idInsumo;
+    private long idInsumo;
     private String nombre;
     private int cantidadStock;
     private int stockMinimo;
@@ -19,7 +19,7 @@ public class InsumoModel {
         this.alta = i.isAlta();
     }
 
-    public int getIdInsumo() {
+    public long getIdInsumo() {
         return idInsumo;
     }
 

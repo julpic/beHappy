@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "Proveedores", schema = "BeFruit", catalog = "")
 public class Proveedor {
-    private int idProveedor;
+    private long idProveedor;
     private String cuit;
     private String razonSocial;
     private String eMail;
@@ -15,11 +15,11 @@ public class Proveedor {
 
     @Id
     @Column(name = "idProveedor")
-    public int getIdProveedor() {
+    public long getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(int idProveedor) {
+    public void setIdProveedor(long idProveedor) {
         this.idProveedor = idProveedor;
     }
 

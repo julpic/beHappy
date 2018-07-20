@@ -6,26 +6,26 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class EmpleadoPK implements Serializable{
-    private int idEmpleado;
-    private int idFranquicia;
+    private long idEmpleado;
+    private long idFranquicia;
 
     @Column(name = "idEmpleado")
     @Id
-    public int getIdEmpleado() {
+    public long getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(int idEmpleado) {
+    public void setIdEmpleado(long idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
     @Column(name = "idFranquicia")
     @Id
-    public int getIdFranquicia() {
+    public long getIdFranquicia() {
         return idFranquicia;
     }
 
-    public void setIdFranquicia(int idFranquicia) {
+    public void setIdFranquicia(long idFranquicia) {
         this.idFranquicia = idFranquicia;
     }
 

@@ -19,15 +19,15 @@ public class FranquiciaController {
     @Inject
     EmpleadoController empleadoController;
 
-    public FranquiciaModel find(int id) {
+    public FranquiciaModel find(long id) {
         Franquicia f =  franquiciaEJB.find(id);
         List<EmpleadoModel> e = empleadoController.findAll(id);
         FranquiciaModel fm = new FranquiciaModel(f,e);
         return fm;
     }
 
-    public Integer find() {
-        Integer f =  franquiciaEJB.findIDFranquicia();
+    public Long find() {
+        Long f =  franquiciaEJB.findIDFranquicia();
        return f;
     }
 
@@ -44,7 +44,7 @@ public class FranquiciaController {
         return franquiciasModel;
     }
 
-    public List<FranquiciaModel> findAll(int idProveedor) {
+    public List<FranquiciaModel> findAll(long idProveedor) {
         List<Franquicia> franquicias =  franquiciaEJB.findAll(idProveedor);
         ArrayList<FranquiciaModel> franquiciasModel = new ArrayList<FranquiciaModel>();
 
@@ -67,7 +67,7 @@ public class FranquiciaController {
         return false;
     }
 
-    public boolean update(int id, FranquiciaModel fm) {
+    public boolean update(long id, FranquiciaModel fm) {
         Franquicia f = fm.getDBEntity();
         if (CuitValidator.validarCuit(f.getCuit())) {
             franquiciaEJB.update(id, f);
@@ -76,6 +76,6 @@ public class FranquiciaController {
         return false;
     }
 
-    public void remove(int id) { franquiciaEJB.remove(id); }
+    public void remove(long id) { franquiciaEJB.remove(id); }
 
 }

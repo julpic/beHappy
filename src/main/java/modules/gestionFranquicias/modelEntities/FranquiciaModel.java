@@ -5,7 +5,7 @@ import modules.gestionFranquicias.dbEntities.Franquicia;
 import java.util.List;
 
 public class FranquiciaModel {
-    private int idFranquicia;
+    private long idFranquicia;
     private String cuit;
     private String direccion;
     private String nombreDueno;
@@ -25,7 +25,7 @@ public class FranquiciaModel {
         this.empleados = empleados;
     }
 
-    public int getIdFranquicia() {
+    public long getIdFranquicia() {
         return idFranquicia;
     }
 

@@ -7,9 +7,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "MovimientosStock", schema = "BeFruit")
 public class MovimientoStock {
-    private int idMovimientoStock;
-    private Integer idVenta;
-    private Integer idTurno;
+    private long idMovimientoStock;
+    private Long idVenta;
+    private Long idTurno;
     private Timestamp fechaHora;
     private Timestamp fechaHoraAnulacion;
     private boolean entrada;
@@ -19,21 +19,21 @@ public class MovimientoStock {
 
     @Id
     @Column(name = "idMovimientoStock")
-    public int getIdMovimientoStock() {
+    public long getIdMovimientoStock() {
         return idMovimientoStock;
     }
 
-    public void setIdMovimientoStock(int idMovimientoStock) {
+    public void setIdMovimientoStock(long idMovimientoStock) {
         this.idMovimientoStock = idMovimientoStock;
     }
 
     @Basic
     @Column(name = "idVenta")
-    public Integer getIdVenta() {
+    public Long getIdVenta() {
         return idVenta;
     }
 
-    public void setIdVenta(Integer idVenta) {
+    public void setIdVenta(Long idVenta) {
         this.idVenta = idVenta;
     }
 
@@ -49,11 +49,11 @@ public class MovimientoStock {
 
     @Basic
     @Column(name = "idTurno")
-    public Integer getIdTurno() {
+    public Long getIdTurno() {
         return idTurno;
     }
 
-    public void setIdTurno(Integer idTurno) {
+    public void setIdTurno(Long idTurno) {
         this.idTurno = idTurno;
     }
 

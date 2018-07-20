@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "UnidadesMedida", schema = "BeFruit")
 public class UnidadMedida {
-    private int idUnidad;
+    private long idUnidad;
     private String nombre;
 
     public UnidadMedida() {
@@ -13,11 +13,11 @@ public class UnidadMedida {
 
     @Id
     @Column(name = "idUnidad")
-    public int getIdUnidad() {
+    public long getIdUnidad() {
         return idUnidad;
     }
 
-    public void setIdUnidad(int idUnidad) {
+    public void setIdUnidad(long idUnidad) {
         this.idUnidad = idUnidad;
     }
 

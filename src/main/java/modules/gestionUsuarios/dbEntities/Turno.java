@@ -7,22 +7,22 @@ import java.util.Objects;
 @Entity
 @Table(name = "Turnos", schema = "BeFruit")
 public class Turno {
-    private int idTurno;
-    private int idSesion;
+    private long idTurno;
+    private long idSesion;
     private Timestamp fechaHoraInicio;
     private Timestamp fechaHoraFin;
 
     @Id
     @Column(name = "idTurno")
-    public int getIdTurno() { return idTurno; }
+    public long getIdTurno() { return idTurno; }
 
-    public void setIdTurno(int idTurno) { this.idTurno = idTurno; }
+    public void setIdTurno(long idTurno) { this.idTurno = idTurno; }
 
     @Basic
     @Column(name = "idSesion")
-    public int getIdSesion() { return idSesion; }
+    public long getIdSesion() { return idSesion; }
 
-    public void setIdSesion(int idSesion) { this.idSesion = idSesion; }
+    public void setIdSesion(long idSesion) { this.idSesion = idSesion; }
 
     @Basic
     @Column(name = "fechaHoraInicio")

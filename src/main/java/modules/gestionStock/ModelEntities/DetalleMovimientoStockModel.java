@@ -3,7 +3,7 @@ package modules.gestionStock.ModelEntities;
 import modules.gestionStock.dbEntities.DetalleMovimientoStock;
 
 public class DetalleMovimientoStockModel {
-    private int idDetalleMovimientoStock;
+    private long idDetalleMovimientoStock;
     private InsumoModel insumo;
     private int cantidad;
 
@@ -13,7 +13,7 @@ public class DetalleMovimientoStockModel {
         this.cantidad = det.getCantidad();
     }
 
-    public DetalleMovimientoStock getDBEntity(int idMovimiento){
+    public DetalleMovimientoStock getDBEntity(long idMovimiento){
         DetalleMovimientoStock det = new DetalleMovimientoStock();
         det.setIdDetalleMovimientoStock(this.idDetalleMovimientoStock);
         det.setIdMovimiento(idMovimiento);

@@ -7,19 +7,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "PerfilesXUsuarios", schema = "BeFruit")
 public class PerfilesXUsuarios implements Serializable {
-    private int idUsuario;
-    private int idPerfil;
+    private long idUsuario;
+    private long idPerfil;
 
 
     @Id
     @Column(name = "idUsuario")
-    public int getIdUsuario() { return idUsuario; }
+    public long getIdUsuario() { return idUsuario; }
 
-    public void setIdUsuario(int idUsuario) { this.idUsuario = idUsuario; }
+    public void setIdUsuario(long idUsuario) { this.idUsuario = idUsuario; }
 
     @Id
     @Column(name = "idPerfil")
-    public int getIdPerfil() { return idPerfil; }
+    public long getIdPerfil() { return idPerfil; }
 
     public void setIdPerfil(int idPerfil) { this.idPerfil = idPerfil; }
 

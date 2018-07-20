@@ -15,7 +15,7 @@ public class ProveedorEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
-    public Proveedor find(int id) {
+    public Proveedor find(long id) {
         return entityManager.find(Proveedor.class, id);
     }
 
@@ -24,7 +24,7 @@ public class ProveedorEJB {
         return q.getResultList();
     }
 
-    public List<Proveedor> findAll(int idExterno, boolean insumo) {
+    public List<Proveedor> findAll(long idExterno, boolean insumo) {
         Query q;
         if(insumo){
             q = entityManager.createQuery("SELECT i FROM Proveedor i, InsumosXProveedor ip WHERE i.idProveedor = ip.idProveedor AND ip.idInsumo = :idInsumo")
@@ -52,7 +52,7 @@ public class ProveedorEJB {
         return q.getSingleResult() + 1;
     }
 
-    public boolean create(int idInsumo, int idProveedor) {
+    public boolean create(long idInsumo, long idProveedor) {
         InsumosXProveedor ixp = new InsumosXProveedor();
         ixp.setIdInsumo(idInsumo);
         ixp.setIdProveedor(idProveedor);
@@ -64,7 +64,7 @@ public class ProveedorEJB {
         return false;
     }
 
-    public void update(int id, Proveedor p) {
+    public void update(long id, Proveedor p) {
         Proveedor x = entityManager.find(Proveedor.class, id);
         if (x != null) {
             x.setCuit(p.getCuit());
@@ -75,7 +75,7 @@ public class ProveedorEJB {
         }
     }
 
-    public void remove(int id) {
+    public void remove(long id) {
         Proveedor x = entityManager.find(Proveedor.class, id);
         if (x != null) {
             x.setAlta(false);

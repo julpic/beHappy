@@ -8,8 +8,8 @@ import java.util.Objects;
 @Table(name = "Empleados", schema = "BeFruit", catalog = "")
 @IdClass(EmpleadoPK.class)
 public class Empleado {
-    private int idEmpleado;
-    private int idFranquicia;
+    private long idEmpleado;
+    private long idFranquicia;
     private String apellido;
     private long dni;
     private String eMail;
@@ -20,21 +20,21 @@ public class Empleado {
 
     @Id
     @Column(name = "idEmpleado")
-    public int getIdEmpleado() {
+    public long getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(int idEmpleado) {
+    public void setIdEmpleado(long idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
     @Id
     @Column(name = "idFranquicia")
-    public int getIdFranquicia() {
+    public long getIdFranquicia() {
         return idFranquicia;
     }
 
-    public void setIdFranquicia(int idFranquicia) {
+    public void setIdFranquicia(long idFranquicia) {
         this.idFranquicia = idFranquicia;
     }
 

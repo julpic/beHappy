@@ -7,9 +7,9 @@ import java.util.Objects;
 @Table(name = "DetallesMovimientosStock", schema = "BeFruit")
 @IdClass(DetalleMovimientoStockPK.class)
 public class DetalleMovimientoStock {
-    private int idDetalleMovimientoStock;
-    private int idMovimiento;
-    private int idInsumo;
+    private long idDetalleMovimientoStock;
+    private long idMovimiento;
+    private long idInsumo;
     private int cantidad;
 
     public DetalleMovimientoStock() {
@@ -17,31 +17,31 @@ public class DetalleMovimientoStock {
 
     @Id
     @Column(name = "idDetalleMovimientoStock")
-    public int getIdDetalleMovimientoStock() {
+    public long getIdDetalleMovimientoStock() {
         return idDetalleMovimientoStock;
     }
 
-    public void setIdDetalleMovimientoStock(int idDetalleMovimientoStock) {
+    public void setIdDetalleMovimientoStock(long idDetalleMovimientoStock) {
         this.idDetalleMovimientoStock = idDetalleMovimientoStock;
     }
 
     @Id
     @Column(name = "idMovimiento")
-    public int getIdMovimiento() {
+    public long getIdMovimiento() {
         return idMovimiento;
     }
 
-    public void setIdMovimiento(int idMovimiento) {
+    public void setIdMovimiento(long idMovimiento) {
         this.idMovimiento = idMovimiento;
     }
 
     @Basic
     @Column(name = "idInsumo")
-    public int getIdInsumo() {
+    public long getIdInsumo() {
         return idInsumo;
     }
 
-    public void setIdInsumo(int idInsumo) {
+    public void setIdInsumo(long idInsumo) {
         this.idInsumo = idInsumo;
     }
 

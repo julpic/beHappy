@@ -6,14 +6,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "Perfiles", schema = "BeFruit")
 public class Perfil {
-    private int idPerfil;
+    private long idPerfil;
     private String nombre;
 
     @Id
     @Column(name = "idPerfil")
-    public int getIdPerfil() { return idPerfil; }
+    public long getIdPerfil() { return idPerfil; }
 
-    public void setIdPerfil(int idPerfil) { this.idPerfil = idPerfil; }
+    public void setIdPerfil(long idPerfil) { this.idPerfil = idPerfil; }
 
     @Basic
     @Column(name = "nombre")

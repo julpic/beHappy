@@ -3,7 +3,7 @@ package modules.gestionStock.ModelEntities;
 import modules.gestionStock.dbEntities.UnidadMedida;
 
 public class UnidadMedidaModel {
-    private int idUnidad;
+    private long idUnidad;
     private String nombre;
 
     public UnidadMedidaModel(UnidadMedida um) {
@@ -11,7 +11,7 @@ public class UnidadMedidaModel {
         this.nombre = um.getNombre();
     }
 
-    public int getIdUnidad() {
+    public long getIdUnidad() {
         return idUnidad;
     }
 

@@ -19,7 +19,7 @@ public class DetalleMovimientoStockService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public String get(@PathParam("id") int idMovimiento) {
+    public String get(@PathParam("id") long idMovimiento) {
         List<DetalleMovimientoStockModel> detalles = detalleMovimientoStockController.findAll(idMovimiento);
         Gson gson = new Gson();
         String json = gson.toJson(detalles);
@@ -41,7 +41,7 @@ public class DetalleMovimientoStockService {
     @POST
     @Path("/movimiento/{id}")
     @Consumes("application/json")
-    public void create(String json, @PathParam("id") int idMovimiento) {
+    public void create(String json, @PathParam("id") long idMovimiento) {
         Gson gson = new Gson();
         Type type = new TypeToken<List<DetalleMovimientoStockModel>>() {}.getType();
         List<DetalleMovimientoStockModel> detalles  = gson.fromJson(json, type);

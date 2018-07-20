@@ -7,28 +7,28 @@ import java.util.Objects;
 @Entity
 @Table(name = "InsumosXProveedor", schema = "BeFruit", catalog = "")
 public class InsumosXProveedor implements Serializable {
-    public int idProveedor;
-    public int idInsumo;
+    public long idProveedor;
+    public long idInsumo;
 
     @Id
     @Column(name = "idProveedor")
 
-    public int getIdProveedor() {
+    public long getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(int idProveedor) {
+    public void setIdProveedor(long idProveedor) {
         this.idProveedor = idProveedor;
     }
 
     @Id
     @Column(name = "idInsumo")
 
-    public int getIdInsumo() {
+    public long getIdInsumo() {
         return idInsumo;
     }
 
-    public void setIdInsumo(int idInsumo) {
+    public void setIdInsumo(long idInsumo) {
         this.idInsumo = idInsumo;
     }
 }

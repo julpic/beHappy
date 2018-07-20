@@ -3,6 +3,7 @@ package modules.gestionStock.services;
 import com.google.gson.Gson;
 import modules.gestionStock.ModelEntities.UnidadMedidaModel;
 import modules.gestionStock.controllers.UnidadMedidaController;
+import modules.gestionStock.dbEntities.UnidadMedida;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -17,7 +18,7 @@ public class UnidadMedidaService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public String get(@PathParam("id") int id) {
+    public String get(@PathParam("id") long id) {
         UnidadMedidaModel umm = unidadMedidaController.find(id);
         Gson gson = new Gson();
         String json = gson.toJson(umm);
@@ -45,7 +46,7 @@ public class UnidadMedidaService {
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, String json) {
+    public void update(@PathParam("id") long id, String json) {
         Gson gson = new Gson();
         UnidadMedidaModel um = gson.fromJson(json, UnidadMedidaModel.class);
         unidadMedidaController.update(id, um);

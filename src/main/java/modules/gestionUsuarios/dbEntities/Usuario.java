@@ -6,32 +6,32 @@ import java.util.Objects;
 @Entity
 @Table(name = "Usuarios", schema = "BeFruit")
 public class Usuario {
-    private int idUsuario;
-    private int idEmpleado;
-    private int idFranquicia;
+    private long idUsuario;
+    private long idEmpleado;
+    private long idFranquicia;
     private String password;
     private String usuario;
 
 
     @Id
     @Column(name = "idUsuario")
-    public int getIdUsuario() { return idUsuario; }
+    public long getIdUsuario() { return idUsuario; }
 
-    public void setIdUsuario(int idUsuario) { this.idUsuario = idUsuario; }
+    public void setIdUsuario(long idUsuario) { this.idUsuario = idUsuario; }
 
     @Basic
     @Column(name = "idEmpleado")
-    public int getIdEmpleado() {
+    public long getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(int idEmpleado) {
+    public void setIdEmpleado(long idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
     @Basic
     @Column(name = "idFranquicia")
-    public int getIdFranquicia() { return idFranquicia; }
+    public long getIdFranquicia() { return idFranquicia; }
 
     public void setIdFranquicia(int idFranquicia) { this.idFranquicia = idFranquicia; }
 

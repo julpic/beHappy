@@ -14,7 +14,7 @@ public class EmpleadoController {
     @Inject
     EmpleadoEJB empleadoEJB;
 
-    public EmpleadoModel find(int id) {
+    public EmpleadoModel find(long id) {
         Empleado e = empleadoEJB.find(id);
         EmpleadoModel em = new EmpleadoModel(e);
         return em;
@@ -31,7 +31,7 @@ public class EmpleadoController {
         return empleadosModel;
     }
 
-    public List<EmpleadoModel> findAll(int idFranquicia) {
+    public List<EmpleadoModel> findAll(long idFranquicia) {
         List<Empleado> empleados = empleadoEJB.findAll(idFranquicia);
         ArrayList<EmpleadoModel> empleadosModel = new ArrayList<EmpleadoModel>();
         for(Empleado e: empleados){
@@ -44,7 +44,7 @@ public class EmpleadoController {
     public void create(EmpleadoModel e) { empleadoEJB.create(e.getDBEntity());
     }
 
-    public void update(int id, EmpleadoModel e) { empleadoEJB.update(id, e.getDBEntity()); }
+    public void update(long id, EmpleadoModel e) { empleadoEJB.update(id, e.getDBEntity()); }
 
-    public void remove(int id) { empleadoEJB.remove(id); }
+    public void remove(long id) { empleadoEJB.remove(id); }
 }

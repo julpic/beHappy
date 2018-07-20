@@ -16,7 +16,7 @@ public class MovimientoStockService {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public String get(@PathParam("id") int id) {
+    public String get(@PathParam("id") long id) {
         MovimientoStockModel msm = movimientoStockController.find(id);
         Gson gson = new Gson();
         String json = gson.toJson(msm);
@@ -43,7 +43,7 @@ public class MovimientoStockService {
 
     @DELETE
     @Path("/{id}")
-    public void remove(@PathParam("id") int id) {
+    public void remove(@PathParam("id") long id) {
         movimientoStockController.remove(id);
     }
 }

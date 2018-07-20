@@ -14,7 +14,7 @@ public class UnidadMedidaController {
     @Inject
     UnidadMedidaEJB unidadMedidaEJB;
 
-    public UnidadMedidaModel find(int id) {
+    public UnidadMedidaModel find(long id) {
         UnidadMedidaModel umm = new UnidadMedidaModel(unidadMedidaEJB.find(id));
         return umm;
 
@@ -32,7 +32,7 @@ public class UnidadMedidaController {
 
     public boolean create(UnidadMedidaModel um) { return unidadMedidaEJB.create(um.getDBEntity()); }
 
-    public void update(int id, UnidadMedidaModel um) {
+    public void update(long id, UnidadMedidaModel um) {
         unidadMedidaEJB.update(id, um.getDBEntity());
     }
 

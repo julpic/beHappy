@@ -19,7 +19,7 @@ public class InsumoEJB {
     @Inject
     GeneradorID genID;
 
-    public Insumo find(int id) {
+    public Insumo find(long id) {
         return entityManager.find(Insumo.class, id);
     }
 
@@ -28,7 +28,7 @@ public class InsumoEJB {
         return q.getResultList();
     }
 
-    public List<Insumo> findAll(int idProveedor) {
+    public List<Insumo> findAll(long idProveedor) {
         Query q = entityManager.createQuery("SELECT i FROM Insumo i , InsumosXProveedor ip WHERE i.idInsumo = ip.idInsumo AND i.alta = true AND ip.idProveedor = :idProveedor")
                 .setParameter("idProveedor", idProveedor);
         return q.getResultList();
@@ -46,11 +46,11 @@ public class InsumoEJB {
         }
     }
 
-    public int buscarNuevoID(){
+    public long buscarNuevoID(){
         return genID.buscarID(buscarUltimoID());
     }
 
-    private int buscarUltimoID() {
+    private long buscarUltimoID() {
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(i.idInsumo) FROM Insumo i");
         if(q.getSingleResult() == null){
             return 0;
@@ -59,7 +59,7 @@ public class InsumoEJB {
     }
 
 
-    public void update(int id, Insumo i) {
+    public void update(long id, Insumo i) {
         Insumo x = entityManager.find(Insumo.class, id);
         if (x != null) {
             x.setNombre(i.getNombre());
@@ -70,7 +70,7 @@ public class InsumoEJB {
         }
     }
 
-    public void remove(int id) {
+    public void remove(long id) {
         Insumo x = entityManager.find(Insumo.class, id);
         if (x != null) {
             x.darDeBaja();
@@ -78,7 +78,7 @@ public class InsumoEJB {
         }
     }
 
-    public void updateStock(int idInsumo, int cantidad, boolean entrada) {
+    public void updateStock(long idInsumo, int cantidad, boolean entrada) {
         Insumo i = find(idInsumo);
         if (entrada) {
             i.setCantidadStock(i.getCantidadStock() + cantidad);

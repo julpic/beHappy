@@ -15,7 +15,7 @@ public class EmpleadoEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
 
-    public Empleado find(int id) {
+    public Empleado find(long id) {
         TypedQuery<Empleado> q = (TypedQuery) entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idEmpleado = :id").setParameter("id",id);
         return q.getSingleResult();
     }
@@ -25,19 +25,19 @@ public class EmpleadoEJB {
         return q.getResultList();
     }
 
-    public List<Empleado> findAll(int idFranquicia) {
+    public List<Empleado> findAll(long idFranquicia) {
         Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE (e.alta = true AND e.idFranquicia = :id)")
                 .setParameter("id", idFranquicia);
         return q.getResultList();
     }
 
-    public Integer buscarUltimoID(int idFranquicia){
+    public Integer buscarUltimoID(long idFranquicia){
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(e.idEmpleado) FROM Empleado e WHERE e.idFranquicia = :id")
                 .setParameter("id", idFranquicia);
         return q.getSingleResult();
     }
 
-    public Integer buscarNuevoID(int idFranquicia){
+    public Integer buscarNuevoID(long idFranquicia){
         Integer ultimoID = buscarUltimoID(idFranquicia);
         if(ultimoID == null){
             return 1;
@@ -53,7 +53,7 @@ public class EmpleadoEJB {
     }
 
 
-    public void update(int id, Empleado e) {
+    public void update(long id, Empleado e) {
         TypedQuery<Empleado> q = (TypedQuery) entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idEmpleado = :id").setParameter("id",id);
         Empleado x = q.getSingleResult();
         if (x != null) {
@@ -69,7 +69,7 @@ public class EmpleadoEJB {
         }
     }
 
-    public void remove(int id) {
+    public void remove(long id) {
         TypedQuery<Empleado> q = (TypedQuery) entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idEmpleado = :id").setParameter("id",id);
         Empleado x = q.getSingleResult();
         if (x != null) {
