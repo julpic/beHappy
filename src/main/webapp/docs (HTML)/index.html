@@ -4,15 +4,15 @@
 <head>
     <meta charset="utf-8">
     <title>beFruit</title>
-    <link href="assets/css/materialize.min.css" rel="stylesheet">
+    <link href="../assets/css/materialize.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://brick.a.ssl.fastly.net/Montserrat:300,400,500,600,700" rel="stylesheet">
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="node_modules/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../node_modules/ionicons/css/ionicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
           integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand d-none d-lg-inline-block" href="index.html">
-                <img id="logo-be" class=" brand-logo img-fluid logo" src="assets/img/beFruit%20fy.png">
+                <img id="logo-be" class=" brand-logo img-fluid logo" src="../assets/img/beFruit%20fy.png">
             </a>
 
             <ul class="right hide-on-med-and-down">
@@ -113,6 +113,7 @@
                                     <h3>Habría que pensar qué poner aca...</h3>
                                     {{title}}
 
+
                                 </div>
                             </div>
                         </div>
@@ -196,7 +197,6 @@
                                             </div>
 
                                         </div>
-
                                         <div class="tab-content" ng-show="subaccion == 'Stock2'">
                                             <div role="tabcard" class="tab-pane fade in active show">
                                                 <div class="row" style="  height: 500px; ">
@@ -214,10 +214,9 @@
                                                             </thead>
                                                             <tbody ng-repeat="m in movimientos | orderBy:'-id'">
                                                             <tr>
-                                                                <td>{{m.idMovimientoStock}}</td>
+                                                                <td>{{m.id}}</td>
                                                                 <td>{{m.fechaHora}}</td>
-                                                                <td ng-if="m.entrada == true">Entrada</td>
-                                                                <td ng-if="m.entrada == false">Salida</td>
+                                                                <td>{{m.tipo}}</td>
                                                                 <td><a ng-click="verDetalles(m)" href="#">Detalles</a>
                                                                 </td>
                                                                 <td>
@@ -237,18 +236,15 @@
                                                             <tr class="table-secondary">
                                                                 <td>Insumo</td>
                                                                 <td>Cantidad</td>
-                                                                <td>Unidad</td>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
                                                             <tr ng-repeat="d in detalles">
                                                                 <td>{{d.insumo.nombre}}</td>
-                                                                <td>{{d.insumo.cantidadStock}}</td>
-                                                                <td>{{d.insumo.unidadMedida.nombre}}</td>
+                                                                <td>{{d.cantidad}}</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,7 +254,6 @@
                                                 <div class="container " style="height: 450px">
 
                                                     <div class="container" style="float: left; width: 40%">
-
                                                         <div class="input-field col s8"
                                                              ng-show="!(movimiento.tipo === 'true' || movimiento.tipo === 'false')">
 
@@ -276,9 +271,9 @@
                                                             <div class="input-field col s10">
 
                                                                 <select ng-model="detalle.insumo"
-                                                                        ng-options="insumo as insumos.nombre for insumo in insumos track by insumos.idInsumo"
+                                                                        ng-options="insumo as insumo.nombre for insumo in insumos track by insumo.idInsumo"
                                                                         material-select>
-                                                                    <option value="">Elija un
+                                                                    <option value="" disabled selected>Elija un
                                                                         insumo...
                                                                     </option>
                                                                 </select>
@@ -339,7 +334,6 @@
                                                 </div>
 
                                             </div>
-
                                         </div>
 
                                         <div class="tab-content" ng-show="subaccion == 'Stock4'">
@@ -639,13 +633,13 @@
     </div>
 </div>
 
-<script src="node_modules/angular/angular.min.js"></script>
-<script src="assets/js/app.js"></script>
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="assets/js/spark.js"></script>
+<script src="../node_modules/angular/angular.min.js"></script>
+<script src="../assets/js/app.js"></script>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../assets/js/spark.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-<script src="assets/js/init.js"></script>
+<script src="../assets/js/init.js"></script>
 
 
 <script>
