@@ -173,10 +173,8 @@
                                                                 <td>{{i.cantidadStock}}</td>
                                                                 <td>{{i.stockMinimo}}</td>
                                                                 <td>{{i.unidadMedida.nombre}}</td>
-                                                                <td><a ng-click="buscarInsumoPorId(i)" href="#"><i
-                                                                        class="material-icons">build</i></a></td>
-                                                                <td><a ng-click="Borrar()" href="#"><i
-                                                                        class="fas fa-trash-alt"></i></a></td>
+                                                                <td><a ng-click="buscarInsumoPorId(i)" href="#"><i class="material-icons" id="modificar-sucursal" title="Editar" style="">edit</i></a>
+                                                                <a ng-click="Borrar()" href="#"><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></a></td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -208,7 +206,7 @@
                                                                 <th class="" style="width: 10px">Nº</th>
                                                                 <th class="" style="width: 120.5px;">Fecha</th>
                                                                 <th class="" style="width: 40px;">Tipo</th>
-                                                                <th class="" style="width: 40px;"></th>
+                                                                <th class="" style="width: 40px;">Ver Detalles</th>
                                                                 <th class="" style="width: 40px;"></th>
                                                             </tr>
                                                             </thead>
@@ -221,10 +219,7 @@
                                                                 <td><a ng-click="verDetalles(m)" href="#">Detalles</a>
                                                                 </td>
                                                                 <td>
-                                                                    <buttton type="button" class="btn btn-danger"
-                                                                             ng-click="anularMovimiento(m)"
-                                                                             style="border-radius: 5px"><i
-                                                                            class="fas fa-trash-alt"></i></buttton>
+                                                                    <i ng-click="anularMovimiento(m)" class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i>
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -345,9 +340,9 @@
 
                                         <div class="tab-content" ng-show="subaccion == 'Stock4'">
                                             <div role="tabcard" class="tab-pane fade in active show">
-                                                <div class="row">
-                                                    <form class="col s12">
-                                                        <div class="row">
+                                                <div class="row" >
+                                                    <form class="col s12" >
+                                                        <div class="row" id="contenedor-agregar-insumos-stock">
                                                             <div class="input-field col s4">
                                                                 <input id="nombre" type="text" class="validate"
                                                                        ng-model="nvoInsumo.nombre"
@@ -419,10 +414,8 @@
                                                                 <td>{{um.idUnidad}}</td>
                                                                 <td>{{um.nombre}}</td>
                                                                 <td><a ng-click="buscarUnidadMedidaPorId(um)"
-                                                                       href="#"><i class="material-icons">build</i></a>
-                                                                </td>
-                                                                <td><a ng-click="borrarInsumo()" href="#"><i
-                                                                        class="fas fa-trash-alt"></i></a></td>
+                                                                       href="#"><i class="material-icons"  id="modificar-sucursal" title="Editar" >edit</i></a>
+                                                                <a ng-click="borrarInsumo()" href="#"><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></a></td>
                                                             </tr>
 
                                                             </tbody>
@@ -434,7 +427,7 @@
                                                          style="float: right; width: 60%; overflow: auto; height: 400px; text-align: center; border-left: 1px solid grey">
                                                         <form class="col s12">
 
-                                                            <div class="row">
+                                                            <div class="row" id="contenedor-modificar-unidmedida-stock">
 
                                                                 <div class="input-field col col-sm-5">
                                                                     <input id="idUm" type="text" class="validate"
@@ -620,12 +613,12 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr ng-repeat="f in franquicias">
-                                                <th scope="row">{{f.idFranquicia}}</th>
-                                                <td>{{f.direccion}}</td>
-                                                <td>{{f.alta}}</td>
-                                                <td>{{f.apellidoDueno}}</td>
-                                                <td>{{f.eMail}}</td>
+                                            <tr> <!--ng-repeat="f in franquicia"-->
+                                                <th scope="row">Error</th>
+                                                <td>---></td>
+                                                <td>Angular</td>
+                                                <td>NO funca</td>
+                                                <td><---</td>
                                                 <td><a href="">Ver</a></td>
                                                 <td><i class="material-icons" id="modificar-sucursal" title="Editar" style="">edit</i><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></td>
                                             </tr>
@@ -654,30 +647,13 @@
                                                 <input placeholder="Dirección" id="" type="text" class="validate">
                                                 <label for="">Dirección</label>
                                             </div>
-                                            <div class="input-field col s12">
-                                                <select>
-                                                    <option id="select-elegir-estado-sucursal" value="" disabled selected>Elegir estado</option>
-                                                    <option value="1">No Activo</option>
-                                                    <option value="2">Activo</option>
-                                                </select>
-                                                <label>Estado</label>
-                                            </div>
-                                            <div class="input-field col s12" id="elegir-empleado-sucursal">
-                                                <select multiple>
-                                                    <option value="" disabled selected>Empleados</option>
-                                                    <option value="1">Empleado 1</option>
-                                                    <option value="2">Empleado 2</option>
-                                                    <option value="4">Empleado 4</option>
-                                                    <option value="5">Empleado 5</option>
-                                                    <option value="6">Empleado 6</option>
-                                                    <option value="7">Empleado 7</option>
-                                                    <option value="8">Empleado 8</option>
-                                                    <option value="9">Empleado 9</option>
-                                                    <option value="10">Empleado 10</option>
-                                                    <option value="11">Empleado 11</option>
-                                                </select>
-                                                <label>Elección de empleados</label>
-                                            </div>
+
+
+                                            <select id="select-estado-sucursal" class="custom-select">
+                                                <option selected>Elegir Estado</option>
+                                                <option value="1">Activo</option>
+                                                <option value="2">No Activo</option>
+                                            </select>
 
                                         </div>
                                         <!-- inputs de datos de dueño-->
@@ -699,17 +675,8 @@
                                                 <input placeholder="Cuit" id="" type="text" class="validate" value="" minlength="10" size="14">
                                                 <label for="">Cuit</label>
                                             </div>
-
-
                                         </div>
-
-
-
                                         <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
-
-
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
