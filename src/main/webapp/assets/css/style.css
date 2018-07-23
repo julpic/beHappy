@@ -1341,10 +1341,10 @@ a.nav-link {
     left: 20px;
 }
 
-/* SUCURSAL*/
-/* STYLE DE AGREGAR SUCURSAL*/
 
-/*-----------------ICONOS-------------------*/
+
+
+/*-----------------ICONOS GENERAL( MODIFICAR Y EDITAR )-------------------*/
 #modificar-sucursal {
     cursor: pointer;
     color: violet;
@@ -1366,6 +1366,10 @@ a.nav-link {
 }
 /*--------------------------FIN_ICONOS------------------------------------*/
 
+
+
+/* SUCURSAL*/
+
 /*-------------------------------CONTENEDORES-------------------------------------------*/
 #titulo-contenedor-sucursal {
     text-align: center;
@@ -1382,6 +1386,8 @@ a.nav-link {
     padding: 10px;
     font-size: 1.2em;
     border-left: 1px ridge darkviolet;
+    position: relative;
+
 
 
 }
@@ -1391,6 +1397,7 @@ a.nav-link {
     width: 50%;
     float: left;
     padding: 10px;
+
 
 }
 /*---STILO DE LOS iNPUTS-------*/
@@ -1402,15 +1409,6 @@ a.nav-link {
 
 #contenedor-info_sucursal-sucursal .input-field{
     width: 100%
-}
-
-#contenedor-info_sucursal-sucursal .input-field .dropdown-trigger{
-
-    color: darkviolet
-}
-
-#contenedor-info_sucursal-sucursal ul > li > span {
-    color: #9575cd;
 }
 
 
@@ -1444,14 +1442,11 @@ a.nav-link {
 
 /*----Boton ACEPTAR------*/
 
-#btn-aceptar-agregar-sucursal{
-    color: white;
-
-}
 
 #btn-aceptar-agregar-sucursal{
     margin-top: 50px;
     font-size: 1.5em;
+    color: white;
 
 }
 
@@ -1461,38 +1456,49 @@ a.nav-link {
 
 }
 
-/*----------------------------------*/
-/*---CAMBIO DE COLOR STICK--------*/
 
-#contenedor-info_sucursal-sucursal [type="checkbox"]:checked+span:not(.lever):before{
-    border-right: 2px solid darkviolet;
-    border-bottom: 2px solid darkviolet;
+/*-------Selects-----*/
 
+#select-estado-sucursal {
+    border: 1px solid violet;
 }
 
 
 
+/*----------------------FIN_SUCURSAL--------------------------------------------*/
 
 
-
-
-
-
-
-/*----------------------FIN_CONETENEDORES--------------------------------------------*/
+/*--------------STOCK---------------------------------------------------------------*/
 
 /*----------------------NUEVO SELECT EN BOOSTRAP-----------------------------------*/
+
 
 #select-insumos{
     width: 100%;
     height: 50%;
     position: relative;
-    top: 12px
+    top: 12px;
+    border: 1px solid violet;
 }
 
 #label-unidadMedida{
     position: relative;
     top: -63.5px;
     font-size: 12px;
-
 }
+
+#contenedor-modificar-unidmedida-stock .input-field input[type=text]:focus + label,
+#contenedor-agregar-insumos-stock .input-field input[type=text]:focus + label{
+    color: darkviolet
+}
+
+#contenedor-modificar-unidmedida-stock .input-field input[type=text]:focus,
+#contenedor-modificar-unidmedida-stock .input-field input[type=text].valid,
+#contenedor-agregar-insumos-stock .input-field input[type=text]:focus,
+#contenedor-agregar-insumos-stock .input-field input[type=text].valid{
+    border-bottom: 1px solid darkviolet;
+    box-shadow: 0 1px 0 0 darkviolet;
+}
+
+
+/*------------FIN STOCK----------------------------*/

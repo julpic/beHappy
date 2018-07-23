@@ -264,7 +264,7 @@ app.controller("franquiciasController", function ($scope, $http) {
     $scope.obtenerFranquicias = function () {
         $http.get('/beFruit/franquicias')
             .then (function (response){
-                $scope.franquicias = response.data;
+                $scope.franquicia = response.data;
             });
     };
 
