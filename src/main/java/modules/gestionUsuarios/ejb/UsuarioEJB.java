@@ -36,11 +36,22 @@ public class UsuarioEJB {
         return q.getResultList();
     }
 
-    public void create(Usuario u) {
-        u.setIdUsuario(buscarNuevoID());
-        if (entityManager.find(Usuario.class, u.getIdUsuario()) == null) {
+    public boolean create(Usuario u) {
+        if (!nombreExiste(u.getUsuario())) {
+            u.setIdUsuario(buscarNuevoID());
             entityManager.persist(u);
+            return true;
         }
+        return false;
+    }
+
+    public boolean nombreExiste(String usuario){
+        Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE :nombre = u.usuario AND " +
+                "e.alta = TRUE").setParameter("nombre", usuario);
+        if (q == null){
+            return true;
+        }
+        return false;
     }
 
     public long buscarNuevoID(){
@@ -53,6 +64,15 @@ public class UsuarioEJB {
             return 0;
         }
         return (Integer) q.getSingleResult();
+    }
+
+    public void update(long id, Usuario u) {
+        Usuario x = entityManager.find(Usuario.class, id);
+        if (x != null) {
+            x.setUsuario(u.getUsuario());
+            x.setPassword(u.getPassword());
+            entityManager.merge(x);
+        }
     }
 
 }
