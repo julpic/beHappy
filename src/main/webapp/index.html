@@ -595,14 +595,106 @@
                                     </ul>
 
                                     <div class="tab-content" ng-show="subaccion == 'Franquicias1'">
-                                        <p>Tabla o lista mostrando las franquicias existentes con sus respectivos
-                                            atributos. Se debe poder modificar y eliminar</p>
+                                       <!--lISTA-->
+                                        <table class="table centered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Direccion</th>
+                                                <th scope="col">Estado</th>
+                                                <th scope="col">Dueño</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Empleados</th>
+                                                <th scope="col">--</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="f in franquicias">
+                                                <th scope="row">{{f.idFranquicia}}</th>
+                                                <td>{{f.direccion}}</td>
+                                                <td>{{f.alta}}</td>
+                                                <td>{{f.apellidoDueno}}</td>
+                                                <td>{{f.eMail}}</td>
+                                                <td><a href="">Ver</a></td>
+                                                <td><i class="material-icons" id="modificar-sucursal" title="Editar" style="">edit</i><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+
+
+
 
                                     </div>
 
                                     <div class="tab-content" ng-show="subaccion == 'Franquicias2'">
-                                        <p>Se debe poder agregar una franquicia nueva con todos los datos
-                                            respectivos</p>
+                                        <!---Agregar-->
+                                        <div class=" " id="contenedor-info_sucursal-sucursal" style="">
+                                            <p id="titulo-contenedor-sucursal">Datos de Franquicia</p>
+                                            <!-- inputs de los datos de franquicia-->
+
+                                            <div class="input-field col s6">
+                                                <input placeholder="Numero de Sucursal" id="" type="text" class="validate">
+                                                <label for="">Numero de Sucursal</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input placeholder="Dirección" id="" type="text" class="validate">
+                                                <label for="">Dirección</label>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <select>
+                                                    <option id="select-elegir-estado-sucursal" value="" disabled selected>Elegir estado</option>
+                                                    <option value="1">No Activo</option>
+                                                    <option value="2">Activo</option>
+                                                </select>
+                                                <label>Estado</label>
+                                            </div>
+                                            <div class="input-field col s12" id="elegir-empleado-sucursal">
+                                                <select multiple>
+                                                    <option value="" disabled selected>Empleados</option>
+                                                    <option value="1">Empleado 1</option>
+                                                    <option value="2">Empleado 2</option>
+                                                    <option value="4">Empleado 4</option>
+                                                    <option value="5">Empleado 5</option>
+                                                    <option value="6">Empleado 6</option>
+                                                    <option value="7">Empleado 7</option>
+                                                    <option value="8">Empleado 8</option>
+                                                    <option value="9">Empleado 9</option>
+                                                    <option value="10">Empleado 10</option>
+                                                    <option value="11">Empleado 11</option>
+                                                </select>
+                                                <label>Elección de empleados</label>
+                                            </div>
+
+                                        </div>
+                                        <!-- inputs de datos de dueño-->
+                                        <div class=" " id="contenedor-info_dueno-sucursal" style="">
+                                            <p id="titulo-contenedor-sucursal">Datos del Dueño</p>
+                                            <div class="input-field col s6">
+                                                <input placeholder="Nombre del Dueño" id="" type="text" class="validate">
+                                                <label for="">Nombre del Dueño</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input placeholder="Apellido del Dueño" id="" type="text" class="validate">
+                                                <label for="">Apellido del Dueño</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input placeholder="Email" id="" type="email" class="validate">
+                                                <label for="">Email</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input placeholder="Cuit" id="" type="text" class="validate" value="" minlength="10" size="14">
+                                                <label for="">Cuit</label>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                        <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
 
 
                                     </div>

@@ -1340,3 +1340,142 @@ a.nav-link {
     position: relative;
     left: 20px;
 }
+
+/* SUCURSAL*/
+/* STYLE DE AGREGAR SUCURSAL*/
+
+/*-----------------ICONOS-------------------*/
+#modificar-sucursal {
+    cursor: pointer;
+    color: violet;
+}
+
+#modificar-sucursal:hover {
+    color: darkviolet
+}
+
+#eliminar-sucursal {
+    cursor: pointer;
+    margin-left: 5px;
+    color: red
+}
+
+
+#eliminar-sucursal:hover {
+    color: darkred
+}
+/*--------------------------FIN_ICONOS------------------------------------*/
+
+/*-------------------------------CONTENEDORES-------------------------------------------*/
+#titulo-contenedor-sucursal {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid violet;
+    font-size: 1.3em;
+}
+
+
+
+#contenedor-info_dueno-sucursal {
+    width: 50%;
+    float: right;
+    padding: 10px;
+    font-size: 1.2em;
+    border-left: 1px ridge darkviolet;
+
+
+}
+
+
+#contenedor-info_sucursal-sucursal {
+    width: 50%;
+    float: left;
+    padding: 10px;
+
+}
+/*---STILO DE LOS iNPUTS-------*/
+
+
+#contenedor-info_dueno-sucursal .input-field {
+    width: 100%;
+}
+
+#contenedor-info_sucursal-sucursal .input-field{
+    width: 100%
+}
+
+#contenedor-info_sucursal-sucursal .input-field .dropdown-trigger{
+
+    color: darkviolet
+}
+
+#contenedor-info_sucursal-sucursal ul > li > span {
+    color: #9575cd;
+}
+
+
+
+
+#contenedor-info_sucursal-sucursal .input-field input[type=text]:focus + label,
+#contenedor-info_dueno-sucursal .input-field input[type=text]:focus + label,
+#contenedor-info_dueno-sucursal .input-field input[type=email]:focus + label{
+    color: darkviolet
+}
+
+#contenedor-info_sucursal-sucursal .input-field input[type=text]:focus,
+#contenedor-info_dueno-sucursal .input-field input[type=text]:focus,
+#contenedor-info_dueno-sucursal .input-field input[type=email]:focus {
+    border-bottom: 1px solid darkviolet;
+    box-shadow: 0 1px 0 0 darkviolet;
+}
+
+
+#contenedor-info_dueno-sucursal .input-field input[type=text].valid,
+#contenedor-info_dueno-sucursal .input-field input[type=email].valid,
+#contenedor-info_sucursal-sucursal .input-field input[type=text].valid,
+#contenedor-info_sucursal-sucursal .input-field input[type=email].valid
+{
+    border-bottom: 1px solid darkviolet;
+    box-shadow: 0 1px 0 0 darkviolet;
+}
+
+
+/*----------------------------------*/
+
+/*----Boton ACEPTAR------*/
+
+#btn-aceptar-agregar-sucursal{
+    color: white;
+
+}
+
+#btn-aceptar-agregar-sucursal{
+    margin-top: 50px;
+    font-size: 1.5em;
+
+}
+
+#btn-aceptar-agregar-sucursal:hover{
+    color: white;
+    background-color: violet
+
+}
+
+/*----------------------------------*/
+/*---CAMBIO DE COLOR STICK--------*/
+
+#contenedor-info_sucursal-sucursal [type="checkbox"]:checked+span:not(.lever):before{
+    border-right: 2px solid darkviolet;
+    border-bottom: 2px solid darkviolet;
+}
+
+
+
+
+
+
+
+
+
+
+/*----------------------FIN_CONETENEDORES--------------------------------------------*/

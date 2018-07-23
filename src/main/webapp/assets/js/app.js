@@ -250,6 +250,14 @@ app.controller("franquiciasController", function ($scope, $http) {
 
     //Funciones...
 
+    $scope.obtenerFranquicias = function () {
+        $http.get('/beFruit/franquicias')
+            .then (function (response){
+                $scope.franquicias = response.data;
+            });
+    };
+
+    $scope.obtenerFranquicias();
 });
 
 app.controller("ventaController", function ($scope, $http) {
