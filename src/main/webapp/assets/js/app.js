@@ -181,6 +181,9 @@ app.controller("stockController", function ($scope, $http) {
                 .then (function (response){
                     $scope.unidades = response.data;
                 });
+        setTimeout(function(){
+            $('select').material_select();
+        },1000);
         };
 
     $scope.grabarInsumo = function () {

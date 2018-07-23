@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>beFruit</title>
-    <link href="assets/css/materialize.min.css" rel="stylesheet">
+    <link href="node_modules/Materialize/materialize.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://brick.a.ssl.fastly.net/Montserrat:300,400,500,600,700" rel="stylesheet">
@@ -281,6 +281,7 @@
                                                                     <option value="">Elija un
                                                                         insumo...
                                                                     </option>
+
                                                                 </select>
                                                                 <label>Insumo</label>
                                                             </div>
@@ -361,9 +362,9 @@
                                                                     Stock Minimo
                                                                 </label>
                                                             </div>
-                                                            <div class="input-field col s2">
+                                                            <!--<div class="input-field col s2">
                                                                 <select>
-                                                                    <option ng-model="nvoInsumo.UnidadMedida"
+                                                                    /*<option ng-model="nvoInsumo.UnidadMedida"
                                                                             ng-repeat="option in unidades"
                                                                             placeholder="{{nvoInsumo.idInsumo == null ? '' : 'nvoInsumo.UnidadMedida' }}"
                                                                             value="{{option.idUnidad}}">
@@ -371,7 +372,11 @@
                                                                     </option>
                                                                 </select>
                                                                 <label>Unidad de medida</label>
-                                                            </div>
+                                                            </div>-->
+                                                            <select class="custom-select custom-select-lg mb-3">
+                                                                <option selected>Open this select menu</option>
+                                                                <option ng-repeat="u in unidades" >{{u.nombre}}</option>
+                                                            </select>
                                                             <div class="input-field col s4">
                                                                 <input id="cantidadStock" type="text" class="validate"
                                                                        ng-model="nvoInsumo.cantidadStock"
@@ -736,7 +741,7 @@
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="assets/js/spark.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="node_modules/Materialize/materialize.js"></script>
 <script src="assets/js/init.js"></script>
 
 
