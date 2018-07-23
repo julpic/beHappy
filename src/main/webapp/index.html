@@ -373,10 +373,15 @@
                                                                 </select>
                                                                 <label>Unidad de medida</label>
                                                             </div>-->
-                                                            <select class="custom-select custom-select-lg mb-3">
+                                                            <div class="input-field col s2">
+                                                            <select id ="select-insumos" class="custom-select custom-select-lg mb-1">
                                                                 <option selected>Open this select menu</option>
                                                                 <option ng-repeat="u in unidades" >{{u.nombre}}</option>
+
                                                             </select>
+                                                            <label id="label-unidadMedida">Unidad de medida</label>
+                                                            </div>
+
                                                             <div class="input-field col s4">
                                                                 <input id="cantidadStock" type="text" class="validate"
                                                                        ng-model="nvoInsumo.cantidadStock"
@@ -390,6 +395,7 @@
                                                                    ng-click="grabarInsumo()">{{ nvoInsumo.idInsumo ==
                                                                     null ? 'Guardar nuevo!' : 'Guardar cambios!'}}</a>
                                                             </div>
+
                                                         </div>
 
                                                     </form>

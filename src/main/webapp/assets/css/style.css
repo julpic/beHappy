@@ -1467,6 +1467,7 @@ a.nav-link {
 #contenedor-info_sucursal-sucursal [type="checkbox"]:checked+span:not(.lever):before{
     border-right: 2px solid darkviolet;
     border-bottom: 2px solid darkviolet;
+
 }
 
 
@@ -1479,3 +1480,19 @@ a.nav-link {
 
 
 /*----------------------FIN_CONETENEDORES--------------------------------------------*/
+
+/*----------------------NUEVO SELECT EN BOOSTRAP-----------------------------------*/
+
+#select-insumos{
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 12px
+}
+
+#label-unidadMedida{
+    position: relative;
+    top: -63.5px;
+    font-size: 12px;
+
+}
