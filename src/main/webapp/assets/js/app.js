@@ -1,7 +1,7 @@
 ﻿var app = angular.module("app", []);
 app.controller("beFruitController", function ($scope, $http) {
 
-    $scope.title = "HOLAAAAAAAAAA";
+    $scope.title = "sadsadsasdasdasdasdasdasdasdasdasdasd";
     $scope.accion = 'Inicio';
 
 
@@ -181,14 +181,14 @@ app.controller("stockController", function ($scope, $http) {
                 .then (function (response){
                     $scope.unidades = response.data;
                 });
-        setTimeout(function(){
-            $('select').material_select();
-        },1000);
+
         };
 
     $scope.grabarInsumo = function () {
         if ($scope.nvoInsumo.idInsumo == undefined)  // agregar
         {
+            $scope.nvoInsumo.idInsumo = 0 ;
+            $scope.nvoInsumo.alta = 1 ;
             $http.post('/application/json', $scope.nvoInsumo).then(function (response) {
                 alert("Registro agregado correctamente.");
                 $scope.Stock1();
@@ -197,7 +197,8 @@ app.controller("stockController", function ($scope, $http) {
             });
         }
         else {
-            $http.put('/' + $scope.nvoInsumo.idInsumo, $scope.nvoInsumo).then(function (response) {
+            $scope.nvoInsumo.alta = 0 ;
+            $http.put('/' + $scope.nvoInsumo.idInsumo, $scope.nvoInsumo.idInsumo, $scope.nvoInsumo).then(function (response) {
                 alert("Registro modificado correctamente.");
                 $scope.Stock1();
                 $scope.nvoInsumo = null;
@@ -221,6 +222,13 @@ app.controller("stockController", function ($scope, $http) {
 
     $scope.buscarUnidadMedidaPorId = function (unidadMedida) {
         $scope.nvoUnidad = unidadMedida;
+    };
+
+    $scope.grabarUnidadMedidaPorId = function () {
+        $http.put('/' + $scope.nvoUnidad.idUnidad, $scope.nvoUnidad.idUnidad, $scope.nvoUnidad).then(function (response) {
+            alert("Registro modificado correctamente.");
+            $scope.nvoUnidad = null;
+        });
     };
 
 
