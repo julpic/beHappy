@@ -182,11 +182,11 @@ app.controller("stockController", function ($scope, $http) {
     $scope.grabarInsumo = function () {
         if ($scope.nvoInsumo.idInsumo == undefined)  // agregar
         {
-            $scope.nvoInsumo.idInsumo = 0 ;
-            $scope.nvoInsumo.alta = 1 ;
+            $scope.nvoInsumo.idInsumo = null ;
+            $scope.nvoInsumo.alta = true ;
             $http.post('/beFruit/stock/insumo', JSON.stringify($scope.nvoInsumo)).then(function (response) {
                 alert("Registro agregado correctamente.");
-                $scope.Stock1();
+                $scope.Stock4();
                 $scope.nvoInsumo = null;
 
             },
@@ -199,11 +199,13 @@ app.controller("stockController", function ($scope, $http) {
         }
 
         else {
-            $scope.nvoInsumo.alta = 0 ;
-            $http.post('/beFruit/stock/insumo/' + $scope.nvoInsumo.idInsumo, $scope.nvoInsumo.idInsumo, JSON.stringify($scope.nvoInsumo)).then(function (response) {
+
+            $scope.nvoInsumo.alta = false ;
+            $http.put('/beFruit/stock/insumo/' + $scope.nvoInsumo.idInsumo, JSON.stringify($scope.nvoInsumo)).then(function (response) {
                 alert("Registro modificado correctamente.");
                 $scope.Stock1();
                 $scope.nvoInsumo = null;
+                
             });
         }
     };

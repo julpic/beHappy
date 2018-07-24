@@ -371,8 +371,8 @@
                                                             </div>-->
                                                             <div class="input-field col s2">
                                                             <select id ="select-insumos" class="custom-select custom-select-lg mb-1" ng-model="nvoInsumo.unidadMedida"
-                                                                    ng-options="u as unidades.nombre for u in unidades track by insumos.idInsumo" ng-value="{{u}}">
-                                                                <option selected>Open this select menu</option>
+                                                                    ng-options="u as u.nombre for u in unidades track by u.idUnidad">
+                                                                <option value="" disabled selected>Elija su unidad..</option>
 
                                                             </select>
                                                             <label id="label-unidadMedida">Unidad de medida</label>
