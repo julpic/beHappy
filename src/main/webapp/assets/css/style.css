@@ -1384,23 +1384,23 @@ a.nav-link i {
 
 
 /*-----------------ICONOS GENERAL( MODIFICAR Y EDITAR )-------------------*/
-#modificar-sucursal {
+.icono-modificar {
     cursor: pointer;
     color: violet;
 }
 
-#modificar-sucursal:hover {
+.icono-modificar:hover {
     color: darkviolet
 }
 
-#eliminar-sucursal {
+.icono-eliminar {
     cursor: pointer;
     margin-left: 5px;
     color: red
 }
 
 
-#eliminar-sucursal:hover {
+.icono-eliminar:hover {
     color: darkred
 }
 /*--------------------------FIN_ICONOS------------------------------------*/

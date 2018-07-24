@@ -34,7 +34,7 @@
                 <li class="nav-item dropdown">
                     <span class="account-description">Administrador</span>
                     <a class='dropdown-trigger btn' id="btn-armando" href='#'  data-target='opciones-usuario'>
-                        <span class="account-name center ">Alan Brito v2</span>
+                        <span class="account-name center ">Alan Brito v2.1</span>
 
                     </a>
                     <!--CHEQUEAR QUE ANGULAR TRAIGA EL NOMBRE DEL USUARIO!!-->
@@ -174,8 +174,8 @@
                                                                 <td>{{i.cantidadStock}}</td>
                                                                 <td>{{i.stockMinimo}}</td>
                                                                 <td>{{i.unidadMedida.nombre}}</td>
-                                                                <td><a ng-click="buscarInsumoPorId(i)" href="#"><i class="material-icons" id="modificar-sucursal" title="Editar" style="">edit</i></a>
-                                                                <a ng-click="borrarInsumo(i)" href="#"><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></a></td>
+                                                                <td><a ng-click="buscarInsumoPorId(i)" href="#"><i class="material-icons icono-modificar" title="Editar" style="">edit</i></a>
+                                                                <a ng-click="borrarInsumo(i)" href="#"><i class="material-icons icono-eliminar " title="Eliminar" style="">delete</i></a></td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -220,7 +220,7 @@
                                                                 <td><a ng-click="verDetalles(m)" href="#">Detalles</a>
                                                                 </td>
                                                                 <td>
-                                                                    <i ng-click="anularMovimiento(m)" class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i>
+                                                                    <i ng-click="anularMovimiento(m)" class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i>
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -415,8 +415,8 @@
                                                                 <td>{{um.idUnidad}}</td>
                                                                 <td>{{um.nombre}}</td>
                                                                 <td><a ng-click="buscarUnidadMedidaPorId(um)"
-                                                                       href="#"><i class="material-icons"  id="modificar-sucursal" title="Editar" >edit</i></a>
-                                                                <a ng-click="borrarUnidadMedida(um)" href="#"><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></a></td>
+                                                                       href="#"><i class="material-icons icono-modificar"  title="Editar" >edit</i></a>
+                                                                <a ng-click="borrarUnidadMedida(um)" href="#"><i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></a></td>
                                                             </tr>
 
                                                             </tbody>
@@ -522,6 +522,7 @@
                                             <a href="#" role="tab" data-toggle="tab" class="nav-link active show"
                                                aria-selected="true">Empleados</a>
                                         </li>
+
                                         <li role="presentation" class="nav-item">
                                             <a href="" role="tab" data-toggle="tab" class="nav-link"
                                                aria-selected="false">Nuevo Empleado</a>
@@ -578,6 +579,7 @@
                                             <a href="#" role="tab" data-toggle="tab" class="nav-link active show"
                                                aria-selected="true">Promociones</a>
                                         </li>
+
                                         <li role="presentation" class="nav-item">
                                             <a href="#" role="tab" data-toggle="tab" class="nav-link"
                                                aria-selected="false">Agregar</a>
@@ -631,7 +633,8 @@
                                                 <td>NO funca</td>
                                                 <td><---</td>
                                                 <td><a href="">Ver</a></td>
-                                                <td><i class="material-icons" id="modificar-sucursal" title="Editar" style="">edit</i><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></td>
+                                                <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
+                                                    <i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -646,48 +649,50 @@
 
                                     <div class="tab-content" ng-show="subaccion == 'Franquicias2'">
                                         <!---Agregar-->
-                                        <div class=" " id="contenedor-info_sucursal-sucursal" style="">
-                                            <p id="titulo-contenedor-sucursal">Datos de Franquicia</p>
-                                            <!-- inputs de los datos de franquicia-->
+                                        <form action="">
+                                            <div class=" " id="contenedor-info_sucursal-sucursal" style="">
+                                                <p id="titulo-contenedor-sucursal">Datos de Franquicia</p>
+                                                <!-- inputs de los datos de franquicia-->
 
-                                            <div class="input-field col s6">
-                                                <input placeholder="Numero de Sucursal" id="" type="text" class="validate">
-                                                <label for="">Numero de Sucursal</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input placeholder="Dirección" id="" type="text" class="validate">
-                                                <label for="">Dirección</label>
-                                            </div>
+                                                <div class="input-field col s6">
+                                                    <input placeholder="Numero de Sucursal" id="" type="text" class="validate">
+                                                    <label for="">Numero de Sucursal</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input placeholder="Dirección" id="" type="text" class="validate">
+                                                    <label for="">Dirección</label>
+                                                </div>
 
 
-                                            <select id="select-estado-sucursal" class="custom-select">
-                                                <option selected>Elegir Estado</option>
-                                                <option value="1">Activo</option>
-                                                <option value="2">No Activo</option>
-                                            </select>
+                                                <select id="select-estado-sucursal" class="custom-select">
+                                                    <option selected>Elegir Estado</option>
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">No Activo</option>
+                                                </select>
 
-                                        </div>
-                                        <!-- inputs de datos de dueño-->
-                                        <div class=" " id="contenedor-info_dueno-sucursal" style="">
-                                            <p id="titulo-contenedor-sucursal">Datos del Dueño</p>
-                                            <div class="input-field col s6">
-                                                <input placeholder="Nombre del Dueño" id="" type="text" class="validate">
-                                                <label for="">Nombre del Dueño</label>
                                             </div>
-                                            <div class="input-field col s6">
-                                                <input placeholder="Apellido del Dueño" id="" type="text" class="validate">
-                                                <label for="">Apellido del Dueño</label>
+                                            <!-- inputs de datos de dueño-->
+                                            <div class=" " id="contenedor-info_dueno-sucursal" style="">
+                                                <p id="titulo-contenedor-sucursal">Datos del Dueño</p>
+                                                <div class="input-field col s6">
+                                                    <input placeholder="Nombre del Dueño" id="" type="text" class="validate">
+                                                    <label for="">Nombre del Dueño</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input placeholder="Apellido del Dueño" id="" type="text" class="validate">
+                                                    <label for="">Apellido del Dueño</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input placeholder="Email" id="" type="email" class="validate">
+                                                    <label for="">Email</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input placeholder="Cuit" id="" type="text" class="validate" value="" minlength="10" size="14">
+                                                    <label for="">Cuit</label>
+                                                </div>
                                             </div>
-                                            <div class="input-field col s6">
-                                                <input placeholder="Email" id="" type="email" class="validate">
-                                                <label for="">Email</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input placeholder="Cuit" id="" type="text" class="validate" value="" minlength="10" size="14">
-                                                <label for="">Cuit</label>
-                                            </div>
-                                        </div>
-                                        <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
+                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
