@@ -31,16 +31,16 @@ public class EmpleadoEJB {
         return q.getResultList();
     }
 
-    public Integer buscarUltimoID(long idFranquicia){
-        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(e.idEmpleado) FROM Empleado e WHERE e.idFranquicia = :id")
+    public Long buscarUltimoID(long idFranquicia){
+        TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(e.idEmpleado) FROM Empleado e WHERE e.idFranquicia = :id")
                 .setParameter("id", idFranquicia);
         return q.getSingleResult();
     }
 
-    public Integer buscarNuevoID(long idFranquicia){
-        Integer ultimoID = buscarUltimoID(idFranquicia);
+    public Long buscarNuevoID(long idFranquicia){
+        Long ultimoID = buscarUltimoID(idFranquicia);
         if(ultimoID == null){
-            return 1;
+            return (long) 1;
         }
         return ultimoID + 1;
     }

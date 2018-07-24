@@ -41,11 +41,11 @@ public class MovimientoStockEJB {
     }
 
     private long buscarUltimoID() {
-        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(i.idMovimientoStock) FROM MovimientoStock i");
+        TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(i.idMovimientoStock) FROM MovimientoStock i");
         if(q.getSingleResult() == null){
             return 0;
         }
-        return (Integer) q.getSingleResult();
+        return q.getSingleResult();
     }
 
     public void create(MovimientoStock ms) {
