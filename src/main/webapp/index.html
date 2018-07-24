@@ -174,7 +174,7 @@
                                                                 <td>{{i.stockMinimo}}</td>
                                                                 <td>{{i.unidadMedida.nombre}}</td>
                                                                 <td><a ng-click="buscarInsumoPorId(i)" href="#"><i class="material-icons" id="modificar-sucursal" title="Editar" style="">edit</i></a>
-                                                                <a ng-click="Borrar()" href="#"><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></a></td>
+                                                                <a ng-click="borrarInsumo(i)" href="#"><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></a></td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -369,9 +369,9 @@
                                                                 <label>Unidad de medida</label>
                                                             </div>-->
                                                             <div class="input-field col s2">
-                                                            <select id ="select-insumos" class="custom-select custom-select-lg mb-1">
+                                                            <select id ="select-insumos" class="custom-select custom-select-lg mb-1" ng-model="nvoInsumo.unidadMedida">
                                                                 <option selected>Open this select menu</option>
-                                                                <option ng-repeat="u in unidades" >{{u.nombre}}</option>
+                                                                <option ng-repeat="u in unidades" value="{{u}}">{{u.nombre}}</option>
 
                                                             </select>
                                                             <label id="label-unidadMedida">Unidad de medida</label>
@@ -415,7 +415,7 @@
                                                                 <td>{{um.nombre}}</td>
                                                                 <td><a ng-click="buscarUnidadMedidaPorId(um)"
                                                                        href="#"><i class="material-icons"  id="modificar-sucursal" title="Editar" >edit</i></a>
-                                                                <a ng-click="borrarInsumo()" href="#"><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></a></td>
+                                                                <a ng-click="borrarUnidadMedida(um)" href="#"><i class="material-icons" id="eliminar-sucursal" title="Eliminar" style="">delete</i></a></td>
                                                             </tr>
 
                                                             </tbody>
@@ -433,7 +433,7 @@
                                                                     <input id="idUm" type="text" class="validate"
                                                                            ng-model="nvoUnidad.idUnidad"
                                                                            placeholder="{{nvoUnidad.idUnidad == null ? '' : 'nvoUnidad.idUnidad' }}">
-                                                                    <label for="Nº">ID</label>
+                                                                    <label for="idUm">ID</label>
                                                                 </div>
                                                                 <div class="input-field col col-sm-5">
                                                                     <input id="NombreUM" type="text" class="validate"
@@ -444,6 +444,14 @@
                                                                     </label>
                                                                 </div>
                                                                 
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col s12">
+                                                                    <a class="waves-effect waves-light btn-large  white-text"
+                                                                       ng-click="grabarUnidadMedida()">{{ nvoUnidad.idUnidad ==
+                                                                        null ? 'Guardar nuevo!' : 'Guardar cambios!'}}</a>
+                                                                </div>
 
                                                             </div>
                                                             

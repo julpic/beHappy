@@ -54,6 +54,7 @@ app.controller("stockController", function ($scope, $http) {
 
     $scope.Stock1 = function () {
         $scope.subaccion = 'Stock1';
+        $scope.obtenerInsumos();
 
     };
 
@@ -176,29 +177,31 @@ app.controller("stockController", function ($scope, $http) {
 
     };
 
-    $scope.obtenerUnidades = function () {
-            $http.get('/beFruit/stock/unidadMedida')
-                .then (function (response){
-                    $scope.unidades = response.data;
-                });
-
-        };
+    //Insumos
 
     $scope.grabarInsumo = function () {
+        alert($scope.nvoInsumo);
         if ($scope.nvoInsumo.idInsumo == undefined)  // agregar
         {
             $scope.nvoInsumo.idInsumo = 0 ;
             $scope.nvoInsumo.alta = 1 ;
-            $http.post('/application/json', $scope.nvoInsumo).then(function (response) {
+            $http.post('/beFruit/stock/insumo', JSON.stringify($scope.nvoInsumo)).then(function (response) {
                 alert("Registro agregado correctamente.");
                 $scope.Stock1();
                 $scope.nvoInsumo = null;
 
-            });
+            },
+                function (response) {
+                    alert("No se puedo guardar el nuevo insumo...");
+                    alert(JSON.stringify($scope.nvoInsumo));
+                }
+                )
+
         }
+
         else {
             $scope.nvoInsumo.alta = 0 ;
-            $http.put('/' + $scope.nvoInsumo.idInsumo, $scope.nvoInsumo.idInsumo, $scope.nvoInsumo).then(function (response) {
+            $http.post('/beFruit/stock/insumo/' + $scope.nvoInsumo.idInsumo, $scope.nvoInsumo.idInsumo, JSON.stringify($scope.nvoInsumo)).then(function (response) {
                 alert("Registro modificado correctamente.");
                 $scope.Stock1();
                 $scope.nvoInsumo = null;
@@ -206,12 +209,18 @@ app.controller("stockController", function ($scope, $http) {
         }
     };
 
-    $scope.borrarInsumo = function () {
+    $scope.borrarInsumo = function (Insumo) {
+        $scope.inBorrar = Insumo;
+        if (confirm("¿Desea borrar de forma permanente el insumo  " + $scope.inBorrar.idInsumo + "?") == true) {
+        $http.delete('/beFruit/stock/insumo/' + $scope.inBorrar.idInsumo, $scope.inBorrar.idInsumo).then(function (response) {
 
-        $http.put('/' + $scope.nvoInsumo.idInsumo, $scope.nvoInsumotoJson).then(function (response) {
-
-            alert("Registro eliminado")
-        });
+            alert("Registro eliminado");
+                $scope.Stock1();
+        },
+            function (response) {
+                alert("No se puedo borrar el insumo...");
+            })
+        };
 
     };
 
@@ -219,16 +228,38 @@ app.controller("stockController", function ($scope, $http) {
         $scope.nvoInsumo = Insumo;
         $scope.Stock4();
     };
+    //UnidadMedida
+    $scope.obtenerUnidades = function () {
+        $http.get('/beFruit/stock/unidadMedida')
+            .then (function (response){
+                $scope.unidades = response.data;
+            });
 
+    };
     $scope.buscarUnidadMedidaPorId = function (unidadMedida) {
         $scope.nvoUnidad = unidadMedida;
     };
 
-    $scope.grabarUnidadMedidaPorId = function () {
-        $http.put('/' + $scope.nvoUnidad.idUnidad, $scope.nvoUnidad.idUnidad, $scope.nvoUnidad).then(function (response) {
-            alert("Registro modificado correctamente.");
+
+    $scope.grabarUnidadMedida = function () {
+        $http.post('/beFruit/stock/unidadMedida' , $scope.nvoUnidad).then(function (response) {
+            alert("Unidad de medida nueva agregadoa correctamente.");
             $scope.nvoUnidad = null;
+            $scope.obtenerUnidades();
         });
+    };
+    $scope.borrarUnidadMedida = function (um) {
+        $scope.umBorrar = um;
+        if (confirm("¿Desea borrar de forma permanente la medida  " + $scope.umBorrar.idUnidad + "?") == true) {
+            $http.delete('/beFruit/stock/unidadMedida/' + $scope.umBorrar.idUnidad , $scope.umBorrar.idUnidad ).then(function (response) {
+
+                    alert("Registro eliminado")
+                },
+                function (response) {
+                    alert("No se puedo borrar la medida...");
+                })
+        };
+
     };
 
 
