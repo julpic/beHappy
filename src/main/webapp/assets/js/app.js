@@ -97,8 +97,9 @@ app.controller("stockController", function ($scope, $http) {
 
 
     $scope.anularMovimiento = function (m) {
-        if (confirm("¿Desea anular el movimiento " + m.id + "?") == true) {
-            $http.delete("/beFruit/stock/movimientoStock", m.id).then(
+        $scope.m = m
+        if (confirm("¿Desea anular el movimiento " + $scope.m.idMovimientoStock + "?") == true) {
+            $http.delete("/beFruit/stock/movimientoStock/" + $scope.m.idMovimientoStock, $scope.m.idMovimientoStock).then(
                 function (response) {
                     alert("Movimiento anulado exitosamente");
                     $scope.obtenerMovimientos();
@@ -150,19 +151,25 @@ app.controller("stockController", function ($scope, $http) {
             det.idDetalleMovimientoStock = count;
             detalles.push(det);
         });
+        var detallesJson = angular.toJson(detalles);
+
         $scope.CurrentDate = new Date();
-        var mov = {
-            "id": $scope.movimiento.id,
+        var mov = angular.toJson({
+            "idMovimientoStock":null,
             "idVenta": null,
             "idTurno": null,
             "fechaHora": $scope.CurrentDate,
             "fechaHoraAnulacion": null,
-            "entrada": $scope.movimiento.tipo,
-            "detalles": detalles
-        };
+            "entrada": true,
+            "detalles":[]
+        });
+        alert(mov)
         $http.post("/beFruit/stock/movimientoStock", mov).then(function (response) {
-                $http.post("/beFruit/stock/detalleMovimientoStock", detalles, mov.id).then(function (response) {
+                $http.post("/beFruit/stock/movimientoStock", mov).then(function (response) {
                     alert("Movimiento agregado");
+                    $scope.idMov = response.data;
+                    alert(idMov)
+
 
                 });
 
@@ -177,7 +184,7 @@ app.controller("stockController", function ($scope, $http) {
 
     };
 
-    //Insumos
+    //Insumos - FUNCIONANDO
 
     $scope.grabarInsumo = function () {
         if ($scope.nvoInsumo.idInsumo == undefined)  // agregar
@@ -209,7 +216,6 @@ app.controller("stockController", function ($scope, $http) {
             });
         }
     };
-
     $scope.borrarInsumo = function (Insumo) {
         $scope.inBorrar = Insumo;
         if (confirm("¿Desea borrar de forma permanente el insumo  " + $scope.inBorrar.idInsumo + "?") == true) {
@@ -224,11 +230,11 @@ app.controller("stockController", function ($scope, $http) {
         };
 
     };
-
     $scope.buscarInsumoPorId = function (Insumo) {
         $scope.nvoInsumo = Insumo;
         $scope.Stock4();
     };
+
     //UnidadMedida - FUNCIONANDO
     $scope.obtenerUnidades = function () {
         $http.get('/beFruit/stock/unidadMedida')
@@ -253,7 +259,7 @@ app.controller("stockController", function ($scope, $http) {
         }
         else {
             if(confirm('¿Desea realizar estos cambios?') == true){
-                $http.put('/beFruit/stock/unidadMedida/'+ $scope.nvoUnidad.idUnidad,$scope.nvoUnidad).then(function (response) {
+                $http.put('/beFruit/stock/unidadMedida/'+ $scope.nvoUnidad.idUnidad,$scope.nvoUnidad).then (function (response) {
                     alert("Los cambios fueron realizados correctamente.")
                     $scope.nvoUnidad = null;
                     $scope.obtenerUnidades();
@@ -267,9 +273,9 @@ app.controller("stockController", function ($scope, $http) {
 
     //Valores inicializados (sino materialize no carga los select):
 
-    $scope.insumos = $scope.obtenerInsumos();
-    $scope.unidades = $scope.obtenerUnidades();
-    $scope.movimientos = $scope.obtenerMovimientos();
+    $scope.obtenerInsumos();
+    $scope.obtenerUnidades();
+    $scope.obtenerMovimientos();
     $scope.nvoInsumo = $scope.nvoInsumo;
 
 
@@ -285,6 +291,7 @@ app.controller("franquiciasController", function ($scope, $http) {
     $scope.Franquicias1 = function () {
         $scope.subaccion = 'Franquicias1';
 
+
     };
 
     $scope.Franquicias2 = function () {
@@ -295,13 +302,48 @@ app.controller("franquiciasController", function ($scope, $http) {
     //Funciones...
 
     $scope.obtenerFranquicias = function () {
-        $http.get('/beFruit/franquicias')
-            .then (function (response){
-                $scope.franquicia = response.data;
+        $http.get('/beFruit/franquicias/franquicia')
+            .then(function (response) {
+                $scope.franquicias = response.data;
             });
     };
 
-    $scope.obtenerFranquicias();
+    $scope.grabarFranquicia = function (franquicia) {
+        var franquiciaJson = {
+            "idFranquicia": null,
+            "cuit": franquicia.cuit,
+            "direccion": franquicia.direccion,
+            "nombreDueno": franquicia.nombreDueno,
+            "eMailDueno": franquicia.eMailDueno,
+            "apellidoDueno": franquicia.apellidoDueno,
+            "alta": franquicia.alta,
+            "empleados": []
+        };
+
+        $http.post('/beFruit/franquicias/franquicia', franquiciaJson).then(function (response) {
+                alert("Franquicia agregada correctamente.");
+            },
+            function (response) {
+                alert('No se pudo crear la Franquicia');
+            })
+
+    };
+
+    $scope.borrarFranquicia = function (franquicia) {
+        $scope.franquiciaJson = angular.toJson(franquicia);
+        if (confirm("¿Desea borrar de forma permanente el insumo  " + franquicia.idFranquicia+ "?") == true) {
+            $http.delete('/beFruit/franquicias/franquicia/' + franquicia.idFranquicia).then(function (response) {
+
+                    alert("Franquicia eliminadada");
+                    $scope.obtenerFranquicias();
+                },
+                function (response) {
+                    alert("No se puedo borrar la franquicia...");
+                })
+        };
+
+    };
+    $scope.obtenerFranquicias()
 });
 
 app.controller("ventaController", function ($scope, $http) {

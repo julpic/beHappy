@@ -258,7 +258,7 @@
                                                         <div class="input-field col s8"
                                                              ng-show="!(movimiento.tipo === 'true' || movimiento.tipo === 'false')">
 
-                                                            <select ng-model="movimiento.tipo">
+                                                            <select id ="select-insumos" class="custom-select custom-select-lg mb-1" ng-model="movimiento.tipo">
                                                                 <option value="" disabled selected>Elija un tipo...
                                                                 </option>
                                                                 <option value=true>Entrada</option>
@@ -271,20 +271,21 @@
                                                              ng-show="(movimiento.tipo === 'true' || movimiento.tipo === 'false')">
                                                             <div class="input-field col s10">
 
-                                                                <select ng-model="detalle.insumo"
-                                                                        ng-options="insumo as insumos.nombre for insumo in insumos track by insumos.idInsumo"
+                                                                <select id ="select-insumos" class="custom-select custom-select-lg mb-1" ng-model="detalle.insumo"
+                                                                        ng-options="insumo as insumo.nombre for insumo in insumos track by insumo.idInsumo"
                                                                         material-select>
                                                                     <option value="">Elija un
                                                                         insumo...
                                                                     </option>
+
 
                                                                 </select>
                                                                 <label>Insumo</label>
                                                             </div>
                                                             <div class="input-field col s8">
                                                                 <input ng-model="detalle.cantidad" id="cantidad"
-                                                                       type="number" min="1" pattern="^[0-9]+"
-                                                                       class="validate" required>
+                                                                       type="number" min="1"
+                                                                       required>
                                                                 <label for="cantidad">Cantidad</label>
                                                             </div>
                                                             <div class="input-field col s8">
@@ -639,15 +640,15 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr> <!--ng-repeat="f in franquicia"-->
-                                                <th scope="row">Error</th>
-                                                <td>---></td>
-                                                <td>Angular</td>
-                                                <td>NO funca</td>
-                                                <td><---</td>
+                                            <tr ng-repeat="f in franquicias">
+                                                <th scope="row">{{f.idFranquicia}}</th>
+                                                <td>{{f.direccion}}</td>
+                                                <td>{{f.alta}}</td>
+                                                <td>{{f.nombreDueno}}</td>
+                                                <td>{{f.eMailDueno}}</td>
                                                 <td><a href="">Ver</a></td>
                                                 <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
-                                                    <i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></td>
+                                                    <i class="material-icons icono-eliminar "  title="Eliminar" style="" ng-click="borrarFranquicia(f)">delete</i></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -668,43 +669,42 @@
                                                 <!-- inputs de los datos de franquicia-->
 
                                                 <div class="input-field col s6">
-                                                    <input placeholder="Numero de Sucursal" id="" type="text" class="validate">
+                                                    <input placeholder="Numero de Sucursal" id="" type="text" class="validate" disabled ng-model="franquicia.idFranquicia">
                                                     <label for="">Numero de Sucursal</label>
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input placeholder="Dirección" id="" type="text" class="validate">
+                                                    <input placeholder="Dirección" id="" type="text" class="validate" ng-model="franquicia.direccion">
                                                     <label for="">Dirección</label>
                                                 </div>
 
-
-                                                <select id="select-estado-sucursal" class="custom-select">
-                                                    <option selected>Elegir Estado</option>
-                                                    <option value="1">Activo</option>
-                                                    <option value="2">No Activo</option>
+                                                <select class="custom-select custom-select-lg mb-1" ng-model="franquicia.alta">
+                                                    <option ng-value="true" selected>Activo</option>
+                                                    <option ng-value="false" >No Activo</option>
                                                 </select>
+
 
                                             </div>
                                             <!-- inputs de datos de dueño-->
                                             <div class=" " id="contenedor-info_dueno-sucursal" style="">
                                                 <p id="titulo-contenedor-sucursal">Datos del Dueño</p>
                                                 <div class="input-field col s6">
-                                                    <input placeholder="Nombre del Dueño" id="" type="text" class="validate">
+                                                    <input placeholder="Nombre del Dueño" id="" type="text" class="validate" ng-model="franquicia.nombreDueno">
                                                     <label for="">Nombre del Dueño</label>
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input placeholder="Apellido del Dueño" id="" type="text" class="validate">
+                                                    <input placeholder="Apellido del Dueño" id="" type="text" class="validate" ng-model="franquicia.apellidoDueno">
                                                     <label for="">Apellido del Dueño</label>
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input placeholder="Email" id="" type="email" class="validate">
+                                                    <input placeholder="Email" id="" type="email" class="validate" ng-model="franquicia.eMailDueno">
                                                     <label for="">Email</label>
                                                 </div>
                                                 <div class="input-field col s6">
-                                                    <input placeholder="Cuit" id="" type="text" class="validate" value="" minlength="10" size="14">
+                                                    <input placeholder="Cuit" id="" type="text" class="validate" value="" minlength="10" size="14" ng-model="franquicia.cuit">
                                                     <label for="">Cuit</label>
                                                 </div>
                                             </div>
-                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
+                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarFranquicia(franquicia)">Aceptar</a>
                                         </form>
                                     </div>
                                 </div>
