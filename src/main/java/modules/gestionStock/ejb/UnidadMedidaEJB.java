@@ -49,7 +49,7 @@ public class UnidadMedidaEJB {
         return genID.buscarID(buscarUltimoID());}
 
     private long buscarUltimoID() {
-        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(um.idUnidad) FROM UnidadMedida um");
+        TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(um.idUnidad) FROM UnidadMedida um");
         if(q.getSingleResult() == null){
             return 0;
         }
