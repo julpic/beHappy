@@ -532,14 +532,84 @@
                                     <div class="tab-content" ng-show="subaccion == 'Empleados1'">
 
                                         <div class="tab-pane fade in active show" role="tabcard">
-                                            <h3>Habría que pensar qué poner aca...</h3>
+                                            <table class="table centered">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col">Franquicia</th>
+                                                    <th scope="col">Telefono</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">--</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr> <!--ng-repeat="f in franquicia"-->
+                                                    <th scope="row">Error</th>
+                                                    <td>---></td>
+                                                    <td>Angular</td>
+                                                    <td>NO funca</td>
+                                                    <td><---</td>
+                                                    <td>Off</td>
+                                                    <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
+                                                        <i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
 
                                     <div class="tab-content" ng-show="subaccion == 'Empleados2'">
 
                                         <div class="tab-pane fade in active show" role="tabcard">
-                                            <h3>Habría que pensar qué poner acaaaaaaaaaaaaaaaaa...</h3>
+                                            <form action="" class="col s12">
+                                                <div class=" " id="contenedor-info_empleado-empleado" style="">
+                                                    <p id="titulo-contenedor-sucursal">Datos de Empleado</p>
+                                                    <!-- inputs de los datos de Empleados-->
+
+                                                    <div class="input-field col s6">
+                                                        <input placeholder="Nombre" id="" type="text" class="validate">
+                                                        <label for="">Nombre</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <input placeholder="Apellido" id="" type="text" class="validate">
+                                                        <label for="">Apellido</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <input type="text" class="validate" placeholder="Documento">
+                                                        <label for="">Número de Documento</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <input type="text" class="validate" placeholder="Año-Mes-Dia" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                                                        <label for="">Fecha de Nacimiento</label>
+                                                    </div>
+
+                                                    <div class="input-field col s6">
+                                                        <input type="text" class="validate" placeholder="Numero de Telefono">
+                                                        <label for="">Número de Teléfono</label>
+                                                    </div>
+
+                                                    <div class="input-field col s6">
+                                                        <select  class="custom-select left ">
+                                                            <option selected disabled>Elegir Sucursal</option>
+                                                            <option value="1">Sucursal 1</option>
+                                                            <option value="2">Sucursal 2</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <select  class="custom-select ">
+                                                            <option selected disabled>Elegir Estado</option>
+                                                            <option value="1">Activo</option>
+                                                            <option value="2">No Activo</option>
+                                                       </select>
+                                                    </div>
+                                                    <div class="col s12">
+                                                        <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
+                                                    </div>
+                                                </div>
+
+                                            </form>
                                         </div>
                                     </div>
 
@@ -704,7 +774,13 @@
                                                     <label for="">Cuit</label>
                                                 </div>
                                             </div>
+<<<<<<< HEAD
                                             <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarFranquicia(franquicia)">Aceptar</a>
+=======
+                                            <div class="col s12">
+                                                <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
+                                            </div>
+>>>>>>> 29a93667ad18199f8774e0ff1457d65daeb23cf7
                                         </form>
                                     </div>
                                 </div>
