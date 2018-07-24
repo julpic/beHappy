@@ -12,7 +12,6 @@ public class Usuario {
     private String password;
     private String usuario;
 
-
     @Id
     @Column(name = "idUsuario")
     public long getIdUsuario() { return idUsuario; }
@@ -33,7 +32,7 @@ public class Usuario {
     @Column(name = "idFranquicia")
     public long getIdFranquicia() { return idFranquicia; }
 
-    public void setIdFranquicia(int idFranquicia) { this.idFranquicia = idFranquicia; }
+    public void setIdFranquicia(long idFranquicia) { this.idFranquicia = idFranquicia; }
 
     @Basic
     @Column(name = "password")
