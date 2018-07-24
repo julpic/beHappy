@@ -180,7 +180,6 @@ app.controller("stockController", function ($scope, $http) {
     //Insumos
 
     $scope.grabarInsumo = function () {
-        alert($scope.nvoInsumo);
         if ($scope.nvoInsumo.idInsumo == undefined)  // agregar
         {
             $scope.nvoInsumo.idInsumo = 0 ;
@@ -228,7 +227,7 @@ app.controller("stockController", function ($scope, $http) {
         $scope.nvoInsumo = Insumo;
         $scope.Stock4();
     };
-    //UnidadMedida
+    //UnidadMedida - FUNCIONANDO
     $scope.obtenerUnidades = function () {
         $http.get('/beFruit/stock/unidadMedida')
             .then (function (response){
@@ -239,26 +238,27 @@ app.controller("stockController", function ($scope, $http) {
     $scope.buscarUnidadMedidaPorId = function (unidadMedida) {
         $scope.nvoUnidad = unidadMedida;
     };
-
-
     $scope.grabarUnidadMedida = function () {
-        $http.post('/beFruit/stock/unidadMedida' , $scope.nvoUnidad).then(function (response) {
-            alert("Unidad de medida nueva agregadoa correctamente.");
-            $scope.nvoUnidad = null;
-            $scope.obtenerUnidades();
-        });
-    };
-    $scope.borrarUnidadMedida = function (um) {
-        $scope.umBorrar = um;
-        if (confirm("¿Desea borrar de forma permanente la medida  " + $scope.umBorrar.idUnidad + "?") == true) {
-            $http.delete('/beFruit/stock/unidadMedida/' + $scope.umBorrar.idUnidad , $scope.umBorrar.idUnidad ).then(function (response) {
+        if($scope.nvoUnidad.idUnidad == null){
+            if(confirm('¿Desea agregar esta nueva unidad?') == true){
+                $http.post('/beFruit/stock/unidadMedida' , $scope.nvoUnidad).then(function (response) {
+                    alert("Unidad de medida nueva agregadoa correctamente.");
+                    $scope.nvoUnidad = null;
+                    $scope.obtenerUnidades();
+                });
+            }
 
-                    alert("Registro eliminado")
-                },
-                function (response) {
-                    alert("No se puedo borrar la medida...");
+        }
+        else {
+            if(confirm('¿Desea realizar estos cambios?') == true){
+                $http.put('/beFruit/stock/unidadMedida/'+ $scope.nvoUnidad.idUnidad,$scope.nvoUnidad).then(function (response) {
+                    alert("Los cambios fueron realizados correctamente.")
+                    $scope.nvoUnidad = null;
+                    $scope.obtenerUnidades();
                 })
-        };
+            }
+
+        }
 
     };
 
