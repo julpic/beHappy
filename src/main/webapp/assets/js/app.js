@@ -205,7 +205,7 @@ app.controller("stockController", function ($scope, $http) {
                 alert("Registro modificado correctamente.");
                 $scope.Stock1();
                 $scope.nvoInsumo = null;
-                
+
             });
         }
     };
@@ -311,6 +311,23 @@ app.controller("cajaController", function ($scope, $http) {
 });
 
 app.controller("empleadosController", function ($scope, $http) {
+    $scope.subaccion = 'Empleados1';
+
+    //Subacciones...
+
+    $scope.Empleados1 = function () {
+        $scope.subaccion = 'Empleados1';
+
+    };
+
+    $scope.Empleados2 = function () {
+        $scope.subaccion = 'Empleados2';
+
+    };
+
+    //Funciones...
+
+
 });
 
 app.controller("informesController", function ($scope, $http) {

@@ -518,16 +518,29 @@
                                 </div>
                                 <div class="card-body">
                                     <ul class="nav nav-tabs">
-                                        <li role="presentation" class="nav-item">
+                                        <li role="presentation" class="nav-item" ng-click="Empleados1()">
                                             <a href="#" role="tab" data-toggle="tab" class="nav-link active show"
                                                aria-selected="true">Empleados</a>
                                         </li>
 
-                                        <li role="presentation" class="nav-item">
+                                        <li role="presentation" class="nav-item" ng-click="Empleados2()">
                                             <a href="" role="tab" data-toggle="tab" class="nav-link"
                                                aria-selected="false">Nuevo Empleado</a>
                                         </li>
                                     </ul>
+                                    <div class="tab-content" ng-show="subaccion == 'Empleados1'">
+
+                                        <div class="tab-pane fade in active show" role="tabcard">
+                                            <h3>Habría que pensar qué poner aca...</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-content" ng-show="subaccion == 'Empleados2'">
+
+                                        <div class="tab-pane fade in active show" role="tabcard">
+                                            <h3>Habría que pensar qué poner acaaaaaaaaaaaaaaaaa...</h3>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
