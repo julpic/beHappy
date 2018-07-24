@@ -647,7 +647,7 @@ body.right-to-left {
 ***********************************************/
 .page-sidebar {
     font-size: 15px;
-    background-color: #f48fb1;
+    background-color: rgba(198, 39, 129, 0.82);
     height: 39em;
     border-radius: 15px;
     width: 16em;
@@ -662,8 +662,7 @@ body.right-to-left {
 
 .page-sidebar .nav-pills > li > a {
     background: none;
-    color: right:;
-    padding: 5px;
+    padding: 10px;
     display: block;
     text-decoration: none;
     outline: 0;
@@ -671,22 +670,21 @@ body.right-to-left {
 
 }
 
+
 .page-sidebar .nav-pills > li.active > a,
 .page-sidebar .nav-pills > li.active > a:focus,
 .page-sidebar .nav-pills > li.active > a:hover,
 .page-sidebar .nav-pills > li.active > a:hover,
 .page-sidebar .nav-pills > li > a:focus,
 .page-sidebar .nav-pills > li > a:hover {
-    color: #9575cd;
-    font-weight: 1000;
+    color: white;
+    font-weight: 900;
     font-size: 20px;
     -webkit-transition: all 0.2s ease;
-    border-bottom: 1px solid #9575cd
+    background-color: rgba(255, 149, 220, 0.82)
+   /* border-bottom: 1px solid #9575cd*/
 }
 
-li.active > i.fa {
-    color: #9575cd;
-}
 
 /*
   .page-sidebar i.fa,
@@ -1270,7 +1268,7 @@ ul.contact li:before {
 }
 
 nav {
-    background-color: #f48fb1;
+    background-color: rgba(198, 39, 129, 0.82);
 }
 
 nav.nav-extended div.container-fluid {
@@ -1294,37 +1292,60 @@ div.page-content {
 
 }
 
-#dropdown1 {
-    top: -28px;
+
+/*---------------------Armanod paredes----------*/
+#opciones-usuario {
     background-color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
 }
 
-.dropdown-content li > a {
-    color: #9575cd;
+#opciones-usuario li > a {
+    color: darkviolet;
 
 }
 
-/*Prueba Amrnado Paredes*/
-.dropdown-trigger {
+#opciones-usuario li> a:hover{
+    background: #ab40d3;
+    color: white;
+
+}
+
+
+/*.dropdown-trigger {
     width: 200px;
     color: white;
     font-family: 'Montserrat', sans-serif;
     background-color: #9575cd;
     border-radius: 10px
 
-}
-
-.dropdown-trigger:hover {
+}*/
+#btn-armando {
+    width: 200px;
     color: white;
-
+    font-family: 'Montserrat', sans-serif;
+    background-color: darkviolet;
+    border-radius: 10px
 }
 
+
+#btn-armando:hover {
+    background-color: white;
+    color: darkviolet;
+}
+
+#btn-armando:checked {
+    background-color: white;
+    color: darkviolet;
+}
+/*
 .dropdown-trigger:visited {
     background-color: #9575cd
-}
+}*/
+
+/*-------------------Fin Armando paredes----------*/
+
 
 div.row div.col-md-12 div.card div.card-body,
 div.row div.col-12 div.card div.card-body {
@@ -1338,8 +1359,26 @@ footer div.row {
 
 a.nav-link {
     position: relative;
-    left: 20px;
+    left: 0px;
 }
+
+a.nav-link i {
+    margin-left: 20px;
+}
+
+/*---------------LOGO DE BE-------------*/
+#logo-be{
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+    height: 62px;
+
+    position: initial;
+    margin-left: 30px;
+}
+
+
+/*------------------------------------------*/
 
 
 
