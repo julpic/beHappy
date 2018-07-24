@@ -1541,3 +1541,44 @@ a.nav-link i {
 
 
 /*------------FIN STOCK----------------------------*/
+
+
+
+
+/*-------------Empleado---------------*/
+
+
+#contenedor-info_empleado-empleado .custom-select {
+    display: inline-block;
+    width: 100%;
+    height: 3rem;
+    padding: .375rem 1.75rem .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background-size: 8px 10px;
+    border: 1px solid violet;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+
+
+#contenedor-info_empleado-empleado .custom-select:focus {
+    border-color: darkviolet;
+    outline: 0;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.075), 0 0 5px rgba(128,189,255,.5);
+}
+
+#contenedor-info_empleado-empleado .input-field input[type=text]:focus,
+#contenedor-info_empleado-empleado .input-field input[type=text].valid{
+    border-bottom: 1px solid darkviolet;
+    box-shadow: 0 1px 0 0 darkviolet;
+}
+
+#contenedor-info_empleado-empleado .input-field input[type=text]:focus + label{
+    color: darkviolet
+}
