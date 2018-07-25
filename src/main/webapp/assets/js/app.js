@@ -16,11 +16,12 @@ app.controller("beFruitController", function ($scope, $http) {
 
     $scope.Stock = function () {
         $scope.accion = 'Stock';
+        $scope.subaccion = 'Stock1';
 
     };
 
-    $scope.Proveedor = function () {
-        $scope.accion = 'Proveedor'
+    $scope.Proveedores = function () {
+        $scope.accion = 'Proveedores'
     };
 
     $scope.Caja = function () {
@@ -151,7 +152,6 @@ app.controller("stockController", function ($scope, $http) {
         var count = 1;
         var detalles = [];
         angular.forEach($scope.tempDetalles, function (det) {
-            det.idMovimiento = $scope.movimiento.id;
             det.idDetalleMovimientoStock = count;
             detalles.push(det);
         });
@@ -164,19 +164,19 @@ app.controller("stockController", function ($scope, $http) {
             "idTurno": null,
             "fechaHora": $scope.CurrentDate,
             "fechaHoraAnulacion": null,
-            "entrada": true,
-            "detalles":[]
+            "entrada": $scope.movimiento.tipo
         });
         alert(mov)
-        $http.post("/beFruit/stock/movimientoStock", mov).then(function (response) {
-                $http.post("/beFruit/stock/movimientoStock", mov).then(function (response) {
-                    alert("Movimiento agregado");
-                    $scope.idMov = response.data;
-                    alert(idMov)
-
-
-                });
-
+        
+        $http.post("/beFruit/stock/movimientoStock", mov).then(function (response) { //aca deberia agregar el movimiento
+            alert("Movimiento agregado");
+            var idMov = response.data;
+            $http.post("/beFruit/stock/detalleMovimientoStock/movimiento/" + idMov, detallesJson).then(function (response) { //aca deberia agregar los detalles
+            alert("Detalles agregados");
+            },
+            function (response) {
+                alert("No se puedieron agregar los detalles...");
+            });
             },
             function (response) {
                 alert("No se puedo agregar el movimiento...");
@@ -191,7 +191,8 @@ app.controller("stockController", function ($scope, $http) {
     //Insumos - FUNCIONANDO
 
     $scope.grabarInsumo = function () {
-        if ($scope.nvoInsumo.idInsumo == undefined)  // agregar
+        if ($scope.nvoInsumo.nombre != null && $scope.nvoInsumo.stockMinimo != null && $scope.nvoInsumo.unidadMedida != null) {
+            if ($scope.nvoInsumo.idInsumo == undefined)  // agregar
         {
             $scope.nvoInsumo.idInsumo = null ;
             $scope.nvoInsumo.alta = true ;
@@ -219,6 +220,10 @@ app.controller("stockController", function ($scope, $http) {
 
             });
         }
+            }
+        else {
+            alert("Faltan datos..");
+        }
     };
     $scope.borrarInsumo = function (Insumo) {
         $scope.inBorrar = Insumo;
@@ -244,6 +249,7 @@ app.controller("stockController", function ($scope, $http) {
         $http.get('/beFruit/stock/unidadMedida')
             .then (function (response){
                 $scope.unidades = response.data;
+            
             });
 
     };
@@ -254,7 +260,7 @@ app.controller("stockController", function ($scope, $http) {
         if($scope.nvoUnidad.idUnidad == null){
             if(confirm('¿Desea agregar esta nueva unidad?') == true){
                 $http.post('/beFruit/stock/unidadMedida' , $scope.nvoUnidad).then(function (response) {
-                    alert("Unidad de medida nueva agregadoa correctamente.");
+                    alert("Unidad de medida nueva agregada correctamente.");
                     $scope.nvoUnidad = null;
                     $scope.obtenerUnidades();
                 });
@@ -272,6 +278,7 @@ app.controller("stockController", function ($scope, $http) {
 
         }
 
+
     };
 
 
@@ -287,16 +294,16 @@ app.controller("stockController", function ($scope, $http) {
 
 app.controller("proveedoresController", function ($scope, $http) {
 
-    $scope.subaccion = 'Proveedor1';
+    $scope.subaccion = 'Proveedores1';
 
     //Subacciones...
 
-    $scope.Proveedor1 = function () {
+    $scope.Proveedores1 = function () {
         $scope.subaccion = 'Proveedor1';
     };
 
-    $scope.Proveedor2 = function () {
-        $scope.subaccion = 'Proveedor2';
+    $scope.Proveedores2 = function () {
+        $scope.subaccion = 'Proveedores2';
     };
 
     //Funciones...
@@ -340,6 +347,7 @@ app.controller("franquiciasController", function ($scope, $http) {
     };
 
     $scope.grabarFranquicia = function (franquicia) {
+        if (franquicia.direccion != null && franquicia.alta != null && franquicia.nombreDueno != null && franquicia.apellidoDueno != null && franquicia.eMailDueno != null && franquicia.cuit != null) {
         var franquiciaJson = {
             "idFranquicia": null,
             "cuit": franquicia.cuit,
@@ -358,6 +366,9 @@ app.controller("franquiciasController", function ($scope, $http) {
             function (response) {
                 alert('No se pudo crear la Franquicia');
             })
+        } else {
+            alert("Faltan datos...");
+        }
 
     };
 
@@ -382,6 +393,7 @@ app.controller("ventaController", function ($scope, $http) {
 });
 
 app.controller("cajaController", function ($scope, $http) {
+    $scope.subaccion = 'Caja1';
 });
 
 app.controller("empleadosController", function ($scope, $http) {
@@ -412,9 +424,11 @@ app.controller("empleadosController", function ($scope, $http) {
 });
 
 app.controller("informesController", function ($scope, $http) {
+    $scope.subaccion = 'Informes1';
 });
 
 app.controller("promocionesController", function ($scope, $http) {
+    $scope.subaccion = 'Promociones1';
 });
 
 app.controller("configController", function ($scope, $http) {
