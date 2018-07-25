@@ -61,7 +61,6 @@ public class UsuarioEJB {
         return false;
     }
 
-
     public boolean passwordValida(String usuario, String password){
        Usuario u = find(usuario);
        if (password == u.getPassword()){

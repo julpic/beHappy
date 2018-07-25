@@ -29,7 +29,7 @@ public class UsuarioModel {
         return Perfiles;
     }
 
-    public Usuario getDBENtity(){
+    public Usuario getDBEntity(){
         Usuario u = new Usuario();
 
         u.setIdEmpleado(this.idEmpleado);
