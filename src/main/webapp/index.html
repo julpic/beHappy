@@ -362,17 +362,7 @@
                                                                     Stock Minimo
                                                                 </label>
                                                             </div>
-                                                            <!--<div class="input-field col s2">
-                                                                <select>
-                                                                    /*<option ng-model="nvoInsumo.UnidadMedida"
-                                                                            ng-repeat="option in unidades"
-                                                                            placeholder="{{nvoInsumo.idInsumo == null ? '' : 'nvoInsumo.UnidadMedida' }}"
-                                                                            value="{{option.idUnidad}}">
-                                                                        {{option.nombre}}
-                                                                    </option>
-                                                                </select>
-                                                                <label>Unidad de medida</label>
-                                                            </div>-->
+
                                                             <div class="input-field col s2">
                                                             <select required id ="select-insumos" class="custom-select custom-select-lg mb-1" ng-model="nvoInsumo.unidadMedida"
                                                                     ng-options="u as u.nombre for u in unidades track by u.idUnidad">
@@ -761,7 +751,7 @@
                                                 <td>{{f.nombreDueno}}</td>
                                                 <td>{{f.eMailDueno}}</td>
                                                 <td><a href="">Ver</a></td>
-                                                <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
+                                                <td><i class="material-icons icono-modificar"  title="Editar" style="" ng-click="modificarFranquicia(f)" >edit</i>
                                                     <i class="material-icons icono-eliminar "  title="Eliminar" style="" ng-click="borrarFranquicia(f)">delete</i></td>
                                             </tr>
                                             </tbody>
@@ -783,7 +773,7 @@
                                                 <!-- inputs de los datos de franquicia-->
 
                                                 <div class="input-field col s6">
-                                                    <input placeholder="Numero de Sucursal" id="" type="text" class="validate" disabled ng-model="franquicia.idFranquicia">
+                                                    <input placeholder="{{franquicia.idFranquicia == null ? 'Automatico' : 'franquicia.idFranquicia'}}"  id="" type="text" class="validate" disabled ng-model="franquicia.idFranquicia">
                                                     <label for="">Numero de Sucursal</label>
                                                 </div>
                                                 <div class="input-field col s6">

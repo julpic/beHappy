@@ -223,7 +223,7 @@ app.controller("stockController", function ($scope, $http) {
             }
         else {
             alert("Faltan datos..");
-        }
+        };
     };
     $scope.borrarInsumo = function (Insumo) {
         $scope.inBorrar = Insumo;
@@ -346,26 +346,58 @@ app.controller("franquiciasController", function ($scope, $http) {
             });
     };
 
+    $scope.modificarFranquicia = function(f){
+      $scope.franquicia = f;
+      $scope.Franquicias2();
+    };
+
     $scope.grabarFranquicia = function (franquicia) {
         if (franquicia.direccion != null && franquicia.alta != null && franquicia.nombreDueno != null && franquicia.apellidoDueno != null && franquicia.eMailDueno != null && franquicia.cuit != null) {
-        var franquiciaJson = {
-            "idFranquicia": null,
-            "cuit": franquicia.cuit,
-            "direccion": franquicia.direccion,
-            "nombreDueno": franquicia.nombreDueno,
-            "eMailDueno": franquicia.eMailDueno,
-            "apellidoDueno": franquicia.apellidoDueno,
-            "alta": franquicia.alta,
-            "empleados": []
-        };
-        alert(JSON.stringify(franquiciaJson));
+            if (franquicia.idFranquicia == null) {
+                var franquiciaJson = {
+                    "idFranquicia": -1,
+                    "cuit": franquicia.cuit,
+                    "direccion": franquicia.direccion,
+                    "nombreDueno": franquicia.nombreDueno,
+                    "eMailDueno": franquicia.eMailDueno,
+                    "apellidoDueno": franquicia.apellidoDueno,
+                    "alta": franquicia.alta,
+                    "empleados": []
+                };
 
-        $http.post('/beFruit/franquicias/franquicia', JSON.stringify(franquiciaJson)).then(function (response) {
-                alert("Franquicia agregada correctamente.");
-            },
-            function (response) {
-                alert('No se pudo crear la Franquicia');
-            })
+                $http.post('/beFruit/franquicias/franquicia', JSON.stringify(franquiciaJson)).then(function (response) {
+                        alert("Franquicia agregada correctamente.");
+                        $scope.obtenerFranquicias();
+                        $scope.franquicia = null ;
+                    },
+                    function (response) {
+                        alert('No se pudo crear la Franquicia');
+                    })
+            }
+
+            else {
+                var franquiciaJson = {
+                    "idFranquicia": franquicia.idFranquicia,
+                    "cuit": franquicia.cuit,
+                    "direccion": franquicia.direccion,
+                    "nombreDueno": franquicia.nombreDueno,
+                    "eMailDueno": franquicia.eMailDueno,
+                    "apellidoDueno": franquicia.apellidoDueno,
+                    "alta": franquicia.alta,
+                    "empleados": []
+                };
+
+                $http.put('/beFruit/franquicias/franquicia/' + franquiciaJson.idFranquicia, JSON.stringify(franquiciaJson)).then(function (response) {
+                        alert("Franquicia modificada exitosamente.");
+                        $scope.obtenerFranquicias();
+                        $scope.Franquicias1();
+                        $scope.franquicia = null;
+                    },
+                    function (response) {
+                        alert('No se pudo modificar la Franquicia');
+                    })
+            }
+
         } else {
             alert("Faltan datos...");
         }

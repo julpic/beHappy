@@ -666,7 +666,9 @@ body.right-to-left {
     display: block;
     text-decoration: none;
     outline: 0;
-    color: white
+    color: white;
+    position: relative;
+    bottom: 16.5px;
 
 }
 
@@ -681,7 +683,7 @@ body.right-to-left {
     font-weight: 900;
     font-size: 20px;
     -webkit-transition: all 0.2s ease;
-    background-color: rgba(255, 149, 220, 0.82)
+    background-color: rgba(255, 149, 220, 0.82);
    /* border-bottom: 1px solid #9575cd*/
 }
 
