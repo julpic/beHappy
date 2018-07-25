@@ -19,6 +19,10 @@ app.controller("beFruitController", function ($scope, $http) {
 
     };
 
+    $scope.Proveedor = function () {
+        $scope.accion = 'Proveedor'
+    };
+
     $scope.Caja = function () {
         $scope.accion = 'Caja';
     };
@@ -281,6 +285,33 @@ app.controller("stockController", function ($scope, $http) {
 
 });
 
+app.controller("proveedoresController", function ($scope, $http) {
+
+    $scope.subaccion = 'Proveedor1';
+
+    //Subacciones...
+
+    $scope.Proveedor1 = function () {
+        $scope.subaccion = 'Proveedor1';
+    };
+
+    $scope.Proveedor2 = function () {
+        $scope.subaccion = 'Proveedor2';
+    };
+
+    //Funciones...
+    $scope.obtenerProveedores = function () {
+        $http.get('/beFruit/franquicias/proveedor')
+            .then (function (response){
+                $scope.proveedores = response.data;
+            });
+
+    };
+
+    $scope.obtenerProveedores();
+
+
+});
 
 app.controller("franquiciasController", function ($scope, $http) {
 
@@ -319,8 +350,9 @@ app.controller("franquiciasController", function ($scope, $http) {
             "alta": franquicia.alta,
             "empleados": []
         };
+        alert(JSON.stringify(franquiciaJson));
 
-        $http.post('/beFruit/franquicias/franquicia', franquiciaJson).then(function (response) {
+        $http.post('/beFruit/franquicias/franquicia', JSON.stringify(franquiciaJson)).then(function (response) {
                 alert("Franquicia agregada correctamente.");
             },
             function (response) {
@@ -359,15 +391,22 @@ app.controller("empleadosController", function ($scope, $http) {
 
     $scope.Empleados1 = function () {
         $scope.subaccion = 'Empleados1';
-
     };
 
     $scope.Empleados2 = function () {
         $scope.subaccion = 'Empleados2';
-
     };
 
     //Funciones...
+    $scope.obtenerEmpleados = function () {
+        $http.get('/beFruit/franquicias/empleado')
+            .then (function (response){
+                $scope.empleados = response.data;
+            });
+
+    };
+
+    $scope.obtenerEmpleados();
 
 
 });

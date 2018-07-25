@@ -76,6 +76,9 @@
                         <li class="nav-item" ng-click="Stock()">
                             <a class="nav-link" href="#"><i class="fas fa-dolly small"></i><span class="nav-text">Stock</span></a>
                         </li>
+                        <li class="nav-item" ng-click="Proveedor()">
+                            <a class="nav-link" href="#"><i class="fas fa-dolly small"></i><span class="nav-text">Proveedor</span></a>
+                        </li>
                         <li class="nav-item" ng-click="Caja()">
                             <a class="nav-link" href="#"><i class="fas fa-dollar-sign small"></i> <span class="nav-text">Control de caja</span></a>
                         </li>
@@ -470,6 +473,112 @@
                         </div>
                     </div>
 
+                    <!--PROVEEDORES-->
+                    <div class="row" ng-show="accion == 'Proveedor'" ng-controller="proveedoresController">
+                        <div class="col-md-12">
+                            <div class="card card-default widget">
+                                <div class="card-heading">
+                                </div>
+                                <div class="card-body">
+                                    <ul class="nav nav-tabs">
+                                        <li role="presentation" class="nav-item" ng-click="Proveedor1()">
+                                            <a href="#" role="tab" data-toggle="tab" class="nav-link active show"
+                                               aria-selected="true">Empleados</a>
+                                        </li>
+
+                                        <li role="presentation" class="nav-item" ng-click="Proveedor2()">
+                                            <a href="" role="tab" data-toggle="tab" class="nav-link"
+                                               aria-selected="false">Nuevo Empleado</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" ng-show="subaccion == 'Proveedor1'">
+
+                                        <div class="tab-pane fade in active show" role="tabcard">
+                                            <table class="table centered">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col">Franquicia</th>
+                                                    <th scope="col">Telefono</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">--</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="e in empleados">
+                                                    <td>e.nombre</td>
+                                                    <td>e.apellido</td>
+                                                    <td>e.idFranquicia</td>
+                                                    <td>e.telefonoContacto</td>
+                                                    <td>e.alta</td>
+                                                    <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
+                                                        <i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-content" ng-show="subaccion == 'Proveedor2'">
+
+                                        <div class="tab-pane fade in active show" role="tabcard">
+                                            <form action="" class="col s12">
+                                                <div class=" " id="contenedor-info_empleado-empleado" style="">
+                                                    <p id="titulo-contenedor-sucursal">Datos de Empleado</p>
+                                                    <!-- inputs de los datos de Empleados-->
+
+                                                    <div class="input-field col s6">
+                                                        <input placeholder="Nombre" id="" type="text" class="validate">
+                                                        <label for="">Nombre</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <input placeholder="Apellido" id="" type="text" class="validate">
+                                                        <label for="">Apellido</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <input type="text" class="validate" placeholder="Documento">
+                                                        <label for="">Número de Documento</label>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <input type="text" class="validate" placeholder="Año-Mes-Dia" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                                                        <label for="">Fecha de Nacimiento</label>
+                                                    </div>
+
+                                                    <div class="input-field col s6">
+                                                        <input type="text" class="validate" placeholder="Numero de Telefono">
+                                                        <label for="">Número de Teléfono</label>
+                                                    </div>
+
+                                                    <div class="input-field col s6">
+                                                        <select  class="custom-select left ">
+                                                            <option selected disabled>Elegir Sucursal</option>
+                                                            <option value="1">Sucursal 1</option>
+                                                            <option value="2">Sucursal 2</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-field col s6">
+                                                        <select  class="custom-select ">
+                                                            <option selected disabled>Elegir Estado</option>
+                                                            <option value="1">Activo</option>
+                                                            <option value="2">No Activo</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col s12">
+                                                        <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!--VENTA-->
                     <div class="row" ng-show="accion == 'Venta'" ng-controller="ventaController">
                         <div class="col-md-12">
@@ -545,13 +654,12 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr> <!--ng-repeat="f in franquicia"-->
-                                                    <th scope="row">Error</th>
-                                                    <td>---></td>
-                                                    <td>Angular</td>
-                                                    <td>NO funca</td>
-                                                    <td><---</td>
-                                                    <td>Off</td>
+                                                <tr ng-repeat="e in empleados">
+                                                    <td>e.nombre</td>
+                                                    <td>e.apellido</td>
+                                                    <td>e.idFranquicia</td>
+                                                    <td>e.telefonoContacto</td>
+                                                    <td>e.alta</td>
                                                     <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
                                                         <i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></td>
                                                 </tr>
