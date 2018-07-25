@@ -22,7 +22,6 @@ public class SesionEJB {
     TurnoEJB turnoEJB;
 
 
-
     public Sesion find(long id) {
         return entityManager.find(Sesion.class, id);
     }
@@ -32,45 +31,39 @@ public class SesionEJB {
         return q.getResultList();
     }
 
-    public long create(Sesion s) {
-        if(haySesionIniciada()){
-            return -1;
-        }else{
-            s.setIdSesion(buscarNuevoID());
-            entityManager.persist(s);
-            return s.getIdSesion();
-        }
+    public void create(Sesion s) {
+        entityManager.persist(s);
     }
 
-    public boolean haySesionIniciada(){
+    //Revisar turnoEJB
+    public boolean haySesionIniciada() {
         TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(s.idSesion) FROM Sesion s WHERE s.fechaHoraFin = :NULL");
-        if(q.getSingleResult() == null){
+        if (q.getSingleResult() == null) {
             return true;
         }
         return false;
     }
 
-    public Sesion sesionIniciada(){
+    public Sesion sesionIniciada() {
         TypedQuery<Sesion> q = (TypedQuery<Sesion>) entityManager.createQuery("SELECT s FROM Sesion s WHERE s.fechaHoraFin = :NULL");
         return q.getSingleResult();
     }
 
-    public long buscarNuevoID(){
+    public long buscarNuevoID() {
         return genID.buscarID(buscarUltimoID());
     }
 
     private long buscarUltimoID() {
         TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(s.idSesion) FROM Sesion s");
-        if(q.getSingleResult() == null){
+        if (q.getSingleResult() == null) {
             return 0;
         }
         return q.getSingleResult();
     }
 
     public boolean cancel() {
-
-        if(haySesionIniciada() && !(turnoEJB.hayTurnoIniciado())){
-            Sesion x = sesionIniciada();
+        Sesion x = sesionIniciada();
+        if (x != null && !(turnoEJB.hayTurnoIniciado())) {
             x.setFechaHoraFin(new Timestamp(System.currentTimeMillis()));
             entityManager.merge(x);
             return true;
