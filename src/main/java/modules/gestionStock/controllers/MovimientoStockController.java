@@ -45,10 +45,10 @@ public class MovimientoStockController {
         return movimientosModel;
     }
 
-    public void create(MovimientoStockModel msm) {
+    public long create(MovimientoStockModel msm) {
         Date date = new Date();
         msm.setFechaHora(date);
-        movimientoStockEJB.create(msm.getDBEntity());
+        return movimientoStockEJB.create(msm.getDBEntity());
     }
 
     public void remove(long id) {

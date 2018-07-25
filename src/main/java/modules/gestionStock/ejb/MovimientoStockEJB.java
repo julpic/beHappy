@@ -48,9 +48,10 @@ public class MovimientoStockEJB {
         return q.getSingleResult();
     }
 
-    public void create(MovimientoStock ms) {
+    public long create(MovimientoStock ms) {
         ms.setIdMovimientoStock(buscarNuevoID());
-            entityManager.persist(ms);
+        entityManager.persist(ms);
+        return ms.getIdMovimientoStock();
     }
 
     //Se restaura el stock antes del movimiento?
