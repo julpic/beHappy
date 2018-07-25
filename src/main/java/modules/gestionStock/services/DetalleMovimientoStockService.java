@@ -48,3 +48,37 @@ public class DetalleMovimientoStockService {
         detalleMovimientoStockController.create(detalles,idMovimiento);
     }
 }
+
+/*
+
+[{
+  "idDetalleMovimientoStock": 0,
+  "insumo": {
+    "idInsumo": 1001,
+    "nombre": "Oreo",
+    "cantidadStock": 60,
+    "stockMinimo": 20,
+    "unidadMedida": {
+      "idUnidad": 1001,
+      "nombre": "Paquetes"
+    },
+    "alta": true
+  },
+  "cantidad": 30
+}, {
+  "idDetalleMovimientoStock": 0,
+  "insumo": {
+    "idInsumo": 1002,
+    "nombre": "Cereal",
+    "cantidadStock": 10000,
+    "stockMinimo": 3000,
+    "unidadMedida": {
+      "idUnidad": 1002,
+      "nombre": "Gramos"
+    },
+    "alta": true
+  },
+  "cantidad": 5000
+}]
+
+ */

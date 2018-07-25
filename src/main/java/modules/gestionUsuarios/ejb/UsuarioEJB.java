@@ -1,6 +1,7 @@
 package modules.gestionUsuarios.ejb;
 
 import modules.gestionFranquicias.dbEntities.Empleado;
+import modules.gestionUsuarios.dbEntities.PerfilesXUsuarios;
 import modules.gestionUsuarios.dbEntities.Usuario;
 import utilities.GeneradorID;
 
@@ -59,20 +60,36 @@ public class UsuarioEJB {
     }
 
     private long buscarUltimoID() {
-        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(u.idUsuario) FROM Usuario u");
+        TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(u.idUsuario) FROM Usuario u");
         if(q.getSingleResult() == null){
             return 0;
         }
-        return (Integer) q.getSingleResult();
+        return q.getSingleResult();
     }
 
-    public void update(long id, Usuario u) {
+    public boolean update(long id, Usuario u) {
         Usuario x = entityManager.find(Usuario.class, id);
         if (x != null) {
             x.setUsuario(u.getUsuario());
             x.setPassword(u.getPassword());
             entityManager.merge(x);
+            return true;
         }
+        return false;
     }
+
+    public boolean create(long idUsuario, long idPerfil) {
+        PerfilesXUsuarios pxu = new PerfilesXUsuarios();
+        pxu.setIdPerfil(idPerfil);
+        pxu.setIdUsuario(idUsuario);
+        PerfilesXUsuarios x = entityManager.find(PerfilesXUsuarios.class, pxu);
+        if (x == null) {
+            entityManager.persist(pxu);
+            return true;
+        }
+        return false;
+    }
+
+
 
 }

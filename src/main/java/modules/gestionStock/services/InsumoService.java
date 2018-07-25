@@ -69,3 +69,17 @@ public class InsumoService {
     }
 
 }
+/*
+
+{
+    "idInsumo": 0,
+    "nombre": "Oreo",
+    "cantidadStock": 0, //Esto siempre en 0, no se puede cargar un stock inicial cuando se carga el insumo
+    "stockMinimo": 20,
+    "unidadMedida": {
+      "idUnidad": 1001,
+      "nombre": "Paquetes"
+    },
+    "alta": true
+  }
+ */

@@ -53,5 +53,10 @@ public class UnidadMedidaService {
 
     }
 
-
 }
+/*
+{
+      "idUnidad": 1001,
+      "nombre": "Paquetes"
+    }
+ */

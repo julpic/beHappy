@@ -22,3 +22,5 @@ public class DetalleMovimientoStockModel {
         return det;
     }
 }
+
+

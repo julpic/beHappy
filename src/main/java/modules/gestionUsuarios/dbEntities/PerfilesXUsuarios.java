@@ -21,7 +21,7 @@ public class PerfilesXUsuarios implements Serializable {
     @Column(name = "idPerfil")
     public long getIdPerfil() { return idPerfil; }
 
-    public void setIdPerfil(int idPerfil) { this.idPerfil = idPerfil; }
+    public void setIdPerfil(long idPerfil) { this.idPerfil = idPerfil; }
 
     @Override
     public boolean equals(Object o) {
