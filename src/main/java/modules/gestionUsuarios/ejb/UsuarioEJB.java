@@ -31,6 +31,12 @@ public class UsuarioEJB {
         return (Usuario) q.getSingleResult();
     }
 
+    public Usuario find(String nombre){
+        Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE :nombre = u.usuario AND " +
+                "e.alta = TRUE").setParameter("nombre", nombre);
+        return (Usuario) q.getSingleResult();
+    }
+
     public List<Usuario> findAll() {
         Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE e.idEmpleado = u.idEmpleado AND " +
                 "e.idFranquicia = u.idFranquicia AND e.alta = true");
@@ -53,6 +59,16 @@ public class UsuarioEJB {
             return true;
         }
         return false;
+    }
+
+
+    public boolean passwordValida(String usuario, String password){
+       Usuario u = find(usuario);
+       if (password == u.getPassword()){
+           return true;
+       }else{
+           return false;
+       }
     }
 
     public long buscarNuevoID(){

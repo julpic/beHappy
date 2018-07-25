@@ -18,6 +18,9 @@ public class SesionEJB {
     EntityManager entityManager;
     @Inject
     GeneradorID genID;
+    @Inject
+    TurnoEJB turnoEJB;
+
 
 
     public Sesion find(long id) {
@@ -66,7 +69,7 @@ public class SesionEJB {
 
     public boolean cancel() {
 
-        if(haySesionIniciada()){
+        if(haySesionIniciada() && !(turnoEJB.hayTurnoIniciado())){
             Sesion x = sesionIniciada();
             x.setFechaHoraFin(new Timestamp(System.currentTimeMillis()));
             entityManager.merge(x);

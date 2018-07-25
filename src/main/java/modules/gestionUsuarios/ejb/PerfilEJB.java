@@ -24,10 +24,10 @@ public class PerfilEJB {
         return entityManager.find(Perfil.class, id);
     }
 
-    public Perfil find(Usuario u){
+    public List<Perfil> findAll(long idUsuario){
         Query q = entityManager.createQuery("SELECT p FROM Perfil p, PerfilesXUsuarios pxu WHERE p.idPerfil = pxu.idPerfil AND " +
-                ":idUsuario = pxu.idUsuario").setParameter("idUsuario", u.getIdUsuario());
-        return (Perfil) q.getSingleResult();
+                ":idUsuario = pxu.idUsuario").setParameter("idUsuario", idUsuario);
+        return q.getResultList();
     }
 
     public List<Perfil> findAll() {
