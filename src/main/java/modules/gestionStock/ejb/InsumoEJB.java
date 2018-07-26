@@ -24,12 +24,12 @@ public class InsumoEJB {
     }
 
     public List<Insumo> findAll() {
-        Query q = entityManager.createQuery("SELECT i FROM Insumo i WHERE i.alta = true");
+        Query q = entityManager.createQuery("SELECT i FROM Insumo i");
         return q.getResultList();
     }
 
     public List<Insumo> findAll(long idProveedor) {
-        Query q = entityManager.createQuery("SELECT i FROM Insumo i , InsumosXProveedor ip WHERE i.idInsumo = ip.idInsumo AND i.alta = true AND ip.idProveedor = :idProveedor")
+        Query q = entityManager.createQuery("SELECT i FROM Insumo i , InsumosXProveedor ip WHERE i.idInsumo = ip.idInsumo AND ip.idProveedor = :idProveedor")
                 .setParameter("idProveedor", idProveedor);
         return q.getResultList();
     }

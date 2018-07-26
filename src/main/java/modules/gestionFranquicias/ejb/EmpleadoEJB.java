@@ -21,12 +21,12 @@ public class EmpleadoEJB {
     }
 
     public List<Empleado> findAll() {
-        Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE e.alta = true");
+        Query q = entityManager.createQuery("SELECT e FROM Empleado e");
         return q.getResultList();
     }
 
     public List<Empleado> findAll(long idFranquicia) {
-        Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE (e.alta = true AND e.idFranquicia = :id)")
+        Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idFranquicia = :id")
                 .setParameter("id", idFranquicia);
         return q.getResultList();
     }

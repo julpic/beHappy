@@ -18,19 +18,19 @@ public class FranquiciaEJB {
     }
 
     public List<Franquicia> findAll() {
-        Query q = entityManager.createQuery("SELECT f FROM Franquicia f WHERE f.alta = true");
+        Query q = entityManager.createQuery("SELECT f FROM Franquicia f");
         return q.getResultList();
     }
 
     public List<Franquicia> findAll(long idProveedor) {
         Query q = entityManager.createQuery("SELECT f FROM Franquicia f , ProveedoresXFranquica pf WHERE f.idFranquicia = pf.idFranquicia " +
-                "AND f.alta = true AND pf.idProveedor = :idProveedor")
+                "AND pf.idProveedor = :idProveedor")
                 .setParameter("idProveedor", idProveedor);
         return q.getResultList();
     }
 
     public Long findIDFranquicia() {
-        Query q = entityManager.createQuery("SELECT MAX(f.idFranquicia) FROM Franquicia f WHERE f.alta = true");
+        Query q = entityManager.createQuery("SELECT MAX(f.idFranquicia) FROM Franquicia f");
         Long resultq = (Long) q.getSingleResult();
         if (resultq == null) {
             return (long) -1;

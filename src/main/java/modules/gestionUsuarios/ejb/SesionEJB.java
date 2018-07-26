@@ -31,6 +31,12 @@ public class SesionEJB {
         return q.getResultList();
     }
 
+    public List<Sesion> findAll(long idUsuario) {
+        Query q = entityManager.createQuery("SELECT s FROM Sesion s WHERE s.idUsuario = :idUsuario")
+                .setParameter("idUsuario", idUsuario);
+        return q.getResultList();
+    }
+
     public void create(Sesion s) {
         entityManager.persist(s);
     }
