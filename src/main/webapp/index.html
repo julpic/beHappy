@@ -538,7 +538,6 @@
                         </div>
                     </div>
 
-
                     <!--EMPLEADOS-->
                     <div class="row" ng-show="accion == 'Empleados'" ng-controller="empleadosController">
                         <div class="col-md-12">
@@ -575,14 +574,16 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr ng-repeat="e in empleados">
-                                                    <td>e.nombre</td>
-                                                    <td>e.apellido</td>
-                                                    <td>e.idFranquicia</td>
-                                                    <td>e.telefonoContacto</td>
-                                                    <td>e.email</td>
-                                                    <td>e.alta</td>
-                                                    <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
-                                                        <i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></td>
+                                                    <td>{{e.idEmpleado}}</td>
+                                                    <td>{{e.nombre}}</td>
+                                                    <td>{{e.apellido}}</td>
+                                                    <td>{{e.idFranquicia}}</td>
+                                                    <td>{{e.telefonoContacto}}</td>
+                                                    <td>{{e.eMail}}</td>
+                                                    <td ng-if="e.alta == false">Fuera de actividad</td>
+                                                    <td ng-if="e.alta == true">Activo</td>
+                                                    <td><i class="material-icons icono-modificar"  title="Editar" style="" ng-click="modificarEmpleado(e)">edit</i>
+                                                        <i class="material-icons icono-eliminar "  title="Eliminar" style="" ng-click="borrarEmpleado(e)">delete</i></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -598,48 +599,49 @@
                                                     <!-- inputs de los datos de Empleados-->
 
                                                     <div class="input-field col s6">
-                                                        <input required placeholder="Nombre" id="" type="text" class="validate">
+                                                        <input required placeholder="Nombre" id="" type="text" class="validate" ng-model="empleado.nombre">
                                                         <label for="">Nombre</label>
                                                     </div>
                                                     <div class="input-field col s6">
-                                                        <input required placeholder="Apellido" id="" type="text" class="validate">
+                                                        <input required placeholder="Apellido" id="" type="text" class="validate" ng-model="empleado.apellido">
                                                         <label for="">Apellido</label>
                                                     </div>
                                                     <div class="input-field col s6">
-                                                        <input required type="text" class="validate" placeholder="Documento">
+                                                        <input required type="text" class="validate" placeholder="Documento" ng-model="empleado.dni">
                                                         <label for="">Número de Documento</label>
                                                     </div>
                                                     <div class="input-field col s6">
-                                                        <input required type="text" class="validate" placeholder="Año-Mes-Dia" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                                                        <input required type="text" class="validate" placeholder="Año-Mes-Dia" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" ng-model="empleado.fechaNacimiento">
                                                         <label for="">Fecha de Nacimiento</label>
                                                     </div>
 
                                                     <div class="input-field col s6">
-                                                        <input required type="text" class="validate" placeholder="Número de Teléfono">
+                                                        <input required type="text" class="validate" placeholder="Número de Teléfono" ng-model="empleado.telefonoContacto">
                                                         <label for="">Número de Teléfono</label>
                                                     </div>
                                                     
                                                     <div class="input-field col s6">
-                                                        <input type="text" class="validate" placeholder="Email">
+                                                        <input type="text" class="validate" placeholder="Email" ng-model="empleado.eMail">
                                                         <label for="">Email</label>
                                                     </div>
 
                                                     <div class="input-field col s6">
-                                                        <select  required class="custom-select left ">
+                                                        <select  required class="custom-select left " ng-model="empleado.idFranquicia">
                                                             <option selected disabled>Elegir Sucursal</option>
-                                                            <option value="1">Sucursal 1</option>
-                                                            <option value="2">Sucursal 2</option>
+                                                            <option ng-value="1">Sucursal 1</option>
+                                                            <option ng-value="2">Sucursal 2</option>
                                                         </select>
                                                     </div>
+
                                                     <div class="input-field col s6">
-                                                        <select  required class="custom-select ">
+                                                        <select  required class="custom-select " ng-model="empleado.alta">
                                                             <option selected disabled>Elegir Estado</option>
-                                                            <option value="1">Activo</option>
-                                                            <option value="2">No Activo</option>
+                                                            <option ng-value="true">Activo</option>
+                                                            <option ng-value="false">No Activo</option>
                                                        </select>
                                                     </div>
                                                     <div class="col s12">
-                                                        <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" >Aceptar</a>
+                                                        <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarEmpleado(empleado)">Aceptar</a>
                                                     </div>
                                                 </div>
 
@@ -651,7 +653,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <!--INFORMES-->
                     <div class="row" ng-show="accion == 'Informes'" ng-controller="informesController">
@@ -683,7 +684,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <!--PROMOCIONES-->
                     <div class="row" ng-show="accion == 'Promociones'" ng-controller="promocionesController">
