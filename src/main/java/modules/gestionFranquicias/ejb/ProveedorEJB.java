@@ -45,7 +45,7 @@ public class ProveedorEJB {
     }
 
     public Integer findNuevoID(){
-        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(p.idProveedor) FROM Proveedor p WHERE p.alta = true");
+        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(p.idProveedor) FROM Proveedor p");
         if(q.getSingleResult() == null){
             return 1;
         }
