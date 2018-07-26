@@ -2,8 +2,10 @@ package modules.gestionFranquicias.ejb;
 
 import modules.gestionFranquicias.dbEntities.InsumosXProveedor;
 import modules.gestionFranquicias.dbEntities.Proveedor;
+import utilities.GeneradorID;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -14,6 +16,8 @@ import java.util.List;
 public class ProveedorEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
+    @Inject
+    GeneradorID genID;
 
     public Proveedor find(long id) {
         return entityManager.find(Proveedor.class, id);
@@ -37,16 +41,20 @@ public class ProveedorEJB {
     }
 
     public void create(Proveedor p) {
-        p.setIdProveedor(findNuevoID());
+        p.setIdProveedor(buscarNuevoID());
         entityManager.persist(p);
     }
 
-    public Long findNuevoID() {
+    public Long buscarUltimoID(){
         TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(p.idProveedor) FROM Proveedor p");
-        if (q.getSingleResult() == null) {
-            return (long) 1;
+        if(q.getSingleResult() == null){
+            return (long) 0;
         }
-        return q.getSingleResult() + 1;
+        return q.getSingleResult();
+    }
+
+    public Long buscarNuevoID(){
+        return genID.buscarID(buscarUltimoID());
     }
 
     public boolean create(long idInsumo, long idProveedor) {

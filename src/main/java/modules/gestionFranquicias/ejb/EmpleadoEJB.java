@@ -1,9 +1,11 @@
 package modules.gestionFranquicias.ejb;
 
 import modules.gestionFranquicias.dbEntities.Empleado;
+import utilities.GeneradorID;
 
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -14,6 +16,8 @@ import java.util.List;
 public class EmpleadoEJB {
     @PersistenceContext(name = "beFruitPersistenceUnit")
     EntityManager entityManager;
+    @Inject
+    GeneradorID genID;
 
     public Empleado find(long id) {
         TypedQuery<Empleado> q = (TypedQuery) entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idEmpleado = :id").setParameter("id",id);
@@ -34,16 +38,16 @@ public class EmpleadoEJB {
     public Long buscarUltimoID(long idFranquicia){
         TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(e.idEmpleado) FROM Empleado e WHERE e.idFranquicia = :id")
                 .setParameter("id", idFranquicia);
+        if(q.getSingleResult() == null){
+            return (long) 0;
+        }
         return q.getSingleResult();
     }
 
     public Long buscarNuevoID(long idFranquicia){
-        Long ultimoID = buscarUltimoID(idFranquicia);
-        if(ultimoID == null){
-            return (long) 1;
-        }
-        return ultimoID + 1;
+        return genID.buscarID(buscarUltimoID(idFranquicia), idFranquicia);
     }
+
 
     public void create(Empleado e) {
         Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idEmpleado = :id").setParameter("id",e.getIdEmpleado());

@@ -41,14 +41,6 @@ public class SesionEJB {
         entityManager.persist(s);
     }
 
-    //Revisar turnoEJB
-    public boolean haySesionIniciada() {
-        TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(s.idSesion) FROM Sesion s WHERE s.fechaHoraFin = :NULL");
-        if (q.getSingleResult() == null) {
-            return true;
-        }
-        return false;
-    }
 
     public Sesion sesionIniciada() {
         TypedQuery<Sesion> q = (TypedQuery<Sesion>) entityManager.createQuery("SELECT s FROM Sesion s WHERE s.fechaHoraFin = :NULL");
@@ -67,13 +59,10 @@ public class SesionEJB {
         return q.getSingleResult();
     }
 
-    public boolean cancel() {
+    public void cancel() {
         Sesion x = sesionIniciada();
-        if (x != null && !(turnoEJB.hayTurnoIniciado())) {
-            x.setFechaHoraFin(new Timestamp(System.currentTimeMillis()));
-            entityManager.merge(x);
-            return true;
-        }
-        return false;
+        x.setFechaHoraFin(new Timestamp(System.currentTimeMillis()));
+        entityManager.merge(x);
+
     }
 }
