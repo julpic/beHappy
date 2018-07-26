@@ -1,9 +1,9 @@
 package modules.gestionUsuarios.controllers;
 
-import modules.gestionFranquicias.modelEntities.EmpleadoModel;
 import modules.gestionUsuarios.dbEntities.Sesion;
 import modules.gestionUsuarios.ejb.SesionEJB;
 import modules.gestionUsuarios.modelEntities.SesionModel;
+import modules.gestionUsuarios.modelEntities.TurnoModel;
 import modules.gestionUsuarios.modelEntities.UsuarioModel;
 import utilities.AuthParser;
 
@@ -11,6 +11,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.core.HttpHeaders;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 public class SesionController {
@@ -20,6 +22,40 @@ public class SesionController {
     AuthParser authParser;
     @Inject
     UsuarioController usuarioController;
+    @Inject
+    TurnoController turnoController;
+
+    public SesionModel find(long id) {
+        SesionModel sm = new SesionModel(sesionEJB.find(id));
+        List<TurnoModel> turnos = turnoController.findAll(id);
+        if(turnos != turnos){
+            sm.setTurnos(turnos);
+        }
+        return sm;
+    }
+
+    public List<SesionModel> findAll() {
+        List<Sesion> sesiones = sesionEJB.findAll();
+        ArrayList<SesionModel> sesionesModel = new ArrayList<SesionModel>();
+        for(Sesion s : sesiones){
+            SesionModel sm = new SesionModel(s);
+            List<TurnoModel> turnos = turnoController.findAll(s.getIdSesion());
+            if(turnos != turnos){
+                sm.setTurnos(turnos);
+            }
+            sesionesModel.add(sm);
+        }
+        return sesionesModel;
+    }
+
+    public SesionModel sesionActual(){
+        SesionModel sm = new SesionModel(sesionEJB.sesionIniciada());
+        List<TurnoModel> turnos = turnoController.findAll(sm.getIdSesion());
+        if(turnos != turnos){
+            sm.setTurnos(turnos);
+        }
+        return sm;
+    }
 
     public boolean haySesionIniciada() {
         Sesion tempSesion = sesionEJB.sesionIniciada();

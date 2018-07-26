@@ -48,6 +48,7 @@ public class EmpleadoEJB {
     public void create(Empleado e) {
         Query q = entityManager.createQuery("SELECT e FROM Empleado e WHERE e.idEmpleado = :id").setParameter("id",e.getIdEmpleado());
         if ( q.getResultList().isEmpty()) {
+            e.setIdEmpleado(buscarNuevoID(e.getIdFranquicia()));
             entityManager.persist(e);
         }
     }
