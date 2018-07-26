@@ -315,6 +315,50 @@ app.controller("proveedoresController", function ($scope, $http) {
 
     };
 
+    $scope.grabarProveedor = function (proveedor) {
+        if (proveedor.idProveedor == null) {
+            proveedor.idProveedor = -1;
+            $http.post('/beFruit/franquicias/proveedor', JSON.stringify(proveedor)).then (function (response) {
+                    $scope.obtenerProveedores();
+                    alert('El proveedor fue agregado corectamente');
+                    proveedor = null;
+                },
+                function (response) {
+                    alert('No se pudo agregar el proveedor')
+                });
+        }
+        else {
+            $http.put('/beFruit/franquicias/proveedor/'+ proveedor.idProveedor , JSON.stringify(proveedor)).then (function (response) {
+                    $scope.obtenerProveedores();
+                    $scope.Proveedores1();
+                    alert('El proveedor fue modificado corectamente');
+                    proveedor = null;
+                },
+                function (response) {
+                    alert('No se pudo modificar el proveedor')
+                });
+
+        }
+
+    };
+
+    $scope.modificarProveedor= function(proveedor){
+        $scope.proveedor = proveedor;
+        $scope.Proveedores2();
+    }
+
+    $scope.borrarProveedor = function(proveedor) {
+        if(confirm('Desea dar de baja como proveedor a'+ proveedor.razonSocial + 'de su franquicia?') == true) {
+            $http.delete('/beFruit/franquicias/proveedor/' + proveedor.idProveedor).then (function (response) {
+                    alert('El proveedor ha sido eliminado correctamente');
+                    $scope.obtenerEmpleados();
+                },
+                function (response) {
+                    alert('No se pudo eliminar el proveedor')
+                })
+        }
+    };
+
     $scope.obtenerProveedores();
 
 
@@ -342,12 +386,10 @@ app.controller("franquiciasController", function ($scope, $http) {
                 $scope.franquicias = response.data;
             });
     };
-
     $scope.modificarFranquicia = function(f){
       $scope.franquicia = f;
       $scope.Franquicias2();
     };
-
     $scope.grabarFranquicia = function (franquicia) {
         if (franquicia.direccion != null && franquicia.alta != null && franquicia.nombreDueno != null && franquicia.apellidoDueno != null && franquicia.eMailDueno != null && franquicia.cuit != null) {
             if (franquicia.idFranquicia == null) {
@@ -446,15 +488,30 @@ app.controller("empleadosController", function ($scope, $http) {
     };
 
     $scope.grabarEmpleado = function (empleado) {
-        empleado.idEmpleado = -1;
-        alert (JSON.stringify(empleado));
-        $http.post('/beFruit/franquicias/empleado', JSON.stringify(empleado)).then (function (response) {
-            $scope.obtenerEmpleados();
-            alert('El empleado fue agregado corectamente');
-            },
-            function (response) {
-            alert('No se pudo agregar el empleado')
-            });
+        if (empleado.idEmpleado == null) {
+            empleado.idEmpleado = -1;
+            $http.post('/beFruit/franquicias/empleado', JSON.stringify(empleado)).then (function (response) {
+                    $scope.obtenerEmpleados();
+                    alert('El empleado fue agregado corectamente');
+                    empleado = null
+                },
+                function (response) {
+                    alert('No se pudo agregar el empleado')
+                });
+        }
+        else {
+            $http.put('/beFruit/franquicias/empleado/'+ empleado.idEmpleado , JSON.stringify(empleado)).then (function (response) {
+                    $scope.obtenerEmpleados();
+                    $scope.Empleados1();
+                    alert('El empleado fue modificado corectamente');
+                    empleado = null;
+                },
+                function (response) {
+                    alert('No se pudo modificar el empleado')
+                });
+
+        }
+
     };
 
     $scope.modificarEmpleado = function(empleado){
@@ -463,7 +520,7 @@ app.controller("empleadosController", function ($scope, $http) {
     }
 
     $scope.borrarEmpleado = function(empleado) {
-        if(confirm('Desea eliminar a'+ empleado.nombre + 'de su franquicia?') == true) {
+        if(confirm('Desea dar de baja a'+ empleado.nombre + 'de su franquicia?') == true) {
             $http.delete('/beFruit/franquicias/empleado/' + empleado.idEmpleado).then (function (response) {
                 alert('El empleado ha sido eliminado correctamente');
                 $scope.obtenerEmpleados();
