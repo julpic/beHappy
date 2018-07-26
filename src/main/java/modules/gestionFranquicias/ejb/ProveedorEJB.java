@@ -26,10 +26,10 @@ public class ProveedorEJB {
 
     public List<Proveedor> findAll(long idExterno, boolean insumo) {
         Query q;
-        if(insumo){
+        if (insumo) {
             q = entityManager.createQuery("SELECT i FROM Proveedor i, InsumosXProveedor ip WHERE i.idProveedor = ip.idProveedor AND ip.idInsumo = :idInsumo")
                     .setParameter("idInsumo", idExterno);
-        }else{
+        } else {
             q = entityManager.createQuery("SELECT i FROM Proveedor i, ProveedoresXFranquica pf WHERE i.idProveedor = pf.idProveedor AND pf.idFranquicia = :idFranquicia")
                     .setParameter("idFranquicia", idExterno);
         }
@@ -38,15 +38,12 @@ public class ProveedorEJB {
 
     public void create(Proveedor p) {
         p.setIdProveedor(findNuevoID());
-        Proveedor x = entityManager.find(Proveedor.class, p.getIdProveedor());
-        if (x == null) {
-            entityManager.persist(p);
-        }
+        entityManager.persist(p);
     }
 
-    public Integer findNuevoID(){
+    public Integer findNuevoID() {
         TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(p.idProveedor) FROM Proveedor p");
-        if(q.getSingleResult() == null){
+        if (q.getSingleResult() == null) {
             return 1;
         }
         return q.getSingleResult() + 1;
