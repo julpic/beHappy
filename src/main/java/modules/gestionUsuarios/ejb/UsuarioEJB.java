@@ -24,10 +24,10 @@ public class UsuarioEJB {
         return entityManager.find(Usuario.class, id);
     }
 
-    public Usuario find(Empleado e){
+    public Usuario findUser(long idEmpleado, long idFranquicia){
         Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE :idEmpleado = u.idEmpleado AND " +
-                ":idFranquicia = u.idFranquicia").setParameter("idEmpleado", e.getIdEmpleado())
-                .setParameter("idFranquicia", e.getIdFranquicia());
+                ":idFranquicia = u.idFranquicia").setParameter("idEmpleado", idEmpleado)
+                .setParameter("idFranquicia", idFranquicia);
         return (Usuario) q.getSingleResult();
     }
 
