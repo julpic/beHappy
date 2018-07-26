@@ -2,7 +2,6 @@ package modules.gestionUsuarios.controllers;
 
 import modules.gestionFranquicias.dbEntities.Empleado;
 import modules.gestionUsuarios.dbEntities.Usuario;
-import modules.gestionUsuarios.ejb.PerfilEJB;
 import modules.gestionUsuarios.ejb.UsuarioEJB;
 import modules.gestionUsuarios.modelEntities.PerfilModel;
 import modules.gestionUsuarios.modelEntities.UsuarioModel;
@@ -43,7 +42,7 @@ public class UsuarioController {
     public List<UsuarioModel> findAll() {
         List<Usuario> usuarios = usuarioEJB.findAll();
         ArrayList<UsuarioModel> usuariosModel = new ArrayList<UsuarioModel>();
-        for (Usuario u : usuarios){
+        for (Usuario u : usuarios) {
             List<PerfilModel> pm = perfilController.findAll(u.getIdUsuario());
             UsuarioModel um = new UsuarioModel(u);
             um.setPerfiles(pm);
@@ -62,16 +61,11 @@ public class UsuarioController {
         usuarioEJB.update(id, u);
     }
 
-    public boolean inicioSesionValido(String usuario, String password){
-        if(usuarioEJB.nombreExiste(usuario)){
-            if (usuarioEJB.passwordValida(usuario,password)){
-                return true;
-            }else{
-                return false;
-            }
-        }else{
-            return false;
+    public boolean inicioSesionValido(String usuario, String password) {
+        if (usuarioEJB.nombreExiste(usuario)) {
+            return (usuarioEJB.passwordValida(usuario, password)) ? true : false;
         }
+        return false;
     }
 
 }
