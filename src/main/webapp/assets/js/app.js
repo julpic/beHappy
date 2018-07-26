@@ -328,13 +328,10 @@ app.controller("franquiciasController", function ($scope, $http) {
 
     $scope.Franquicias1 = function () {
         $scope.subaccion = 'Franquicias1';
-
-
     };
 
     $scope.Franquicias2 = function () {
         $scope.subaccion = 'Franquicias2';
-
     };
 
     //Funciones...
@@ -403,7 +400,6 @@ app.controller("franquiciasController", function ($scope, $http) {
         }
 
     };
-
     $scope.borrarFranquicia = function (franquicia) {
         $scope.franquiciaJson = angular.toJson(franquicia);
         if (confirm("¿Desea borrar de forma permanente el insumo  " + franquicia.idFranquicia+ "?") == true) {
@@ -452,7 +448,17 @@ app.controller("empleadosController", function ($scope, $http) {
 
     $scope.obtenerEmpleados();
 
-
+    //{
+        //"idEmpleado":-1,
+        //"idFranquicia":"1",
+        //"apellido":"Abanto",
+        //"dni":"19053215",
+        //"eMail":"Diego@abanto.com",
+        //"fechaNacimiento":"1996-11-27",
+        //"nombre":"Diego",
+        //"telefonoContacto":3515466380,
+        //"alta":true
+    //}
 });
 
 app.controller("informesController", function ($scope, $http) {
