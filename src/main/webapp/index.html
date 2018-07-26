@@ -484,12 +484,62 @@
                                     <div class="tab-content" ng-show="subaccion == 'Proveedores1'">
 
                                         <div class="tab-pane fade in active show" role="tabcard">
+                                            <table class="table centered">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Razón Social</th>
+                                                    <th scope="col">Cuit</th>
+                                                    <th scope="col">Contacto</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">--</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="">
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
+                                                        <i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
 
                                     <div class="tab-content" ng-show="subaccion == 'Proveedores2'">
 
                                         <div class="tab-pane fade in active show" role="tabcard">
+                                            <form action="" id="contenedor-nuevo-proveedor" class="col s12">
+                                                <div class="input-field col s6">
+                                                    <input required type="text" class="validate" placeholder="Razon Social" >
+                                                    <label for="">Razon Social</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input required type="text" class="validate" placeholder="CUIT" >
+                                                    <label for="">CUIT</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input required type="text" class="validate" placeholder="Numero de Contacto">
+                                                    <label for="">Número de Contacto</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input required type="email" class="validate" placeholder="Email">
+                                                    <label for="">Email</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <select required class="custom-select">
+                                                        <option value="" selected> Activo</option>
+                                                        <option value="">No Activo</option>
+                                                    </select>
+                                                </div>
+
+                                            </form>
                                         </div>
                                     </div>
 
@@ -620,7 +670,7 @@
                                                     </div>
                                                     
                                                     <div class="input-field col s6">
-                                                        <input type="text" class="validate" placeholder="Email">
+                                                        <input type="email" class="validate" placeholder="Email">
                                                         <label for="">Email</label>
                                                     </div>
 
@@ -782,7 +832,7 @@
                                                 </div>
 
                                                 <select required class="custom-select custom-select-lg mb-1" ng-model="franquicia.alta">
-                                                    <option ng-value="true" selected>Activo</option>
+                                                    <option value="" ng-value="true" selected>Activo</option>
                                                     <option ng-value="false" >No Activo</option>
                                                 </select>
 
