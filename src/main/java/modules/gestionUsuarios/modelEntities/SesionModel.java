@@ -22,6 +22,10 @@ public class SesionModel {
         }
     }
 
+    public long getIdSesion() {
+        return idSesion;
+    }
+
     public List<TurnoModel> getTurnos() {
         return turnos;
     }

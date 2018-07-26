@@ -30,50 +30,44 @@ public class TurnoEJB {
         return q.getResultList();
     }
 
-    public long create(Turno t) {
-        if(!(sesionEJB.haySesionIniciada()) || hayTurnoIniciado()){
-            return -1;
-        }else{
-            t.setIdTurno(buscarNuevoID());
-            t.setIdSesion(sesionEJB.sesionIniciada().getIdSesion());
-            entityManager.persist(t);
-            return t.getIdTurno();
-        }
+    public List<Turno> findAll(long idSesion) {
+        Query q = entityManager.createQuery("SELECT t FROM Turno t WHERE t.idSesion = :idSesion")
+                .setParameter("idSesion", idSesion);
+        return q.getResultList();
     }
 
-    public boolean hayTurnoIniciado(){
+    public void create(Turno t) {
+        entityManager.persist(t);
+    }
+
+    public boolean hayTurnoIniciado() {
         TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(t.idTurno) FROM Turno t WHERE t.fechaHoraFin = :NULL");
-        if(q.getSingleResult() == null){
+        if (q.getSingleResult() == null) {
             return true;
         }
         return false;
     }
 
-    public Turno turnoIniciado(){
+    public Turno turnoIniciado() {
         TypedQuery<Turno> q = (TypedQuery<Turno>) entityManager.createQuery("SELECT t FROM Turno t WHERE t.fechaHoraFin = :NULL");
         return q.getSingleResult();
     }
 
-    public long buscarNuevoID(){
+    public long buscarNuevoID() {
         return genID.buscarID(buscarUltimoID());
     }
 
     private long buscarUltimoID() {
         TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(t.idTurno) FROM Turno t");
-        if(q.getSingleResult() == null){
+        if (q.getSingleResult() == null) {
             return 0;
         }
         return q.getSingleResult();
     }
 
-    public boolean cancel() {
-
-        if(hayTurnoIniciado()){
-            Turno x = turnoIniciado();
-            x.setFechaHoraFin(new Timestamp(System.currentTimeMillis()));
-            entityManager.merge(x);
-            return true;
-        }
-        return false;
+    public void cancel() {
+        Turno x = turnoIniciado();
+        x.setFechaHoraFin(new Timestamp(System.currentTimeMillis()));
+        entityManager.merge(x);
     }
 }
