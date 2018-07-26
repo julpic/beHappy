@@ -83,4 +83,12 @@ public class SesionController {
         sesionEJB.create(temp);
     }
     //Para creear una nueva sesion, el controller (no el EJB) tiene que vlaidar que no haya una sesion iniciada y validar que el usuario exista
+
+    public boolean remove() {
+        if (haySesionIniciada() && !(turnoController.hayTurnoIniciado())) {
+            sesionEJB.cancel();
+            return true;
+        }
+        return false;
+    }
 }
