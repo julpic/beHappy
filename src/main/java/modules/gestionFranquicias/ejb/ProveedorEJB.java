@@ -41,10 +41,10 @@ public class ProveedorEJB {
         entityManager.persist(p);
     }
 
-    public Integer findNuevoID() {
-        TypedQuery<Integer> q = (TypedQuery<Integer>) entityManager.createQuery("SELECT MAX(p.idProveedor) FROM Proveedor p");
+    public Long findNuevoID() {
+        TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(p.idProveedor) FROM Proveedor p");
         if (q.getSingleResult() == null) {
-            return 1;
+            return (long) 1;
         }
         return q.getSingleResult() + 1;
     }
