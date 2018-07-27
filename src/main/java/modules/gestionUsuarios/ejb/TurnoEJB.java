@@ -40,17 +40,29 @@ public class TurnoEJB {
         entityManager.persist(t);
     }
 
+
     public boolean hayTurnoIniciado() {
-        TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(t.idTurno) FROM Turno t WHERE t.fechaHoraFin = :NULL");
-        if (q.getSingleResult() == null) {
-            return true;
+        TypedQuery<Long> q = (TypedQuery<Long>) entityManager.createQuery("SELECT MAX(t.idTurno) FROM Turno t WHERE t.fechaHoraFin IS NULL");
+        Boolean exists;
+        try {
+            q.getSingleResult();
+            exists = true;
+        } catch (Exception e) {
+            exists = false;
         }
-        return false;
+        return exists;
     }
 
+
     public Turno turnoIniciado() {
-        TypedQuery<Turno> q = (TypedQuery<Turno>) entityManager.createQuery("SELECT t FROM Turno t WHERE t.fechaHoraFin = :NULL");
-        return q.getSingleResult();
+        TypedQuery<Turno> q = (TypedQuery<Turno>) entityManager.createQuery("SELECT t FROM Turno t WHERE t.fechaHoraFin IS NULL");
+        Turno t;
+        try {
+            t = q.getSingleResult();
+        } catch (Exception e) {
+            t = null;
+        }
+        return t;
     }
 
     public long buscarNuevoID() {

@@ -58,8 +58,7 @@ public class SesionService {
     }
 
     @DELETE
-    @Path("/{id}")
-    public Response remove(@PathParam("id") long id) {
+    public Response remove() {
         if (sesionController.remove()) return Response.accepted().build();
         return Response.notModified().build();
 

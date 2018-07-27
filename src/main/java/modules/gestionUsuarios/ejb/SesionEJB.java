@@ -5,10 +5,7 @@ import utilities.GeneradorID;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -43,8 +40,14 @@ public class SesionEJB {
 
 
     public Sesion sesionIniciada() {
-        TypedQuery<Sesion> q = (TypedQuery<Sesion>) entityManager.createQuery("SELECT s FROM Sesion s WHERE s.fechaHoraFin = :NULL");
-        return q.getSingleResult();
+        Query q = entityManager.createQuery("SELECT s FROM Sesion s WHERE s.fechaHoraFin IS NULL");
+        Sesion s;
+        try {
+            s = (Sesion) q.getSingleResult();
+        } catch (NoResultException e) {
+            s = null;
+        }
+        return s;
     }
 
     public long buscarNuevoID() {
