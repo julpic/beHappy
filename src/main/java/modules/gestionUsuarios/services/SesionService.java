@@ -6,11 +6,15 @@ import modules.gestionUsuarios.modelEntities.SesionModel;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/sesion")
 public class SesionService {
+    @Context
+    HttpHeaders header;
     @Inject
     SesionController sesionController;
 
@@ -43,7 +47,15 @@ public class SesionService {
         return json;
     }
 
-    //Falta para iniciar la sesion, no se como pasar el httpHeader al metodo del controller
+    @POST
+    public Response create() {
+        //result puede ser
+        // -1: hay sesion iniciada (no crea una nueva sesion)
+        // 0: usuario o password no valido
+        // 1: sesion creada exitosamente
+        long result = sesionController.create(header);
+        return Response.ok(result).build();
+    }
 
     @DELETE
     @Path("/{id}")

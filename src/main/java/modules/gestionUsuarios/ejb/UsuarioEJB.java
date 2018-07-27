@@ -53,21 +53,13 @@ public class UsuarioEJB {
     }
 
     public boolean nombreExiste(String usuario){
-        Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE :nombre = u.usuario AND " +
+        Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE e.idEmpleado = u.idEmpleado AND " +
+                ":nombre = u.usuario AND " +
                 "e.alta = TRUE").setParameter("nombre", usuario);
         if (q == null){
             return true;
         }
         return false;
-    }
-
-    public boolean passwordValida(String usuario, String password){
-       Usuario u = find(usuario);
-       if (password == u.getPassword()){
-           return true;
-       }else{
-           return false;
-       }
     }
 
     public long buscarNuevoID(){

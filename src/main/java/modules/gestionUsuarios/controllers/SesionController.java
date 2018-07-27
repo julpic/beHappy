@@ -70,6 +70,7 @@ public class SesionController {
                 return -1;
             } else {
                 create(loginInfo[0]);
+                return 1;
             }
         } return 0;
     }
@@ -82,7 +83,6 @@ public class SesionController {
         temp.setFechaHoraInicio(new Timestamp(System.currentTimeMillis()));
         sesionEJB.create(temp);
     }
-    //Para creear una nueva sesion, el controller (no el EJB) tiene que vlaidar que no haya una sesion iniciada y validar que el usuario exista
 
     public boolean remove() {
         if (haySesionIniciada() && !(turnoController.hayTurnoIniciado())) {
