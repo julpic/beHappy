@@ -1,6 +1,7 @@
 package modules.gestionFranquicias.modelEntities;
 
 import modules.gestionFranquicias.dbEntities.Empleado;
+import modules.gestionUsuarios.modelEntities.UsuarioModel;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -15,6 +16,7 @@ public class EmpleadoModel {
     private String nombre;
     private String telefonoContacto;
     private boolean alta;
+    private UsuarioModel usuario;
 
     public EmpleadoModel(Empleado e) {
         this.idEmpleado = e.getIdEmpleado();
@@ -31,6 +33,23 @@ public class EmpleadoModel {
 
     public long getIdEmpleado() {
         return idEmpleado;
+    }
+
+
+    public long getIdFranquicia() {
+        return idFranquicia;
+    }
+
+    public void setIdFranquicia(long idFranquicia) {
+        this.idFranquicia = idFranquicia;
+    }
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
     }
 
     public Empleado getDBEntity(){
