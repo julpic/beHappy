@@ -59,3 +59,14 @@ public class UsuarioService {
         usuarioController.update(id, e);
     }
 }
+/*
+Password usuarios:
+User: diego 
+Password: diego
+
+User: micka
+Password: micka
+
+User: juan
+Password: juan
+ */
