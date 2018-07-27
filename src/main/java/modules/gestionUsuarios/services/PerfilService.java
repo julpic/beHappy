@@ -41,14 +41,7 @@ public class PerfilService {
         String json = gson.toJson(perfiles);
         return json;
     }
-
-    @POST
-    @Consumes("application/json")
-    public void create(String json) {
-        Gson gson = new Gson();
-        PerfilModel e = gson.fromJson(json,PerfilModel.class);
-        perfilController.create(e);
-    }
+    
 
     @PUT
     @Path("/{id}")
