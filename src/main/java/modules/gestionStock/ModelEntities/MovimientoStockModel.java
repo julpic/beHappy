@@ -3,7 +3,6 @@ package modules.gestionStock.ModelEntities;
 import modules.gestionStock.dbEntities.MovimientoStock;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,15 +18,15 @@ public class MovimientoStockModel {
     public MovimientoStockModel(MovimientoStock ms) {
         this.idMovimientoStock = ms.getIdMovimientoStock();
 
-        if (ms.getIdVenta() != null){
+        if (ms.getIdVenta() != null) {
             this.idVenta = ms.getIdVenta();
         }
 
-        if (ms.getIdTurno() != null){
+        if (ms.getIdTurno() != null) {
             this.idTurno = ms.getIdTurno();
         }
 
-        if (ms.getFechaHoraAnulacion() != null){
+        if (ms.getFechaHoraAnulacion() != null) {
             Date date2 = new Date(ms.getFechaHoraAnulacion().getTime());
             this.fechaHoraAnulacion = date2;
         }
@@ -50,38 +49,56 @@ public class MovimientoStockModel {
         this.detalles = detalles;
     }
 
-    public Boolean getEntrada() { return entrada; }
+    public Boolean getEntrada() {
+        return entrada;
+    }
 
-    public MovimientoStock getDBEntity(){
+    public MovimientoStock getDBEntity() {
         MovimientoStock ms = new MovimientoStock();
         ms.setIdMovimientoStock(this.idMovimientoStock);
 
-        if (idTurno > 0){
+        if (idTurno > 0) {
             ms.setIdTurno(this.idTurno);
-        }else{
+        } else {
             ms.setIdTurno(null);
         }
 
-        if (idVenta > 0){
+        if (idVenta > 0) {
             ms.setIdVenta(this.idVenta);
-        }else{
+        } else {
             ms.setIdVenta(null);
         }
 
-        if (fechaHora!= null){
+        if (fechaHora != null) {
             Timestamp timestamp = new Timestamp(this.fechaHora.getTime());
             ms.setFechaHora(timestamp);
         }
 
-        if (fechaHoraAnulacion != null){
+        if (fechaHoraAnulacion != null) {
             Timestamp timestamp2 = new Timestamp(this.fechaHoraAnulacion.getTime());
             ms.setFechaHoraAnulacion(timestamp2);
-        }else{
+        } else {
             ms.setFechaHoraAnulacion(null);
         }
 
-            ms.setEntrada(this.entrada);
+        ms.setEntrada(this.entrada);
 
         return ms;
+    }
+
+    public Long getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Long idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public Long getIdTurno() {
+        return idTurno;
+    }
+
+    public void setIdTurno(Long idTurno) {
+        this.idTurno = idTurno;
     }
 }

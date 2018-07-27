@@ -11,10 +11,14 @@ public class PerfilModel {
         this.nombre = p.getNombre();
     }
 
-    public Perfil getDBEntity(){
+    public Perfil getDBEntity() {
         Perfil p = new Perfil();
         p.setIdPerfil(this.idPerfil);
         p.setNombre(this.nombre);
         return p;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }

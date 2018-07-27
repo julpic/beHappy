@@ -2,6 +2,7 @@ package modules.gestionUsuarios.modelEntities;
 
 import modules.gestionUsuarios.dbEntities.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioModel {
@@ -21,15 +22,23 @@ public class UsuarioModel {
         this.usuario = u.getUsuario();
     }
 
-    public void setPerfiles(List<PerfilModel> perfiles) {
-        Perfiles = perfiles;
-    }
-
     public List<PerfilModel> getPerfiles() {
         return Perfiles;
     }
 
-    public Usuario getDBEntity(){
+    public void setPerfiles(List<PerfilModel> perfiles) {
+        Perfiles = perfiles;
+    }
+
+    public List<String> getPerfilesString() {
+        List<String> perfiles = new ArrayList<>();
+        for (PerfilModel p : Perfiles) {
+            perfiles.add(p.getNombre());
+        }
+        return perfiles;
+    }
+
+    public Usuario getDBEntity() {
         Usuario u = new Usuario();
 
         u.setIdEmpleado(this.idEmpleado);
