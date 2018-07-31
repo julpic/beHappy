@@ -299,7 +299,7 @@ app.controller("proveedoresController", function ($scope, $http) {
     //Subacciones...
 
     $scope.Proveedores1 = function () {
-        $scope.subaccion = 'Proveedor1';
+        $scope.subaccion = 'Proveedores1';
     };
 
     $scope.Proveedores2 = function () {
@@ -318,6 +318,7 @@ app.controller("proveedoresController", function ($scope, $http) {
     $scope.grabarProveedor = function (proveedor) {
         if (proveedor.idProveedor == null) {
             proveedor.idProveedor = -1;
+            alert(JSON.stringify(proveedor));
             $http.post('/beFruit/franquicias/proveedor', JSON.stringify(proveedor)).then (function (response) {
                     $scope.obtenerProveedores();
                     alert('El proveedor fue agregado corectamente');
