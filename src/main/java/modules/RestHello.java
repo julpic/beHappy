@@ -1,5 +1,7 @@
 package modules;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,9 +24,11 @@ public class RestHello {
     }
 
     @GET
-    @Path("header")
+    @Path("hash")
     @Produces("application/json")
     public Response get() {
-        return Response.ok(t.getHeader(h)).build();
+        String hashed = BCrypt.hashpw("hello", BCrypt.gensalt());
+        return Response.ok(hashed).build();
+
     }
 }

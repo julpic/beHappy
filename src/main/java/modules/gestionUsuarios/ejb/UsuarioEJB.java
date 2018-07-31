@@ -24,10 +24,10 @@ public class UsuarioEJB {
         return entityManager.find(Usuario.class, id);
     }
 
-    public Usuario find(Empleado e){
+    public Usuario findUser(long idEmpleado, long idFranquicia){
         Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE :idEmpleado = u.idEmpleado AND " +
-                ":idFranquicia = u.idFranquicia").setParameter("idEmpleado", e.getIdEmpleado())
-                .setParameter("idFranquicia", e.getIdFranquicia());
+                ":idFranquicia = u.idFranquicia").setParameter("idEmpleado", idEmpleado)
+                .setParameter("idFranquicia", idFranquicia);
         return (Usuario) q.getSingleResult();
     }
 
@@ -53,21 +53,13 @@ public class UsuarioEJB {
     }
 
     public boolean nombreExiste(String usuario){
-        Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE :nombre = u.usuario AND " +
+        Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE e.idEmpleado = u.idEmpleado AND " +
+                ":nombre = u.usuario AND " +
                 "e.alta = TRUE").setParameter("nombre", usuario);
         if (q == null){
             return true;
         }
         return false;
-    }
-
-    public boolean passwordValida(String usuario, String password){
-       Usuario u = find(usuario);
-       if (password == u.getPassword()){
-           return true;
-       }else{
-           return false;
-       }
     }
 
     public long buscarNuevoID(){

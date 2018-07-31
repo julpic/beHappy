@@ -41,8 +41,6 @@ public class PerfilController {
         return perfilesModel;
     }
 
-
-
     public boolean create(PerfilModel um) { return perfilEJB.create(um.getDBEntity()); }
 
     public void update(long id, PerfilModel um) {

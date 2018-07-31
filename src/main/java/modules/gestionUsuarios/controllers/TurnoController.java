@@ -57,9 +57,13 @@ public class TurnoController {
         }
     }
 
-    public boolean hayTurnoIniciado(){
+    public boolean hayTurnoIniciado() {
         Turno tempTurno = turnoEJB.turnoIniciado();
         return tempTurno != null;
+    }
+
+    public Turno turnoIniciado() {
+        return turnoEJB.turnoIniciado();
     }
 
     public boolean remove() {

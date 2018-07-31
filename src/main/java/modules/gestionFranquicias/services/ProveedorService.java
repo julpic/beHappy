@@ -58,7 +58,7 @@ public class ProveedorService {
     }
 
     @POST
-    @Path("insumo")
+    @Path("/insumo")
     @Consumes("application/json")
     public Response create(long idInsumo, long idProveedor) {
         if (proveedorController.create(idInsumo, idProveedor)) return Response.accepted().build();

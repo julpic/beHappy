@@ -6,6 +6,8 @@ import modules.gestionStock.ModelEntities.MovimientoStockModel;
 import modules.gestionStock.dbEntities.DetalleMovimientoStock;
 import modules.gestionStock.dbEntities.MovimientoStock;
 import modules.gestionStock.ejb.MovimientoStockEJB;
+import modules.gestionUsuarios.controllers.TurnoController;
+import modules.gestionUsuarios.dbEntities.Turno;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -20,6 +22,8 @@ public class MovimientoStockController {
     MovimientoStockEJB movimientoStockEJB;
     @Inject
     DetalleMovimientoStockController detalleMovimientoStockController;
+    @Inject
+    TurnoController turnoController;
 
     public MovimientoStockModel find(long id) {
         MovimientoStock ms = movimientoStockEJB.find(id);
@@ -46,9 +50,14 @@ public class MovimientoStockController {
     }
 
     public long create(MovimientoStockModel msm) {
-        Date date = new Date();
-        msm.setFechaHora(date);
-        return movimientoStockEJB.create(msm.getDBEntity());
+        Turno t = turnoController.turnoIniciado();
+        if (t != null) {
+            Date date = new Date();
+            msm.setIdTurno(t.getIdTurno());
+            msm.setFechaHora(date);
+            return movimientoStockEJB.create(msm.getDBEntity());
+        }
+        return -1;
     }
 
     public void remove(long id) {

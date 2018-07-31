@@ -1,10 +1,10 @@
 package modules.gestionUsuarios.controllers;
 
-import modules.gestionFranquicias.dbEntities.Empleado;
 import modules.gestionUsuarios.dbEntities.Usuario;
 import modules.gestionUsuarios.ejb.UsuarioEJB;
 import modules.gestionUsuarios.modelEntities.PerfilModel;
 import modules.gestionUsuarios.modelEntities.UsuarioModel;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -21,21 +21,30 @@ public class UsuarioController {
     public UsuarioModel find(long id) {
         Usuario u = usuarioEJB.find(id);
         UsuarioModel um = new UsuarioModel(u);
-        um.setPerfiles(perfilController.findAll(id));
+        List<PerfilModel> perfiles = perfilController.findAll(u.getIdUsuario());
+        if (perfiles != null) {
+            um.setPerfiles(perfiles);
+        }
         return um;
     }
 
-    public UsuarioModel find(Empleado e) {
-        Usuario u = usuarioEJB.find(e);
+    public UsuarioModel findUser(long idEmpleado, long idFranquicia) {
+        Usuario u = usuarioEJB.findUser(idEmpleado, idFranquicia);
         UsuarioModel um = new UsuarioModel(u);
-        um.setPerfiles(perfilController.findAll(u.getIdUsuario()));
+        List<PerfilModel> perfiles = perfilController.findAll(u.getIdUsuario());
+        if (perfiles != null) {
+            um.setPerfiles(perfiles);
+        }
         return um;
     }
 
     public UsuarioModel find(String nombre) {
         Usuario u = usuarioEJB.find(nombre);
         UsuarioModel um = new UsuarioModel(u);
-        um.setPerfiles(perfilController.findAll(u.getIdUsuario()));
+        List<PerfilModel> perfiles = perfilController.findAll(u.getIdUsuario());
+        if (perfiles != null) {
+            um.setPerfiles(perfiles);
+        }
         return um;
     }
 
@@ -45,7 +54,9 @@ public class UsuarioController {
         for (Usuario u : usuarios) {
             List<PerfilModel> pm = perfilController.findAll(u.getIdUsuario());
             UsuarioModel um = new UsuarioModel(u);
-            um.setPerfiles(pm);
+            if (pm != null) {
+                um.setPerfiles(pm);
+            }
             usuariosModel.add(um);
         }
         return usuariosModel;
@@ -53,17 +64,23 @@ public class UsuarioController {
 
     public void create(UsuarioModel um) {
         Usuario u = um.getDBEntity();
+        String password = BCrypt.hashpw(u.getPassword(), BCrypt.gensalt(12));
+        u.setPassword(password);
         usuarioEJB.create(u);
     }
 
     public void update(long id, UsuarioModel um) {
         Usuario u = um.getDBEntity();
+        String password = BCrypt.hashpw(u.getPassword(), BCrypt.gensalt(12));
+        u.setPassword(password);
         usuarioEJB.update(id, u);
     }
 
-    public boolean inicioSesionValido(String usuario, String password) {
-        if (usuarioEJB.nombreExiste(usuario)) {
-            return (usuarioEJB.passwordValida(usuario, password)) ? true : false;
+    public boolean inicioSesionValido(String username, String password) {
+        Usuario u = usuarioEJB.find(username);
+        if (u != null) {
+            String hashedPassword = u.getPassword();
+            return BCrypt.checkpw(password, hashedPassword);
         }
         return false;
     }
