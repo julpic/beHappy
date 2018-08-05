@@ -344,7 +344,7 @@ app.controller("proveedoresController", function ($scope, $http) {
     };
 
     $scope.modificarProveedor= function(proveedor){
-        $scope.proveedor = proveedor;
+        $scope.p = proveedor;
         $scope.Proveedores2();
     }
 

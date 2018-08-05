@@ -504,8 +504,8 @@
                                                     <td>{{p.telefonoContacto}}</td>
                                                     <td>{{p.eMail}}</td>
                                                     <td>{{p.alta}}</td>
-                                                    <td><i class="material-icons icono-modificar"  title="Editar" style="">edit</i>
-                                                        <i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></td>
+                                                    <td><i class="material-icons icono-modificar"  title="Editar" ng-click="modificarProveedor(p)" style="">edit</i>
+                                                        <i class="material-icons icono-eliminar "  title="Eliminar" style="" ng-click="borrarProveedor(p)">delete</i></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -541,11 +541,9 @@
                                                 </div>
 
 
-                                            <div style="float: right ; width: 60%; border-top: 1px solid  grey; padding: 10px">
-                                                <button type="button" ng-click="grabarProveedor(p)" class=" btn  btn-primary" style="">Agregar
-                                                </button>
-
-                                            </div>
+                                                <div class="col s12">
+                                                    <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarProveedor(p)">Aceptar</a>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -903,12 +901,11 @@
 </div>
 
 <script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/Materialize/materialize.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="assets/js/spark.js"></script>
-
 <script src="assets/js/init.js"></script>
 
 
