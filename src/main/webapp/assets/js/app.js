@@ -48,6 +48,16 @@ app.controller("beFruitController", function ($scope, $http) {
         $scope.accion = 'Configuracion';
     };
 
+    $scope.login = function (user) {
+        var credentials = btoa(user.username + ':' + user.password);
+        var authorization = {'Authorization': 'Basic ' + credentials};
+        var header = {headers: authorization};
+        $http.post('/beFruit/usuarios/sesion' , header)
+            .then(function(response) {
+                alert(response.data);
+            };
+    }
+
 
 });
 

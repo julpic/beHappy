@@ -1,0 +1,83 @@
+@import url(https://fonts.googleapis.com/css?family=Wire+One|Play);
+
+* {margin: 0;padding: 0;outline:0;}
+
+body {
+  font-family: 'Wire One', Helvetica, Arial, sans-serif;
+  background-image: url(resources/background.jpg);
+}
+
+.box {
+  background: #f0f0f0;
+  width: 400px;
+  height: 650px;
+  margin: 110px auto 0;
+  padding: 0;
+  border-radius: 15px;
+  border: 2px dashed #9BCC21;
+  box-shadow: 0 0 0px 10px #f0f0f0;
+}
+
+.title {
+  letter-spacing: 0px;  
+  font-size: 50px;
+  font-weight: 400;
+  text-align: center;
+  margin: 20px 0;  
+}
+
+.username, .password {
+  font-family: 'Play', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 250px;
+  height: 40px;
+  margin: 0 auto;
+  outline: 0;
+  padding: 4px 9px;
+  transition: all .2s ease;
+}
+
+.username:focus, .password:focus {
+  box-shadow: inset 0 0 9px rgba(155, 204, 33,0.7);
+}
+
+
+.username {
+  margin-bottom: 10px;
+}
+
+.password {
+  margin-bottom: 20px;
+}
+
+.button {
+  font-family: 'Play', Helvetica, Arial, sans-serif;
+  color: rgb(156, 156, 156);
+  border: 1px solid rgb(70, 207, 36);
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: 50px;
+  font-size: 24px;
+  transition: all .2s ease;
+  border-radius: 5px;
+}
+
+.button:hover {
+  color: #222;
+  background: #9BCC21;
+}
+
+.button:active {
+  border-color: #222;  
+}

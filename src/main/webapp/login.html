@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Be Fruit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body ng-controller="beFruitController">
+   <div class="box">
+        <center><img src="resources/be fruit.png" alt="" class="title" width="350" height="350"></center>
+       <form action="#" method="POST">
+           <br>
+           <h3>{{title}}</h3>
+          <input name="username" type="text" class="username" ng-model="u.username" placeholder="Usuario" required>
+          <br>
+          <input name="password" type="password" class="password" ng-model="u.password" placeholder="Contraseña" required>
+          <br>
+          <br>
+          <input name="Login" type="button" class="button" ng-click="login(u)" value="Aceptar">
+       </form>
+   </div>
+
+   <script src="node_modules/angular/angular.min.js"></script>
+   <script src="assets/js/app.js"></script>
+   
+</body>
+</html>
