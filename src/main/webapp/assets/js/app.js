@@ -555,5 +555,33 @@ app.controller("promocionesController", function ($scope, $http) {
     $scope.subaccion = 'Promociones1';
 });
 
-app.controller("configController", function ($scope, $http) {
+app.controller("configController", function ($scope, $http, empleadosController) {
+    $scope.subaccion = 'Configuracion1';
+
+    $scope.empleado = function() {
+       $scope.obtenerEmpleados.$emit() ;
+    };
+    alert($scope.empleado);
+    //Subacciones
+    $scope.obtenerEmpleados();
+    alert($scope.$parent.obtenerEmpleados());
+    $scope.Configuracion1 = function(){
+        $scope.subaccion = 'Configuracion1';
+        $scope.obtenerUsuarios();
+    };
+
+    
+    $scope.Configuracion2 = function(){
+        $scope.subaccion = 'Configuracion2'}
+    
+    //Funciones
+    
+    $scope.obtenerUsuarios = function(){
+        alert($scope.empleados);
+         $http.get('/beFruit/usuarios')
+            .then (function (response){
+                $scope.usuarios = response.data;
+             alert($scope.usuarios);});
+    };
+    $scope.obtenerUsuarios();
 });

@@ -884,10 +884,62 @@
                                     <ul class="nav nav-tabs">
                                         <li role="presentation" class="nav-item">
                                             <a href="#" role="tab" data-toggle="tab" class="nav-link active show"
-                                               aria-selected="true">Configuracion</a>
+                                               aria-selected="true" ng-click="Configuracion1()">Configuracion</a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#" role="tab" data-toggle="tab" class="nav-link "
+                                               aria-selected="true" ng-click="Configuracion2()" >Permisos</a>
                                         </li>
                                     </ul>
-
+                                    <div class="tab-content" ng-show="subaccion == 'Configuracion1'">
+                                    <form action="" class="col s12">
+                                       <p class="" id="titulo-contenedor-sucursal"> Nuevo Usuario </p>
+                                       <!--- Inputs crear usuario-->
+                                       <div class="input-field col s6">
+                                           <input required placeholder="Id" type="text" class="validate">
+                                           <label for="">Id del usuario</label>
+                                       </div>
+                                       <div class="input-field col s6">
+                                           <input required type="password" class="validate" placeholder="Contraseña">
+                                           <label for="">Contraseña</label>
+                                       </div>
+                                       <div class="input-field col s6">
+                                           <select reç name="" id="" class="custom-select" ng-model="usuario.empleado" ng-option=" empleado as empleado.apellido for
+                                            empleado in $scope.empleados track by empleado.idEmpleado">
+                                               <option value="" selected> Elegir Empleado </option>
+                                               
+                                           </select>
+                                       </div>
+                                        <div class="input-field col s12">
+                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarUsuario(u)"> ACEPTAR </a>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <table class="table centered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Empleado</th>
+                                                        <th>Sucursal</th>
+                                                        <th>Ver Permisos</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody >
+                                                   <tr ng-repeat="u in usuarios">
+                                                    <td>{{u.idUsuario}}</td>
+                                                    <td>{{u.idEmpleado}}</td>
+                                                    <td>{{u.usuario}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                    </form>
+                                    </div>
+                                    
+                                    <div class="tab-content" ng-show="subaccion == 'Configuracion2'">
+                                    
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
