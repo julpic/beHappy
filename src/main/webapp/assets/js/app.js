@@ -55,7 +55,7 @@ app.controller("beFruitController", function ($scope, $http) {
         $http.post('/beFruit/usuarios/sesion' , header)
             .then(function(response) {
                 alert(response.data);
-            };
+            });
     }
 
 
