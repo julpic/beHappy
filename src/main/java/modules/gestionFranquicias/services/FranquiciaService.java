@@ -80,3 +80,18 @@ public class FranquiciaService {
         franquiciaController.remove(id);
     }
 }
+/*
+NOTA: El Cuil tiene que ser VALIDO
+{
+    "idFranquicia":0,
+    "cuit":"27-17160265-9",
+    "direccion":"Velez Sasrfield 817",
+    "nombreDueno":"Eliana Belen",
+    "eMailDueno":"eluuugarcia@gmail.com",
+    "apellidoDueno":"Garcia Cowan",
+    "alta":"true",
+    "empleados":[
+
+    ]
+}
+ */

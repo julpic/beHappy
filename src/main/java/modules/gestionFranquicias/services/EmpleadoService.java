@@ -57,3 +57,16 @@ public class EmpleadoService {
         empleadoController.remove(id);
     }
 }
+/*
+{
+    "idEmpleado":0,
+    "idFranquicia":1,
+    "apellido":"Garcia Cowan",
+    "dni":"93720820",
+    "eMail;":"eluuugarcia@gmail.com",
+    "fechaNacimiento":"1996-09-18",
+    "nombre":"Eliana",
+    "telefonoContacto":"3515100391",
+    "alta":"true"
+}
+ */

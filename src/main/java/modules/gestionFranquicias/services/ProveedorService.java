@@ -83,3 +83,13 @@ public class ProveedorService {
         proveedorController.remove(id);
     }
 }
+/*
+{
+    "idProveedor":0,
+    "cuit":"27-93720820-6",
+    "razonSocial":"Crespo inc.",
+    "eMail":"mickaelacrespo@gmail.com",
+    "telefonoContacto":"155100391",
+    "alta":"true"
+}
+ */

@@ -28,6 +28,9 @@ public class UsuarioEJB {
         Query q = entityManager.createQuery("SELECT u FROM Empleado e, Usuario u WHERE :idEmpleado = u.idEmpleado AND " +
                 ":idFranquicia = u.idFranquicia").setParameter("idEmpleado", idEmpleado)
                 .setParameter("idFranquicia", idFranquicia);
+        if(q.getResultList().isEmpty()){
+            return null;
+        }
         return (Usuario) q.getSingleResult();
     }
 

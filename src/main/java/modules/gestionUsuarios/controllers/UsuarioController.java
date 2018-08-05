@@ -20,6 +20,9 @@ public class UsuarioController {
 
     public UsuarioModel find(long id) {
         Usuario u = usuarioEJB.find(id);
+        if (u == null){
+            return null;
+        }
         UsuarioModel um = new UsuarioModel(u);
         List<PerfilModel> perfiles = perfilController.findAll(u.getIdUsuario());
         if (perfiles != null) {
@@ -30,6 +33,9 @@ public class UsuarioController {
 
     public UsuarioModel findUser(long idEmpleado, long idFranquicia) {
         Usuario u = usuarioEJB.findUser(idEmpleado, idFranquicia);
+        if (u == null){
+            return null;
+        }
         UsuarioModel um = new UsuarioModel(u);
         List<PerfilModel> perfiles = perfilController.findAll(u.getIdUsuario());
         if (perfiles != null) {
