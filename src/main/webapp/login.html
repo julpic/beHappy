@@ -5,25 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Be Fruit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="node_modules/Materialize/materialize.min.css" rel="stylesheet">
 </head>
-<body ng-controller="beFruitController">
-   <div class="box">
-        <center><img src="resources/be fruit.png" alt="" class="title" width="350" height="350"></center>
-       <form action="#" method="POST">
-           <br>
-           <h3>{{title}}</h3>
-          <input name="username" type="text" class="username" ng-model="u.username" placeholder="Usuario" required>
-          <br>
-          <input name="password" type="password" class="password" ng-model="u.password" placeholder="Contraseña" required>
-          <br>
-          <br>
-          <input name="Login" type="button" class="button" ng-click="login(u)" value="Aceptar">
-       </form>
-   </div>
+<body class="login-body" ng-controller="beFruitController">
+ 
+<div class="container">
+  <center> <div class="depth-2 box">
+       <center><img src="resources/be%20fruit.png" alt="" class="imagen-login"></center>
 
+           <form action="" class="col s12" method="post">
+              <p style="color: red; display:none">¡Usuario o contraseña incorrecta!</p>
+                  <div class="input-field col s12">
+                      <input name="usuario" id="usuario-login" type="text" required class="validate" ng-model="u.username" >
+                      <label for="usuario-login" >Usuario</label>
+                  </div>
+            <div class="input-field col s12">
+                      <input name="usuario" type="password" required class="validate" id="pass-login" ng-model="u.password" >
+                      <label for="pass-login">Contraseña</label>
+                  </div>
+                 
+             <a class=" btn-login waves-effect waves-light  btn white-text z-depth-2" title="Aceptar" ng-click="login(u)">Aceptar</a>
+
+           </form>
+    </div>
+    </center>    
+</div>
    <script src="node_modules/angular/angular.min.js"></script>
    <script src="assets/js/app.js"></script>
-   
+   <script src="node_modules/Materialize/materialize.js"></script>
 </body>
 </html>

@@ -542,7 +542,8 @@
 
 
                                                 <div class="col s12">
-                                                    <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarProveedor(p)">Aceptar</a>
+                                                    <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn-large  white-text z-depth-4" title="Aceptar" ng-click="grabarProveedor(p)">Aceptar</a>
+                                                    
                                                 </div>
                                             </form>
                                         </div>
@@ -697,7 +698,7 @@
                                                        </select>
                                                     </div>
                                                     <div class="col s12">
-                                                        <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarEmpleado(empleado)">Aceptar</a>
+                                                        <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn-large  white-text z-depth-4" title="Aceptar" ng-click="grabarEmpleado(empleado)">Aceptar</a>
                                                     </div>
                                                 </div>
 
@@ -864,7 +865,7 @@
                                                     <label for="">Cuit</label>
                                                 </div>
                                             </div>
-                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarFranquicia(franquicia)">Aceptar</a>
+                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn-large  white-text z-depth-4" title="Aceptar" ng-click="grabarFranquicia(franquicia)">Aceptar</a>
 
                                         </form>
                                     </div>
@@ -892,35 +893,37 @@
                                         </li>
                                     </ul>
                                     <div class="tab-content" ng-show="subaccion == 'Configuracion1'">
-                                    <form action="" class="col s12">
+                                    <div action="" class="col s12">
+                                      <form class="col s6">
                                        <p class="" id="titulo-contenedor-sucursal"> Nuevo Usuario </p>
                                        <!--- Inputs crear usuario-->
-                                       <div class="input-field col s6">
+                                       <!--Agregar Angular  a inputs  -->
+                                       <div class="input-field col ">
                                            <input required placeholder="Id" type="text" class="validate">
                                            <label for="">Id del usuario</label>
                                        </div>
-                                       <div class="input-field col s6">
+                                       <div class="input-field col ">
                                            <input required type="password" class="validate" placeholder="Contraseña">
                                            <label for="">Contraseña</label>
                                        </div>
-                                       <div class="input-field col s6">
+                                       <div class="input-field col ">
                                            <select reç name="" id="" class="custom-select" ng-model="usuario.empleado" ng-option=" empleado as empleado.apellido for
                                             empleado in $scope.empleados track by empleado.idEmpleado">
                                                <option value="" selected> Elegir Empleado </option>
                                                
                                            </select>
                                        </div>
-                                        <div class="input-field col s12">
-                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn z-depth-4" title="Aceptar" ng-click="grabarUsuario(u)"> ACEPTAR </a>
-                                        </div>
-                                        <div class="input-field col s12">
+                                        </form>
+                                            
+                                        <div class="input-field col s6">
                                             <table class="table centered">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Empleado</th>
                                                         <th>Sucursal</th>
-                                                        <th>Ver Permisos</th>
+                                                        <th>Permisos</th>
+                                                        <th>----</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody >
@@ -928,12 +931,20 @@
                                                     <td>{{u.idUsuario}}</td>
                                                     <td>{{u.idEmpleado}}</td>
                                                     <td>{{u.usuario}}</td>
+                                                    <td><a href="">Ver</a></td>
+                                                    <td><i class="material-icons icono-modificar"     title="Editar">wsit</i>
+                                                        <i class="material-icons icono-eliminar" title="Eliminar">delete</i>
+                                                    </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                         
-                                    </form>
+                                        <div class="input-field col s12">
+                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn-large  white-text z-depth-4" title="Aceptar" ng-click="grabarUsuario(u)"> ACEPTAR </a>
+                                        </div>
+                                        
+                                    </div>
                                     </div>
                                     
                                     <div class="tab-content" ng-show="subaccion == 'Configuracion2'">
