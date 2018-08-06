@@ -394,69 +394,80 @@
                                         </div>
                                         <div class="tab-content" ng-show="subaccion == 'Stock5'">
                                             <div role="tabcard" class="tab-pane fade in active show">
-                                                <div class="container " style="height: 450px">
+                                                <div class="container " >
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <div class="container" style="overflow: auto; height: 400px;">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <td>Nº</td>
+                                                                        <td colspan="2">Nombre</td>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody ng-repeat="um in unidades" >
+                                                                    <tr>
+                                                                        <td>{{um.idUnidad}}</td>
+                                                                        <td>{{um.nombre}}</td>
+                                                                        <td><a ng-click="buscarUnidadMedidaPorId(um)"
+                                                                               href="#"><i class="material-icons icono-modificar"  title="Editar" >edit</i></a>
+                                                                            <a ng-click="borrarUnidadMedida(um)" href="#"><i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></a></td>
+                                                                    </tr>
 
-                                                    <div class="container " style="float: left; width: 40%">
-                                                        <table class="table col-sm-2">
-                                                            <thead>
-                                                            <tr>
-                                                                <td>Nº</td>
-                                                                <td>Nombre</td>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody ng-repeat="um in unidades">
-                                                            <tr>
-                                                                <td>{{um.idUnidad}}</td>
-                                                                <td>{{um.nombre}}</td>
-                                                                <td><a ng-click="buscarUnidadMedidaPorId(um)"
-                                                                       href="#"><i class="material-icons icono-modificar"  title="Editar" >edit</i></a>
-                                                                <a ng-click="borrarUnidadMedida(um)" href="#"><i class="material-icons icono-eliminar "  title="Eliminar" style="">delete</i></a></td>
-                                                            </tr>
+                                                                    </tbody>
+                                                                </table>
 
-                                                            </tbody>
-                                                        </table>
-                                                        <div class="row">
-                                                            <a class=" btn-large waves-effect waves-light white-text "
-                                                               ng-click="Stock4()"><i
-                                                                    class="material-icons">add</i></a>
+
+                                                            </div>
+                                                            </div>
+
+
+                                                            <div class="row">
+                                                                <div class="col align-self-center">
+                                                                    <a class=" btn-large waves-effect waves-light white-text "
+                                                                       ng-click="nuevaUnidadMedida()"><i class="material-icons">add</i></a>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
 
+                                                        <div  class="col"
+                                                              style="float: right; overflow: auto; height: 400px; text-align: center; border-left: 1px solid grey">
+                                                            <form >
+
+                                                                <div class="row" id="contenedor-modificar-unidmedida-stock">
+
+                                                                    <div class="input-field col">
+                                                                        <input id="idUm" type="text" class="validate"
+                                                                               ng-model="nvoUnidad.idUnidad"
+                                                                               placeholder="{{nvoUnidad.idUnidad == null ? '' : 'nvoUnidad.idUnidad' }}" disabled value="{{nvo.idUnidad}}">
+                                                                        <label for="idUm">ID</label>
+                                                                    </div>
+                                                                    <div class="input-field col ">
+                                                                        <input required id="NombreUM" type="text" class="validate"
+                                                                               ng-model="nvoUnidad.nombre"
+                                                                               placeholder="{{nvoUnidad.nombre == null ? '' : 'nvoUnidad.nombre'}}" value="{{nvoUnidad.nombre}}">
+                                                                        <label for="Nombre">
+                                                                            Nombre
+                                                                        </label>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="row justify-content-md-center">
+
+                                                                        <a class="waves-effect waves-light btn-large  white-text"
+                                                                           ng-click="grabarUnidadMedida()">{{ nvoUnidad.idUnidad ==
+                                                                            null ? 'Guardar nuevo!' : 'Guardar cambios!'}}</a>
+
+
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="container "
-                                                         style="float: right; width: 60%; overflow: auto; height: 400px; text-align: center; border-left: 1px solid grey">
-                                                        <form class="col s12">
-
-                                                            <div class="row" id="contenedor-modificar-unidmedida-stock">
-
-                                                                <div class="input-field col col-sm-5">
-                                                                    <input id="idUm" type="text" class="validate"
-                                                                           ng-model="nvoUnidad.idUnidad"
-                                                                           placeholder="{{nvoUnidad.idUnidad == null ? '' : 'nvoUnidad.idUnidad' }}" disabled value="{{nvo.idUnidad}}">
-                                                                    <label for="idUm">ID</label>
-                                                                </div>
-                                                                <div class="input-field col col-sm-5">
-                                                                    <input required id="NombreUM" type="text" class="validate"
-                                                                           ng-model="nvoUnidad.nombre"
-                                                                           placeholder="{{nvoUnidad.nombre == null ? '' : 'nvoUnidad.nombre'}}" value="{{nvoUnidad.nombre}}">
-                                                                    <label for="Nombre">
-                                                                        Nombre
-                                                                    </label>
-                                                                </div>
-                                                                
-
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col s12">
-                                                                    <a class="waves-effect waves-light btn-large  white-text"
-                                                                       ng-click="grabarUnidadMedida()">{{ nvoUnidad.idUnidad ==
-                                                                        null ? 'Guardar nuevo!' : 'Guardar cambios!'}}</a>
-                                                                </div>
-
-                                                            </div>
-                                                            
-                                                        </form>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
