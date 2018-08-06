@@ -683,7 +683,6 @@
                                                     
                                                     <div class="input-field col s6">
                                                         <input type="text" class="validate" placeholder="Email" ng-model="empleado.eMail">
-                                                        <input type="email" class="validate" placeholder="Email">
                                                         <label for="">Email</label>
                                                     </div>
 
@@ -912,18 +911,18 @@
                                            <label for="">Contraseña</label>
                                        </div>
                                        <div class="input-field col ">
-                                           <select name="" id="" class="custom-select" ng-model="usuario.idEmpleado" ng-options=" empleado as empleado.apellido +', '+ empleado.nombre for
+                                           <select name="" id="" class="custom-select" ng-model="empleado" ng-options=" empleado as empleado.apellido +', '+ empleado.nombre for
                                             empleado in empleados track by empleado.idEmpleado">
                                                <option value="" selected disabled> Elegir empleado </option>
                                            </select>
                                        </div>
                                           <div class="input-field col ">
-                                           <select name="" id="" class="custom-select" ng-model="usuario.Perfiles" ng-options="perfil as perfil.nombre for perfil in perfiles track by perfil.idPerfil">
+                                           <select name="" id="" class="custom-select" ng-model="perfil" ng-options="perfil as perfil.nombre for perfil in perfiles track by perfil.idPerfil">
                                                <option value="" selected disabled> Eligir perfil de usuario</option>
                                            </select>
                                        </div>
                                           <div class="input-field col s12">
-                                              <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn-large  white-text z-depth-4" title="Aceptar" ng-click="grabarUsuario(usuario)"> ACEPTAR </a>
+                                              <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn-large  white-text z-depth-4" title="Aceptar" ng-click="grabarUsuario(usuario,empleado,perfil)"> ACEPTAR </a>
                                           </div>
 
                                         </form>

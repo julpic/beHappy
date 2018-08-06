@@ -504,10 +504,11 @@ app.controller("empleadosController", function ($scope, $http) {
             $http.post('/beFruit/franquicias/empleado', JSON.stringify(empleado)).then (function (response) {
                     $scope.obtenerEmpleados();
                     alert('El empleado fue agregado corectamente');
-                    empleado = null
+                    empleado = null;
                 },
                 function (response) {
-                    alert('No se pudo agregar el empleado')
+                    alert('No se pudo agregar el empleado');
+                    empleado = null;
                 });
         }
         else {
@@ -573,6 +574,8 @@ app.controller("configController", function ($scope, $http) {
     $scope.Configuracion1 = function(){
         $scope.subaccion = 'Configuracion1';
         $scope.obtenerUsuarios();
+        $scope.obtenerPerfiles();
+        $scope.obtenerEmpleados();
     };
 
     $scope.obtenerEmpleados = function () {
@@ -603,16 +606,21 @@ app.controller("configController", function ($scope, $http) {
              ;});
     };
 
-    $scope.grabarUsuario = function (usuario) {
-        alert("HOOOLA");
+    $scope.grabarUsuario = function (usuario,empleado, perfil) {
         alert(JSON.stringify(usuario));
-        usuario.idFranquicia = empleados.idFranquicia;
+        usuario.idFranquicia = empleado.idFranquicia;
+        usuario.idEmpleado = empleado.idEmpleado;
         usuario.idUsuario = -1;
-        alert(usuario);
+        usuario.Perfiles = [];
+        usuario.Perfiles.push(perfil);
+
+        alert(JSON.stringify(usuario));
 
         $http.post('/beFruit/usuarios/usuario',JSON.stringify(usuario)).
             then(function (response) {
                 alert("El usuario fue creado correctamente");
+                usuario = null;
+                $scope.Configuracion1();
             },
             function (response) {
                 alert("No se pudo crear el usuario");
@@ -621,8 +629,4 @@ app.controller("configController", function ($scope, $http) {
 
     };
 
-
-    $scope.obtenerUsuarios();
-    $scope.obtenerEmpleados();
-    $scope.obtenerPerfiles();
 });
