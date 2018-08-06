@@ -415,6 +415,11 @@
 
                                                             </tbody>
                                                         </table>
+                                                        <div class="row">
+                                                            <a class=" btn-large waves-effect waves-light white-text "
+                                                               ng-click="Stock4()"><i
+                                                                    class="material-icons">add</i></a>
+                                                        </div>
 
                                                     </div>
 
@@ -899,20 +904,28 @@
                                        <!--- Inputs crear usuario-->
                                        <!--Agregar Angular  a inputs  -->
                                        <div class="input-field col ">
-                                           <input required placeholder="Id" type="text" class="validate">
-                                           <label for="">Id del usuario</label>
+                                           <input required placeholder="Usuario" type="text" class="validate" ng-model="usuario.usuario">
+                                           <label for="">Usuario</label>
                                        </div>
                                        <div class="input-field col ">
-                                           <input required type="password" class="validate" placeholder="Contraseña">
+                                           <input required type="password" class="validate" placeholder="Contraseña" ng-model="usuario.password">
                                            <label for="">Contraseña</label>
                                        </div>
                                        <div class="input-field col ">
-                                           <select reç name="" id="" class="custom-select" ng-model="usuario.empleado" ng-option=" empleado as empleado.apellido for
-                                            empleado in $scope.empleados track by empleado.idEmpleado">
-                                               <option value="" selected> Elegir Empleado </option>
-                                               
+                                           <select name="" id="" class="custom-select" ng-model="usuario.idEmpleado" ng-options=" empleado as empleado.apellido +', '+ empleado.nombre for
+                                            empleado in empleados track by empleado.idEmpleado">
+                                               <option value="" selected disabled> Elegir empleado </option>
                                            </select>
                                        </div>
+                                          <div class="input-field col ">
+                                           <select name="" id="" class="custom-select" ng-model="usuario.Perfiles" ng-options="perfil as perfil.nombre for perfil in perfiles track by perfil.idPerfil">
+                                               <option value="" selected disabled> Eligir perfil de usuario</option>
+                                           </select>
+                                       </div>
+                                          <div class="input-field col s12">
+                                              <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn-large  white-text z-depth-4" title="Aceptar" ng-click="grabarUsuario(usuario)"> ACEPTAR </a>
+                                          </div>
+
                                         </form>
                                             
                                         <div class="input-field col s6">
@@ -931,17 +944,13 @@
                                                     <td>{{u.idUsuario}}</td>
                                                     <td>{{u.idEmpleado}}</td>
                                                     <td>{{u.usuario}}</td>
-                                                    <td><a href="">Ver</a></td>
+                                                    <td ng-repeat="p in u.Perfiles">{{p.nombre}}</td>
                                                     <td><i class="material-icons icono-modificar"     title="Editar">wsit</i>
                                                         <i class="material-icons icono-eliminar" title="Eliminar">delete</i>
                                                     </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        
-                                        <div class="input-field col s12">
-                                            <a id="btn-aceptar-agregar-sucursal" class="waves-effect waves-light btn-large  white-text z-depth-4" title="Aceptar" ng-click="grabarUsuario(u)"> ACEPTAR </a>
                                         </div>
                                         
                                     </div>

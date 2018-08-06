@@ -565,33 +565,64 @@ app.controller("promocionesController", function ($scope, $http) {
     $scope.subaccion = 'Promociones1';
 });
 
-app.controller("configController", function ($scope, $http, empleadosController) {
+app.controller("configController", function ($scope, $http) {
     $scope.subaccion = 'Configuracion1';
 
-    $scope.empleado = function() {
-       $scope.obtenerEmpleados.$emit() ;
-    };
-    alert($scope.empleado);
+
     //Subacciones
-    $scope.obtenerEmpleados();
-    alert($scope.$parent.obtenerEmpleados());
     $scope.Configuracion1 = function(){
         $scope.subaccion = 'Configuracion1';
         $scope.obtenerUsuarios();
     };
 
-    
+    $scope.obtenerEmpleados = function () {
+        $http.get('/beFruit/franquicias/empleado')
+            .then (function (response){
+                $scope.empleados = response.data;
+            });
+    };
+
+    $scope.obtenerPerfiles = function() {
+      $http.get('/beFruit/usuarios/perfil').
+      then (function (response) {
+           $scope.perfiles = response.data;
+          }
+      );
+    };
+
+
     $scope.Configuracion2 = function(){
         $scope.subaccion = 'Configuracion2'}
     
     //Funciones
     
     $scope.obtenerUsuarios = function(){
-        alert($scope.empleados);
-         $http.get('/beFruit/usuarios')
+         $http.get('/beFruit/usuarios/usuario')
             .then (function (response){
                 $scope.usuarios = response.data;
-             alert($scope.usuarios);});
+             ;});
     };
+
+    $scope.grabarUsuario = function (usuario) {
+        alert("HOOOLA");
+        alert(JSON.stringify(usuario));
+        usuario.idFranquicia = empleados.idFranquicia;
+        usuario.idUsuario = -1;
+        alert(usuario);
+
+        $http.post('/beFruit/usuarios/usuario',JSON.stringify(usuario)).
+            then(function (response) {
+                alert("El usuario fue creado correctamente");
+            },
+            function (response) {
+                alert("No se pudo crear el usuario");
+            }
+        );
+
+    };
+
+
     $scope.obtenerUsuarios();
+    $scope.obtenerEmpleados();
+    $scope.obtenerPerfiles();
 });
