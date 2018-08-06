@@ -291,6 +291,10 @@ app.controller("stockController", function ($scope, $http) {
 
     };
 
+    $scope.nuevaUnidadMedida = function (){
+        $scope.nvoUnidad = null;
+    }
+
 
     //Valores inicializados (sino materialize no carga los select):
 
