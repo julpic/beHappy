@@ -286,9 +286,20 @@
                                                                 <label for="cantidad">Cantidad</label>
                                                             </div>
                                                             <div class="input-field col s8">
-                                                                <button type="button" class=" btn btn-danger"
-                                                                        ng-click="sumarDetalle(movimiento, detalle)">+
-                                                                </button>
+                                                                <div class="row">
+                                                                    <div class="col-">
+                                                                    <a class="waves-effect waves-light btn white-text"
+                                                                                    ng-click="sumarDetalle(movimiento, detalle)">
+                                                                    <i
+                                                                            class="material-icons">add</i></a>
+                                                                    </button>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <a class="waves-effect waves-light  btn white-text"
+                                                                           ng-click="liberarFormMovimiento()"><i
+                                                                                class="material-icons">replay</i></a>
+                                                                    </div></div>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -374,11 +385,16 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col s12">
+                                                            <div class="col-sm-2">
                                                                 <a class="waves-effect waves-light btn-large  white-text"
                                                                    ng-click="grabarInsumo()">{{ nvoInsumo.idInsumo ==
                                                                     null ? 'Guardar nuevo!' : 'Guardar cambios!'}}</a>
                                                             </div>
+                                                            <div class="col-sm-2">
+                                                            <a class="waves-effect waves-light btn-large  white-text"
+                                                               ng-click="liberarFormuInsumo()"><i
+                                                                    class="material-icons">replay</i></a>
+                                                        </div>
                                                         </div>
 
                                                     </form>

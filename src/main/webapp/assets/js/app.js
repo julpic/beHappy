@@ -101,7 +101,7 @@ app.controller("stockController", function ($scope, $http) {
                 $scope.insumos = response.data;
             });
     };
-
+   //Movimientos
     $scope.obtenerMovimientos = function () {
         $http.get('/beFruit/stock/movimientoStock')
             .then(function (response) {
@@ -198,6 +198,10 @@ app.controller("stockController", function ($scope, $http) {
 
     };
 
+    $scope.liberarFormMovimiento= function(){
+        $scope.detalle = {};
+    }
+
     //Insumos - FUNCIONANDO
 
     $scope.grabarInsumo = function () {
@@ -253,6 +257,10 @@ app.controller("stockController", function ($scope, $http) {
         $scope.nvoInsumo = Insumo;
         $scope.Stock4();
     };
+
+    $scope.liberarFormuInsumo = function (){
+        $scope.nvoInsumo = null;
+    }
 
     //UnidadMedida - FUNCIONANDO
     $scope.obtenerUnidades = function () {
